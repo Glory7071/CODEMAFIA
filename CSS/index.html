@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+*{
+margin:0;
+box-sizing: border-box:
+}
+.navbar{
+height:60px;
+background-color:#0f1111;
+color:white;
+display:flex;
+align-items: center;
+justify-content:space-evenly;
+}
+.nav-logo{
+height:50px;
+width:100px;
+}
+.logo{
+background-image:url("https://i.pinimg.com/564x/5d/96/e6/5d96e6b0d3bb71c237b51642a6eb4a29.jpg");
+background-size:cover;
+height:50px;
+width:100%;
+}
+.border:{
+border:1.5px solid transparent;
+}
+.border:hover{
+border: 1.5px solid white;
+}
+.add-first{
+margin-left:15px;
+color:#cccccc;
+font-size:0.85rem;
+}
+.add-second{
+font-size:1rem;
+margin-left:3px;
+}
+.add-icon{
+display:flex;
+align-items:center;
+}
+.nav-serch{
+display:flex;
+justify-content:space-evenly;
+background-color:pink;
+width:620px;
+height:40px;
+border-radius: 4px;
+}
+.seach-select{
+background-color:#f3f3f3;
+width:50px;
+text-align:center;
+border-top-left-radius:4px;
+border-bottom-left-radius:4px;
+}
+.search-input{
+width:100%;
+font-size:1rem;
+border:none;
+}
+.search-icon{
+width: 45px;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size:1.2rem;
+background-color:#febd68;
+border-top-right-radius:4px;
+border-bottom-right-radius:4px;
+color:0f1111;
+}
+
+.nav-serch:hover{
+border:2px solid orange;
+}
+span{
+font-size:0.7rem;
+}
+.nav-second{
+  font-size:0.85rem;
+  font-weight:700;
+}
+.nav-cart i{
+ font-size:30px;
+}
+nav-cart{
+ font-size:0.85rem;
+ font-weight:700;
+ }
+ .panel{
+ height:40px;
+ background-color:#222f3d;
+ display:flex;
+ color:white;
+ align-items:center;
+ justify-content:space-evenly;
+ }
+ .panel-ops p{
+ display:inline;
+ margin:15px;
+ }
+ .panel-ops{
+ width:70%;
+ font-size:0.85rem;
+ 
+ }
+ .panel-deals{
+   font-size:0.95rem;
+   font-weight:700;
+ }
+ .hero-section{
+ /*background-image:url("https://images-eu.ssl-images-amazon.com/images/G/31/Events/img24/Jupiter24/Phase3B/J24_P3B_GW_PC_EventHero_NTA_ETmr_2x._CB544142947_.jpg");
+*/ height:350px;
+ background-size:cover;
+ background-position: center;
+ display:flex;
+ align-items:flex-end;
+ transition: background-image 1s ease-in-out;
+ } 
+  .hero-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.hero-banner {
+  
+	
+	display: block;
+  text-decoration: none;
+}
+
+ /*
+.hero-slider {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}*/
+ .box{
+ height:400px;  
+  width:23% ;
+  margin-top:15px;
+  background-color:white;
+  padding:20px 0px 15px
+  
+ }
+ .shop-section{
+   display:flex;
+   flex-wrap:wrap;
+   justify-content:space-evenly;
+   background-color:#e2e7e6;
+   }
+   .box-img{
+   height:300px;
+   background-size:cover;
+   margin-bottom:1rem;
+   margin-top:1rem;
+   }
+   .box-content{
+   margin-left:1rem;
+   margin-right:1rem;
+  
+   }
+   .box-content p{
+    color:#007185;
+   
+   }
+
+   /*add css for horizontal section*/
+   .gadget-section {
+  padding: 10px 30px;
+  background-color: #f3f3f3;
+  overflow: hidden;
+
+}
+
+.gadget-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.gadget-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden; /* 👈 Prevent vertical scroll */
+  white-space: nowrap; /* 👈 Prevent wrapping */
+
+
+  gap: 12px;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+}
+
+.gadget-card {
+  min-width: 150px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.gadget-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.gadget-card p {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.gadget-card img {
+  width: 100%;
+  height: 200px; /* 👈 Fixed height */
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+
+ /*footer*/
+ footer{
+ margin-top:15px;
+ }
+.foot-panel{
+background-color:#37475a;
+color:white;
+height:50px;
+display:flex;
+justify-content:center;
+align-items:center;
+} 
+.foot-panel2{
+background-color:#222f3d;
+color:white;
+height:300px;
+display:flex;
+justify-content:space-evenly;
+}
+ul{
+margin-top:20px;
+}
+ul a{
+display:block;
+font-size:0.85rem;
+margin-top:10px;
+color:#dddddd;
+}
+.foot-panel3{
+background-color:#222f3d;
+color:white;
+border-top:0.5px solid white;
+height:70px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+   .logo2{
+   background-image:url("https://i.pinimg.com/736x/6b/f8/e9/6bf8e97b392856f48af3489f1d8e7729.jpg");
+   background-size: cover;
+   height:50px;
+   width:100px;
+   }
+   .foot-panel4{
+    background-color:#0f1111;
+	color:white;
+	font-size:0.7rem;
+   text-align:center;
+   }
+   .pages{
+   font-size:0.7rem;
+   /*text-align:center;
+   padding-top:25px;*/
+   }
+   .copyright{
+   padding-top:5px;
+   
+   }
+
+
+   a img:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+   @media (max-width: 600px) {
+  .gadget-card img {
+    height: 80px;
+  }
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" i
+</head>
+<body>
+<header>
+
+    <div class="navbar">
+	      <div class="nav-logo border">
+		   <div class="logo"></div>
+		  </div>
+	       <div class="nav-address border">
+		   <p class ="add-first">Dilvery to</p>
+		     <div class="add-icon">
+		        <i class="fa-solid fa-location-dot"></i>
+				  <p class="add-second">India</p>
+				  
+			 </div>
+		   </div>
+	       <div class="nav-serch">
+			     <select class="search-select">
+				   <option>All</option>
+				  </select>
+				  <input placeholder="Search" class="search-input">
+				  <div class="search-icon">
+				     <i class="fa-solid fa-magnifying-glass"></i>
+				  </div>
+				  
+			</div>
+			
+		<div class="nav-sign border">
+	   <p><span>Hello,sign in</span></p>
+	   <p class="nav--second"> Account & Lists</p>
+    </div>
+	
+	  <div class="nav-return border">
+	   <p><span>Returns</span></p>
+	   <p class="nav--second">& Orders</p>
+      </div>
+	    <div class="nav-cart border">
+		<i class="fa-solid fa-cart-shopping"></i>
+		Cart
+		</div>
+	</div>
+	
+	<div class="panel">
+	  <div class="panel all">
+	     <i class="fa-solid fa-bars"></i>
+	    All
+	  </div>
+	  
+	  <div class="panel-ops">
+	 
+	       <p>Fresh</p>
+          <p> MX Player</p>
+           <p>Sell</p>
+           <p>Best Sellers</p>
+           <p>Today's Deals</p>
+          <p> Mobiles</p>
+           <p>Electronics</p>
+          <p> Home & Kitchen</p>
+          <p> Customer Service</p>
+		  </div>
+		  <div class="panel deals">
+		     shop deals in electronics
+		   </div>
+
+		   
+	</div>
+	  <div class="hero-section">
+	  <div class="hero-message"> </div>
+	</div>  
+	<!--	<div class="hero-slider">
+  <div class="slide" style="background-image: url('https://i.pinimg.com/736x/7a/37/03/7a37031dbdc746fd5b297e566da0a033.jpg');"></div>
+  <div class="slide" style="background-image: url('https://i.pinimg.com/736x/d1/8d/df/d18ddfa2ab71270c3e29fc16c87314a7.jpg');"></div>
+  <div class="slide" style="background-image: url('https://i.pinimg.com/736x/c0/e8/8d/c0e88dfb60640699a5269eaf2ce1d765.jpg');"></div>
+</div>  -->
+</header>
+    <div class="shop-section">
+	      <div class="box1 box">
+		      <div class="box-content">
+		       <h2>Baby Care</h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/I/71k315tD9fL._SX679_.jpg');"></div>
+			     
+           <a href="https://www.amazon.in/fmc/everyday-essentials-category?node=1571274031&ref=ee_dsk_sn_catBabyCare-04f10" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  <div class="box2 box">
+		  <div class="box-content">
+		       <h2>Amazon fashion</h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/I/41B1BGnUnNL._SR480,440_.jpg');"></div>
+			    
+           <a href="https://www.amazon.in/s?i=apparel&rh=n%3A1968120031&s=popularity-rank&fs=true&ref=lp_1968120031_sar" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  <div class="box3 box">
+		  <div class="box-content">
+		       <h2>Up to 40% off | Deals on mobiles and accessories</h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/G/31/img22/WLA/2025/Sanjay_Jupiter25/Unrec/Header_770x300._CB800960431_.jpg');"></div>
+			     
+           <a href="https://www.amazon.in/b?node=1389402031" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  <div class="box4 box">
+		  <div class="box-content">
+		       <h2>Up to 80% off | Electronics & accessories</h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/I/81rgDLmes9L._SX522_.jpg');"></div>
+			     
+           <a href="https://www.amazon.in/Philips-inch-8100-QLED-Google/dp/B0FNR5JJSS?pd_rd_w=uDmVv&content-id=amzn1.sym.9f0dfbb8-37aa-43b2-9f27-1bd5a946e884&pf_rd_p=9f0dfbb8-37aa-43b2-9f27-1bd5a946e884&pf_rd_r=C5P2VR1VX0WJ7MDGDZ0Q&pd_rd_wg=w3c9v&pd_rd_r=2374b07b-d969-4969-affb-b3c2615b4fb5&pd_rd_i=B0FNR5JJSS&ref_=oct_dx_dotd_B0FNR5JJSS" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  	      <div class="box1 box">
+		      <div class="box-content">
+		       <h2>Home Decor</h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/I/81W4XVYm3HL._SX679_.jpg');"></div>
+			     
+           <a href="https://www.amazon.in/b/?_encoding=UTF8&node=1380374031&ref_=sv_top_hk_mega_6" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  <div class="box2 box">
+		  <div class="box-content">
+		       <h2>New deals added everyday</h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/I/817oLm0vzcL._SX679_.jpg');"></div>
+			     
+           <a href="https://www.amazon.in/s?i=kitchen&srs=100656734031&rh=n%3A100656734031&s=popularity-rank&fs=true&ref=lp_100656734031_sar" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  <div class="box3 box">
+		  <div class="box-content">
+		       <h2>Home storage</h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/I/614UQH5+-vL._SX679_.jpg');"></div>
+			    
+           <a href="https://www.amazon.in/s?rh=n%3A976442031%2Cn%3A1380510031%2Cn%3A1380523031&dc&qid=1758746163&rnid=1380510031&ref=sr_nr_n_4" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  <div class="box4 box">
+		  <div class="box-content">
+		       <h2>Diwali Decoration Items </h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/I/61v6K1+34LL._SX522_.jpg');"></div>
+			    
+           <a href="https://www.amazon.in/s?k=Lighting&rh=n%3A211791150031%2Cp_33%3A-sponsored&pf_rd_i=75092524031&pf_rd_m=A1VBAL9TL5WCBF&pf_rd_p=8e31b763-5b03-4e9d-b887-5614751ac105&pf_rd_r=NVWRMTSC7YFVN0G59R01&pf_rd_s=merchandised-search-1&ref=GIF25_home_halo_4" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  <!--adding one horizontal section-->
+  <div class="gadget-section">
+  <h2>Top Selling Girls gadget</h2>
+  <div class="gadget-container">
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/sspa/click?ie=UTF8&spc=MTo4NDM2NjAwNTI4MjcwOTk3OjE3NTg3MzUwMDA6c3BfZGV0YWlsMjozMDA3MzQzNzg4NTkwMzI6Ojo6&url=%2Fdp%2FB0FNWQ4TCZ%2Fref%3Dsspa_dk_detail_1%3Fpsc%3D1%26pf_rd_p%3D00892a2d-bd0e-4f46-9295-e128db4dc924%26pf_rd_r%3D9XAJK9BM9GEQRA8E3D5E%26pd_rd_wg%3D1N6np%26pd_rd_w%3DXgaQY%26content-id%3Damzn1.sym.00892a2d-bd0e-4f46-9295-e128db4dc924%26pd_rd_r%3Da3f6f35b-0bb5-4bfa-94e5-0304de411a6d%26sp_csd%3Dd2lkZ2V0TmFtZT1zcF9kZXRhaWwy&aref=hnVERrhI8y&sp_cr=DUB" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/71TvATp+6cL._SX522_PIbundle-2,TopRight,0,0_AA522SH20_.jpg" alt="Gadget 1">
+      </a>
+      <p>Twist Hair Clips</p>
+    </div>
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/dp/B0FQCN36WL/ref=sr_1_42?crid=3UJ2Q8C8RF6OO&dib=eyJ2IjoiMSJ9.LR3gOIbeqwBliQOrWKdazCci0tdkE2CVKsdgkWoC_qorW6zh4bansoKA_IWhj6L-Nx0e1cgS6x5QUAiDRXDbesd6JEr269BTcAOzJC3IY7vJajLVuiCckt0GICPVANhVC8GC57_YwHDwI0NsI7YQ6K4n-rxwYzjzI-G98Ab7Q6h1qLKk9U2qJ-rqVbBsSf4AhP1jGfnd3iY_e0z1Qh2PlnUfS3ZX-N7kqFvbielc7MjlXXYw3FoSssEklj_MyRQAq9tiGLhkFtmPE3SaZY43y3nJJneZPYzV43o5sL5zqbo.TuiARlJSs4gn7PXJJY998-CPY_k2kl-t9oHLgEUFlx0&dib_tag=se&keywords=women+makeup+kit&qid=1758737202&sprefix=women+ma%2Caps%2C437&sr=8-42" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/61gQw9D9D5L._SX522_.jpg" alt="Gadget 2">
+      </a>
+      <p>Gels</p>
+    </div>
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/sspa/click?ie=UTF8&spc=MTo3NDA3OTYxMTQ3Nzk1ODE3OjE3NTg3MzY3MTg6c3BfbXRmOjMwMDczNTUzOTkzNjMzMjo6MDo6&url=%2Fdp%2FB0FR46R643%2Fref%3Dsr_1_21_sspa%3Fcrid%3D123KIL2X5BE7S%26dib%3DeyJ2IjoiMSJ9.cKWek7QrAdUqR6jbAWEtmsy_eFMip-nG-S_J4uevr1Vo3KMb2_JswNFjbgBvkvNoTFx4UAZhYtJwVNl8nj-w6BGULI5HvT2ZoGKD-MIpgzD9Ox_R8i8A0yAIeFAzqLby-Isuc_ia4YU-5pV1RdVoCG4QAcOenvNjGPcSNKqSdmZi0U1d239lGtn7iYed5kfopfQfR-CzNnuqrGbFsZaLio5rr1yhXUBh8Y5I9CdERZsgsZ6O6c0qSMgDzQzePJSyp2vvvWKLDFcuBClj6E5Slup7Xy0GtDZSM2qR4Pg7bsQ.ru1V5MGCRKHjduGR8VodHzeMMYm2pafhpEyiidVwxE8%26dib_tag%3Dse%26keywords%3Dgirls%2Bring%2Bsilver%26qid%3D1758736717%26sprefix%3Dgirls%2Bring%252Caps%252C420%26sr%3D8-21-spons%26sp_csd%3Dd2lkZ2V0TmFtZT1zcF9tdGY%26psc%3D1&aref=fomA5h0H8S&sp_cr=ZAZ" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/51R64GKl4RL._SY625_.jpg" alt="Gadget 3">
+      </a>
+      <p>Rings</p>
+    </div>
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/Fastrack-Trendies-Analog-Womens-Watch-68015PP03/dp/B086NH5MBP/ref=sr_1_13?crid=RU0RY12XENSA&dib=eyJ2IjoiMSJ9.Ni4iN7w-OZ0IgCdVDXMAcri6pf_V7uESqcZZ22DCzY2FBVkVFn7BecyYjA8YPHTxcxdRsdyfRNwPQS6RhmPBTCSIGlPyDudWtp6Ympe-0R4AnmTjbwU3A-hXv64DCwQVV57bui1tyZupatVZNNXn15mbvjxS0dlDbVZm51cumQVD6jUOaIXRvuTTneRQ3ANl2EYRCZKpkYihFBwdUsLVNFPYpTL2Z5xjdbMmJVprPBerxExnOHkS4nmORNmw8km3cozO8CPLc-xeTifmpXjdrztK11d8LWqPcsXpCs7VYIg.GdeKcS4JOZ4Uqen6QPYl2m5U8bYrGtjy48CgLFsqK64&dib_tag=se&keywords=girls+watch+stylish+new+fashion&qid=1758735766&sprefix=girls+%2Caps%2C394&sr=8-13" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/61dFcQIlurL._SX522_.jpg" alt="Gadget 4">
+      </a>
+      <p>Watch</p>
+    </div>
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/sspa/click?ie=UTF8&spc=MTozODYwMjE1NDQwNjQ1MDg2OjE3NTg3MzQ5MzY6c3BfYnRmOjMwMDEyMDc3MzI1MzIzMjo6MDo6&url=%2FJewels-Gold-Plated-Traditional-Studded-T2096W%2Fdp%2FB0B7RG4YCD%2Fref%3Dsr_1_59_sspa%3Fcrid%3DWONHV6GR7D34%26dib%3DeyJ2IjoiMSJ9.3F4X8LQ7XkqzgszGlpVG20KKccKICh_srC-4rIlsukmJSEsESvnSiPD3f1vkBNyb74N9zKkd_bV-PQDHPi6V00kQW_pH-cJSNVcWdQ5prcW0KAmxKD1sLmow-b-NMMFevnDKBigy5rW0TsER8lLj17_Cqs-TV5IUYa3blm7oEkaAK7BlJ8UXsjzqKd8QCApYVZfus78a_yQIoINOikmAHnODZnT6FShrqwqzO-dcfFLtkatB3CwPBs50kgQmYsBLHfVOZl6OtqJIZFv7fgnQpybEEhpASTAVCkiyaDV60ek.nXxxH40eVONitjfzgiedmQx-mmitD6t1SZ8Bt9jXnMA%26dib_tag%3Dse%26keywords%3Dgirls%2Bhair%2Baccessories%26qid%3D1758734936%26sprefix%3Dgirls%2Bhair%252Caps%252C378%26sr%3D8-59-spons%26sp_csd%3Dd2lkZ2V0TmFtZT1zcF9idGY%26psc%3D1&aref=4vcH1TY0TQ&sp_cr=ZAZ" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/61bavJX0hgL._SY625_.jpg" alt="Gadget 5">
+      </a>
+      <p>I Jewels</p>
+    </div>
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/PARTHVI-Printed-Handwork-Dupatta-P-1085-Purple-S/dp/B0F87WGSMP/ref=sr_1_36?crid=16O29QAI6U30K&dib=eyJ2IjoiMSJ9.Vq5T2Lqep7vNMuQlo5pqcusZIydfp2MSKJrvqGrTV6_0MB5xcMxt-yEc0-_4caSAEsPwx-zPuNI0S9dDWWkig5zigp9ccksoNNbHEbb9VLXs-IzBKWaF5x5g0_O62Fj2wlPVD2Ioc62t9nhCyKtyP-dB1Y2NigNwtFon6GTspbqlKBYUmcJQmNEE2hGheX8AUXDfKM0g7kfmgDSjiByqaIHdM_UELfyafzTVAThAtOPDEeSsNkVQdEU0xwTRhFOpb9dVS3-gCJAbl1Aet3LCTuYC9oYHbEq4m8Cg9qJ-Tx8.LJNUtypps3oEGiyNHQUg-lEIOp6solrRa7rsKiNUILY&dib_tag=se&keywords=women+kurta+sets+with+dupatta+cotton&qid=1758737513&sprefix=women+%2Caps%2C397&sr=8-36" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/713JVmP6GAL._SY741_.jpg" alt="Gadget 6">
+      </a>
+      <p>Kurta with Pants and Dupatta</p>
+    </div>
+	<div class="gadget-card">
+    <a href="https://www.amazon.in/Ortho-Rest-Orthopedic-Lightweight-Comfortable/dp/B0D5VC4N29/ref=sr_1_73?crid=J4YZ03TGT4LA&dib=eyJ2IjoiMSJ9._r1o2rr3BFLW4zkD1t4ImS1-GU2SkQZjBjgJUBlMShzBfWKYpyiCUkgEaKY-_Hn2Guv8yDbOEAXl7SOrD13XrlN12L8_3IRzPME9554DqqbWE-Eztz6i0e3rQtt7bzgVGbywPYhajSutXbDHKoXZn1BNmmdKnGb9L9nZivVnWz2FdVhvM8oB8qZxALJctJUdNZ0JEx9niirffZEWthiKgEfayDHcn5CM5-JyMYRGhSIJhdIHv2ca8E4sQZwjY603Jh4cNS7DcQd7FDHtX_T5Sd6e07j4Qd1UHz8c-Oh6yV0.JG5y5vwu3r2LLfHnq_QXX-3Ef5eb-MEnMCLgizPhhuA&dib_tag=se&keywords=women+foot+wear&qid=1758737896&sprefix=women+%2Caps%2C422&sr=8-73&xpid=Jf4yhogHI1di0" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/61HKWBa1YpL._SY695_.jpg" alt="Gadget 5">
+    </a>
+      <p>Slipper</p>
+    </div>
+	<div class="gadget-card">
+    <a href="https://www.amazon.in/U-S-Polo-Assn-Womens-Sneakers/dp/B0F88BSD52/ref=sr_1_32?crid=3VHL23O8OF25B&dib=eyJ2IjoiMSJ9.7kM22_UnXdhcHN3mHdAo-dBrvju0hHflUDfPTw0StHpDUPaJKgBrlYU16mmy11fNdGKOjTpgU1KEszg2ccz-qNLDNLUjGDWvx9B25Leq0lyJWPytgcjmUcEONsyoi0mf6PK5lmxYdbO5dCGHpT_rltqBnSxcRroZAAVut4YdAff-LdnKr_w7fTxUTAiIKLtehZ-XcvF2aJVB7sDgol4bQoWaKwcuzTpl9_9CU49K74289UDlL6k5wBuiYZSQ-AUQA3Fwuo83aWx5bkHNkDv6UWO0WiuXSn4GEITSuBjQ7Tk.IeLgM5-8TMYsq9Leb4_mhP2KFRunRWHfgXDwejqHy04&dib_tag=se&keywords=women+shoes+sneakers&qid=1758738006&sprefix=women+%2Caps%2C319&sr=8-32" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/712auVRfewL._SY695_.jpg" alt="Gadget 5">
+    </a>
+      <p>NovaSneaker</p>
+    </div>
+	<div class="gadget-card">
+    <a href="https://www.amazon.in/sspa/click?ie=UTF8&spc=MTozODYwMjE1NDQwNjQ1MDg2OjE3NTg3MzQ5MzY6c3BfbXRmOjMwMDQ1NDcyNTk2NjUzMjo6MDo6&url=%2FYellow-Chimes-Accessories-Wedding-Jewellery%2Fdp%2FB09P8FZGX1%2Fref%3Dsr_1_21_sspa%3Fcrid%3DWONHV6GR7D34%26dib%3DeyJ2IjoiMSJ9.3F4X8LQ7XkqzgszGlpVG20KKccKICh_srC-4rIlsukmJSEsESvnSiPD3f1vkBNyb74N9zKkd_bV-PQDHPi6V00kQW_pH-cJSNVcWdQ5prcW0KAmxKD1sLmow-b-NMMFevnDKBigy5rW0TsER8lLj17_Cqs-TV5IUYa3blm7oEkaAK7BlJ8UXsjzqKd8QCApYVZfus78a_yQIoINOikmAHnODZnT6FShrqwqzO-dcfFLtkatB3CwPBs50kgQmYsBLHfVOZl6OtqJIZFv7fgnQpybEEhpASTAVCkiyaDV60ek.nXxxH40eVONitjfzgiedmQx-mmitD6t1SZ8Bt9jXnMA%26dib_tag%3Dse%26keywords%3Dgirls%2Bhair%2Baccessories%26qid%3D1758734936%26sprefix%3Dgirls%2Bhair%252Caps%252C378%26sr%3D8-21-spons%26sp_csd%3Dd2lkZ2V0TmFtZT1zcF9tdGY%26psc%3D1&aref=SmtUHNOkWs&sp_cr=ZAZ" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/71q5ugGdPHL._SY695_.jpg" alt="Gadget 5">
+    </a>
+      <p>Floral Hair Vine</p>
+    </div>
+	<div class="gadget-card">
+    <a href="https://www.amazon.in/floki-Fashion-Girls-Leather-Backpack/dp/B0CKMSR5YZ/ref=sr_1_12?crid=11E25PXFBD918&dib=eyJ2IjoiMSJ9.OtyaIueRXn4LpD5ysWJPV8shfPa0jfXVj2nghqp2EkAS0lkEbPxzdc_7sx8WMQQKSuiJlaPyntxcnvqeRKAIIHimp8acBgUyoiOcXb0ytdlaHjNa_wuH3aGpeu9uX_7fiKaOKgpKfugmC4NQc6RStNxca2hza12re377USu2oOuYIhUymRJh--97Acjo4NJMkbmcI1VWExpAHLeiJmq4eQRj_Z96ThPvFSRypmyo25HfXKn5QRzyeyaXx6vgTdCNLjW9sbfMONceEm3VAZPP1g5-N-n6z0rzpm-KyJSXJbE.uADsbr_A0-f5QqNQn0YXrJCibl0uPlUrSXkX_u-Clqc&dib_tag=se&keywords=girls+gift+items+20%2B+years&qid=1758738349&sprefix=girls+g%2Caps%2C305&sr=8-12" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/61AXGGUgA+L._SX679_.jpg" alt="Gadget 5">
+    </a>
+      <p>Leather Backpack</p>
+    </div>
+  </div>
+</div>
+  <!--  <div class="gadget-container">
+    <div class="gadget-card">
+      <img src="https://i.pinimg.com/1200x/30/56/a4/3056a48be32604f1b678464f09eaa9ac.jpg" alt="Gadget 1">
+      <p>Smartwatch Pro</p>
+    </div>
+    <div class="gadget-card">
+      <img src="https://i.pinimg.com/1200x/7b/d0/78/7bd078a7326f32c63703b5e52653a07b.jpg" alt="Gadget 2">
+      <p>Wireless Earbuds</p>
+    </div>
+    <div class="gadget-card">
+      <img src="https://biobeautify.com/cdn/shop/files/rhodium-plated-sterling-silver-emerald-cut-moissanite-half-eternity-ring-Silver-5.jpg?v=1735861531&width=990" alt="Gadget 3">
+      <p>Portable Speaker</p>
+    </div>
+    <div class="gadget-card">
+      <img src="https://i.pinimg.com/736x/7a/d2/dd/7ad2ddf396962c5623f3724e18f4083a.jpg" alt="Gadget 4">
+      <p>Fitness Band</p>
+    </div>
+    <div class="gadget-card">
+      <img src="https://i.pinimg.com/736x/ff/ec/3d/ffec3d520cebf99ccb04b005a66944ee.jpg" alt="Gadget 5">
+      <p>Bluetooth Keyboard</p>
+    </div>
+    <div class="gadget-card">
+      <img src="https://i.pinimg.com/736x/6a/11/16/6a1116a1ef4314b22a420d600ede1f07.jpg" alt="Gadget 6">
+      <p>Mini Tripod</p>
+    </div>
+	<div class="gadget-card">
+      <img src="https://i.pinimg.com/736x/75/d9/08/75d908b63cd439b2dd801df1f2050195.jpg" alt="Gadget 5">
+      <p>Bluetooth Keyboard</p>
+    </div>
+	<div class="gadget-card">
+      <img src="https://i.pinimg.com/1200x/bb/88/48/bb8848fd20ae10e9dec94a37c67f3d57.jpg" alt="Gadget 5">
+      <p>Bluetooth Keyboard</p>
+    </div>
+	<div class="gadget-card">
+      <img src="https://i.pinimg.com/1200x/09/60/e6/0960e6709dd0bf6647309dfa7cb7a801.jpg" alt="Gadget 5">
+      <p>Bluetooth Keyboard</p>
+    </div>
+	<div class="gadget-card">
+      <img src="https://i.pinimg.com/1200x/50/10/a2/5010a2951d837e75f8d7b6f7121f0333.jpg" alt="Gadget 5">
+      <p>Bluetooth Keyboard</p>
+    </div>
+  </div>
+</div> -->
+		  <div class="box1 box">
+		      <div class="box-content">
+		       <h2>Computers</h2>
+		        <div class="box-img" style="background-image:url('https://i.pinimg.com/1200x/d5/00/d1/d500d17616fd4a71cc3857ca023905d3.jpg');"></div>
+			    <a href="https://www.amazon.in/s?k=laptops&ref=nb_sb_noss" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  <div class="box2 box">
+		  <div class="box-content">
+		       <h2>PC accessories</h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/G/31/img22/pcacc/bau/CAmob.jpg');"></div>
+			     
+           <a href="https://www.amazon.in/b/?_encoding=UTF8&node=976392031&ref_=sv_top_elec_mega_2" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  <div class="box3 box">
+		  <div class="box-content">
+		       <h2>Smart phones</h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/I/61YMxL8AUlL._SX679_.jpg');"></div>
+			     
+           <a href="https://www.amazon.in/s?k=mouse" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+		  <div class="box4 box">
+		  <div class="box-content">
+		       <h2>Lighits </h2>
+		        <div class="box-img" style="background-image:url('https://m.media-amazon.com/images/I/61tsugjTXcL._SX679_.jpg');"></div>
+			     
+           <a href="https://www.amazon.in/b/?_encoding=UTF8&node=1380485031&ref_=sv_top_hk_mega_10" target="_blank">Explore Now</a>
+			  </div>
+		  </div>
+	</div>
+
+	<!--adding one horizontal section-->
+		  <div class="gadget-section">
+  <h2>Top Selling Boy Gadgets</h2>
+  <div class="gadget-container">
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/Shining-Diva-Fashion-Bracelet-9904b/dp/B07H5MSQTD/ref=sr_1_10?crid=2QBAAE3FXB0CZ&dib=eyJ2IjoiMSJ9.-24DivL9l1wL12h6BPL7zna5ab-hbSosJEbsqznzLrUNNKkyanPnFLNYPhru8g6b6ny19SwkTejEzuztCGNxB3EGOU46YdklZxKLZATNly7pzbsnXKg5zWpChJ93iZGWcTJelmEKnzxHrJiqowtd3RxNSCdnk-1qy9GsV3_t1KH-qb6HWEaCNXCGIWc7_5v3CHBwGSSrYnwSBzNCUtYtN6nxrznxuBCAZFTd1pLfWY00hnLmnBlDILuatE2MXHBXLooUmqSbKJrwji1JVc34q2E4yw_2DxxZ0XKLmbCx82I.cLN0JFjR4bl-1r-1kOPckyrKUeWeK56_Ps_gPuvYswE&dib_tag=se&keywords=mens+accessories+stylish&qid=1758739358&sprefix=mens+ac%2Caps%2C435&sr=8-10" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/51P8tW4vn9L.jpg" alt="Gadget 1">
+      </a>
+      <p>Bracelets</p>
+    </div>
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/Voyage-Protected-Round-Unisex-Sunglasses/dp/B09W65KKNZ/ref=pd_sbs_d_sccl_2_5/257-7135617-0598620?pd_rd_w=jUPe6&content-id=amzn1.sym.6d240404-f8ea-42f5-98fe-bf3c8ec77086&pf_rd_p=6d240404-f8ea-42f5-98fe-bf3c8ec77086&pf_rd_r=2YPRH034N4072XT6G4E4&pd_rd_wg=M0FCP&pd_rd_r=649c9fdb-01b0-4e09-8c05-435d116a080d&pd_rd_i=B09W65KKNZ&psc=1" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/8129vW4cI-L._SX679_.jpg" alt="Gadget 2">
+      </a>
+      <p>Sunglasses</p>
+    </div>
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/Lymio-Cargo-Cotton-Cargos-Cargo-118-Grey-S/dp/B0DRFN62KV/ref=sr_1_35?dib=eyJ2IjoiMSJ9.q2zNjTz2eIjv7Z1dKtRtB6gXtoCmscRUwmH1jNdOQEEf0z1vyW8EI6PVjDIAHkoKHvxpc8uGsM9j8aJH3WJ-TBG6aGPdak06pAzBZ59gOLSHYuI21qAJ7hCI-G4_xAUtPyN87-UfH9WmGBUYV8aViitWiGwYk8Q3291JjZSi5zuMYQB8yEWiwcy4lpGq8cdaWfiYJpHM1SYSeEwzIicn_mpYnHVKM_0hFJ9IABByBvufc8_PoCBrCEthtNvPuKOuDjRlFuH9kW1JXnD3kbQK07f60bMBhuuKS5hwtm93sdE.s2ETRW4_G-ftki58cagyhBnWo_k7IqCHWUr2uCHSnYU&dib_tag=se&keywords=mens+items&qid=1758738593&sr=8-35" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/61IME+s7ObL._SY741_.jpg" alt="Gadget 3">
+      </a>
+      <p>Men Cargo Pants</p>
+    </div>
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/SBA-PRIME-Mens-Gift-Non-Polarized/dp/B09MQLJT3W/ref=sr_1_26?dib=eyJ2IjoiMSJ9.q2zNjTz2eIjv7Z1dKtRtB6gXtoCmscRUwmH1jNdOQEEf0z1vyW8EI6PVjDIAHkoKHvxpc8uGsM9j8aJH3WJ-TBG6aGPdak06pAzBZ59gOLSHYuI21qAJ7hCI-G4_xAUtPyN87-UfH9WmGBUYV8aViitWiGwYk8Q3291JjZSi5zuMYQB8yEWiwcy4lpGq8cdaWfiYJpHM1SYSeEwzIicn_mpYnHVKM_0hFJ9IABByBvufc8_PoCBrCEthtNvPuKOuDjRlFuH9kW1JXnD3kbQK07f60bMBhuuKS5hwtm93sdE.s2ETRW4_G-ftki58cagyhBnWo_k7IqCHWUr2uCHSnYU&dib_tag=se&keywords=mens+items&qid=1758738593&sr=8-26" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/51ENrbdrNHL._SX679_.jpg" alt="Gadget 4">
+      </a>
+      <p>Fitness Band</p>
+    </div>
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/okos-Jewellery-Vertical-Stainless-PD1000871COM/dp/B0B46669GL/ref=sr_1_7?crid=2QBAAE3FXB0CZ&dib=eyJ2IjoiMSJ9.-24DivL9l1wL12h6BPL7zna5ab-hbSosJEbsqznzLrUNNKkyanPnFLNYPhru8g6b6ny19SwkTejEzuztCGNxB3EGOU46YdklZxKLZATNly7pzbsnXKg5zWpChJ93iZGWcTJelmEKnzxHrJiqowtd3RxNSCdnk-1qy9GsV3_t1KH-qb6HWEaCNXCGIWc7_5v3CHBwGSSrYnwSBzNCUtYtN6nxrznxuBCAZFTd1pLfWY00hnLmnBlDILuatE2MXHBXLooUmqSbKJrwji1JVc34q2E4yw_2DxxZ0XKLmbCx82I.cLN0JFjR4bl-1r-1kOPckyrKUeWeK56_Ps_gPuvYswE&dib_tag=se&keywords=mens+accessories+stylish&qid=1758739358&sprefix=mens+ac%2Caps%2C435&sr=8-7" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/51QCXW-lhxL._SY695_.jpg" alt="Gadget 5">
+      </a>
+      <p>Necklace for Boys</p>
+    </div>
+    <div class="gadget-card">
+      <a href="https://www.amazon.in/sspa/click?ie=UTF8&spc=MTo0OTU3ODIwNzI1NDY4Mjc1OjE3NTg3NDA1OTE6c3BfYXRmOjMwMDcyMjgwMTY1NzAzMjo6MDo6&url=%2FTitan-Workwear-Quartz-Multifunction-Black%2Fdp%2FB08JM29834%2Fref%3Dsr_1_1_sspa%3Fcrid%3D1XLOSIMRP0QGP%26dib%3DeyJ2IjoiMSJ9.hKZ721_f4Ell9h5Z60wgmVbSra38gK148a3NG0k77lttTdSctOg2vEWVuKo6Vzw5CoPXydttBho9AXXI96CpOnAtbBZOoiNMGYizTS5cJsai0pw9BwY1Iv8DB_a06SCbvRfxKlPwr0257Q9Vhw80vjLf2-rRdm_7C7HeGmqJPfkQtcRS1ODKvfl5YwT2t-O2EfS6rxCKf6eH8km7wqEZRifU5S4mmrEUjB45Go6Hphgxbo652EV2hijagajCTq2OQtAlzTWu1vvNY_mg8gCFu-E5Qc5vwozg0BO-8USnLnM.XXrO3DBLLDkpMVci0v1dt_HztqUGYErgyiTNrZuB2IY%26dib_tag%3Dse%26keywords%3Dmens%2Bwatch%2Bbranded%26qid%3D1758740591%26sprefix%3Dmens%2Bwat%252Caps%252C290%26sr%3D8-1-spons%26sp_csd%3Dd2lkZ2V0TmFtZT1zcF9hdGY%26psc%3D1&aref=TZKHeLlCvM&sp_cr=ZAZ" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/71+PriR6gYL._SX522_.jpg" alt="Gadget 6">
+      </a>
+      <p>Watch</p>
+    </div>
+	<div class="gadget-card">
+    <a href="https://www.amazon.in/Wild-Stone-Long-Lasting-Fragrance-Oriental/dp/B0DGLJDLGW/ref=sr_1_12?crid=4BS5SBUGKT3L&dib=eyJ2IjoiMSJ9.F-apnObAspkNg9ooCe9twUEV3fwS-ZsOkLtFAaPDNs_H71uPC_dVYJjEbzllWA3DfbEyeJyyf7KoivZKS91MP_M6UTLY-OYM0Brck1WmU1jtyFBKDJqo0elpzT6Hp7xDrHZGgpCa4ASMoWRKJN0niQaX688ZtV2xo97HlnT5JWhf-4Fr9692k2oPjTTzIkxsahwrAzpSroVhpEyhSuCfXyYB_O6YPQ6F90BijnHL3nqTPz4n28z1RWLn5rKLZuPGbO9a7xagjhNKr_EKQKLf5GCprBhjrhaKWxdDae-8Z9Y.CTIWo2In8qnHOeQakHIvMOweE3vh7E3OnuZWijthqU8&dib_tag=se&keywords=mens+perfume+luxury&qid=1758739647&sprefix=mens+per%2Caps%2C451&sr=8-12" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/61+65Llh5ZL._SX522_.jpg" alt="Gadget 5">
+    </a>
+      <p>Wild Stone King Perfume</p>
+    </div>
+	<div class="gadget-card">
+    <a href="https://www.amazon.in/CB-COLEBROOK-Regular-Spread-Collar-Casual/dp/B0CGLMT89Z/ref=sr_1_5?dib=eyJ2IjoiMSJ9.57ziAqZ_58GprG5gkuMb3fIiQL4R-OgHesFsjprSaYhR-bMn6I8F5deYcG3T27l32uEoY5geMQFR6z36djIvrn96vW-Cbm6KiaA6IXjHmu0MjFbD82exXiqbLJ-zYoD2vPlDmjsDw2sQptLLbJe6BMH33MSyLdMCnSE2J-pzqOXmSF3AW1pgAwrvY_CymO-J1FjkkhrqtsUD-9F4f0yLfGzsySrpJEQxvGRf6lceHkWCI0Aefn6JJF6RH4LyuFAhviPysFhsX3DFnsvclLt9jcwvVDLcU6OGI48LjL6yKBs.CXfIqL6p3XqyP-nP2Gj4s9FbEWvsZNUIgzIzuioJ0dI&dib_tag=se&keywords=mens+shirts+branded&qid=1758741921&sr=8-5" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/41iskv4HuTL._SX679_.jpg" alt="Gadget 5">
+    </a>
+      <p>Casual Shirt </p>
+    </div>
+	<div class="gadget-card">
+    <a href="https://www.amazon.in/WildHorn-Hunter-Leather-Wallet-WH1173/dp/B098QB3TN1/ref=sr_1_13?crid=1XZ6YJCXG0VEW&dib=eyJ2IjoiMSJ9.XQsBLIdqJMXuccmONJmUbnt50xMRJ2xvJ4h1VT9lmFJOXLx8hHpVC6xxvxT8pugZHKj8JU-airpXAQeGunKbfEE_GWZsQHedHQ7oLzsD88Tb2STDadivCDKQOj8g2Zr9cXFk2R7AGRooWIjCMzGjFM0Lpd1Nz1WedaFF4X6yeprGZeGGd5An3LP4I1WiJdTUs2pS9BQJ-AGjOf6HznJP4BbuCQwJ6bNt2E2Gi6pwdnakWl6bIEqPt6nZ1_zWgBptLRjtqRVnIxlcWHKg-DnWYCPrsRuMG97T4oMPCVAI6VU.lc7JmOVKWbCKdGaZyS7wQ7ykpC38iATYZ8jN5hqe-zw&dib_tag=se&keywords=mens+items&qid=1758742480&refinements=p_n_format_browse-bin%3A30678584031&rnid=30678575031&sprefix=mens+i%2Caps%2C381&sr=8-13" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/81ov6gDThfL._SY879_.jpg" alt="Gadget 5">
+    </a>
+      <p>Leather Wallet</p>
+    </div>
+	<div class="gadget-card">
+    <a href="https://www.amazon.in/sspa/click?ie=UTF8&spc=MTo4ODAxNzY3MTkzOTQ3NDI6MTc1ODc0MjI1MzpzcF9hdGZfbmV4dDoyMDA2OTYwMjI1MjYwMjo6MDo6&url=%2FGoatter-Unisex-Leather-Messenger-GTHT-10%2Fdp%2FB098FDJFCK%2Fref%3Dsr_1_97_sspa%3Fcrid%3D1XZ6YJCXG0VEW%26dib%3DeyJ2IjoiMSJ9.Bxjv0al8-NjpmA9Y-QNbK2YHUmu2JR1MSxS6cOIPcvIEw3F4OQcOk_gU0l9WZf8O65aidiDuP3fqN2tziw4R4s56oXNi6J2FDDpUqgGwHfA.s_YWXZYHKOOKsAiXbn3SvdOpgGR96wXQFQuZSm-J5cw%26dib_tag%3Dse%26keywords%3Dmens%2Bitems%26qid%3D1758742253%26sprefix%3Dmens%2Bi%252Caps%252C381%26sr%3D8-97-spons%26xpid%3DYRkSzeKnw4F8g%26sp_csd%3Dd2lkZ2V0TmFtZT1zcF9hdGZfbmV4dA%26psc%3D1&aref=afv5q06t3O&sp_cr=ZAZ" target="_blank">
+      <img src="https://m.media-amazon.com/images/I/71PC6dJgBNL._SY695_.jpg" alt="Gadget 5">
+    </a>
+      <p>Sling Bag</p>
+    </div>
+  </div>
+</div>
+	<script>
+
+		document.querySelectorAll('.box-content p').forEach(p => {
+  p.style.cursor = 'pointer';
+  p.addEventListener('click', () => {
+    window.open('https://www.amazon.in', '_blank');
+  });
+});
+
+//Search Bar Functionality
+document.querySelector('.search-input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    let query = this.value.trim();
+    if (query) {
+      window.open(`https://www.amazon.in/s?k=${encodeURIComponent(query)}`, '_blank');
+    }
+  }
+});
+
+let cartCount = 0;
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+  button.addEventListener('click', () => {
+    cartCount++;
+    document.getElementById('cart-count').textContent = cartCount;
+  });
+});
+
+document.getElementById('cart-icon').addEventListener('click', () => {
+  document.getElementById('cart-modal').classList.toggle('active');
+});
+//document.querySelector('.nav-cart').addEventListener('click', () => {
+ // alert("Cart is currently empty!");
+  // Or redirect: window.location.href = "cart.html";
+//});
+
+document.querySelector('.foot-panel').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+
+//for slide img
+
+  
+
+	</script>
+	<footer> 
+	    <div class="foot-panel">
+		  Back to top  
+		</div>
+		<div class="foot-panel2">
+		
+		  <ul>
+		      <p>Get to Know Us</p>
+			  <a>About Amazon</a>
+			  <a>Careers</a>
+>             <a>Press Releases</a>
+              <a>Amazon Science</a>
+		  </ul>
+		  <ul>
+		      <p>Get to Know Us</p>
+			  <a>About Amazon</a>
+			  <a>Careers</a>
+>             <a>Press Releases</a>
+              <a>Amazon Science</a>
+		  </ul>
+		  <ul>
+		      <p>Get to Know Us</p>
+			  <a href="https://www.amazon.in/about">About Amazon</a>
+<a href="https://www.amazon.jobs">Careers</a>
+<a href="https://press.aboutamazon.in">Press Releases</a>
+<a href="https://www.amazon.science">Amazon Science</a>
+
+
+		  </ul>
+		  <ul>
+		      <p>Get to Know Us</p>
+			  <a>About Amazon</a>
+			  <a>Careers</a>
+>             <a>Press Releases</a>
+              <a>Amazon Science</a>
+		  </ul>
+		</div>
+		<div class="foot-panel3">
+		     <div class="logo2"> </div>
+	    </div>
+		<div class="foot-panel4">
+		  <div class="pages">
+		    <a>Condition of use</a>
+		    <a>Privacy Notice</a>
+		    <a>your ads privcy choices</a>
+		  </div>
+		  <div class="copyright">
+		   © 1996-2024, Amazon.com, Inc. or its affiliates
+		  </div>
+		</div>
+	</footer>
+</body>
+
+<script>
+ const heroSection = document.querySelector('.hero-section');
+
+  const images = [
+    "https://i.pinimg.com/736x/32/65/a7/3265a7aeb9f84a48071d0c1f017e6e8e.jpg",
+    "https://i.pinimg.com/1200x/37/76/e8/3776e88d97c25bb0783796887d0a1b18.jpg",
+    "https://i.pinimg.com/1200x/76/89/bc/7689bc5c9e2858e46142e1f92e37c4ce.jpg",
+    "https://i.pinimg.com/1200x/b3/f4/69/b3f469e63882bb0a5635bbfcfcf42467.jpg"
+  ];
+
+  let current = 0;
+
+  function changeBackground() {
+    heroSection.style.backgroundImage = `url('${images[current]}')`;
+    current = (current + 1) % images.length;
+  }
+
+  changeBackground(); // Initial load
+  setInterval(changeBackground, 4000); // Change every 4 seconds
+  
+</script>
+</html>
