@@ -57,6 +57,25 @@ p { color: var(--text-muted); line-height: 1.7; margin-bottom: 15px; }
 }
 .btn-secondary:hover { background: #8B5CF6; transform: translateY(-1px); }
 
+/* CHANGE: NEW STYLE FOR PRICE SELECTION BUTTONS */
+.btn-price-select {
+    background: none;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    margin: 0 5px;
+    font-size: 14px;
+}
+
+.btn-price-select:hover {
+    background: var(--primary-color);
+    color: var(--bg-dark);
+}
+
 /* --- 3. HEADER & NAV --- */
 header { 
     padding: 20px 7%; display: flex; justify-content: space-between; align-items: center;
@@ -173,6 +192,18 @@ section { padding: 80px 7%; overflow: hidden; }
 .hero h2 span { color: var(--primary-color); text-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
 .hero-img { width: 45%; max-width: 500px; filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.1)); animation: float 6s ease-in-out infinite; }
 
+/* CHANGE: Hero Payment Options Structure for better stacking/alignment */
+#hero-payment-options {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: flex-start;
+    gap: 10px; /* Space between buttons */
+}
+#hero-payment-options .btn-secondary {
+    margin-left: 0 !important; /* Override inline style from HTML */
+}
+
+
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
 .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
@@ -207,7 +238,6 @@ section { padding: 80px 7%; overflow: hidden; }
 .register-wrapper { max-width: 500px; margin: auto; background: #181d29; border: 1px solid var(--primary-color); border-radius: var(--border-radius-lg); }
 input { width: 100%; padding: 15px; margin-bottom: 15px; background: #1e2432; border: 1px solid #334155; color: #fff; border-radius: 8px; outline: none; }
 input:focus { border-color: var(--primary-color); background: #242c3e; }
-
 
 /* Gallery **FIXED** */
 .gallery-scroller { 
@@ -281,6 +311,11 @@ footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,2
     
     /* Mobile Gallery Fix */
     .gallery-img { min-width: 250px; width: 300px; height: 180px; }
+
+    /* CHANGE: Mobile styling for hero payment options */
+    #hero-payment-options {
+        align-items: center; /* Center buttons on mobile */
+    }
 }
 
 /* --- Video Background Styles (styles.css में जोड़ें) --- */
