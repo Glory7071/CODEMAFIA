@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GloKash Academy | MCA 2026 Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --navy: #1e3a8a;
+            --yellow: #facc15;
+            --white: #ffffff;
+            --slate-900: #0f172a;
+            --slate-50: #f8fafc;
+        }
+
+        /* --- BASE STYLES --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--white); color: var(--slate-900); overflow-x: hidden; }
+
+        /* --- AUTH OVERLAY --- */
+        #authOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.98);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .auth-card {
+            background: var(--white);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-top: 8px solid var(--navy);
+        }
+        .auth-card h2 { color: var(--navy); font-size: 1.5rem; font-weight: 900; font-style: italic; text-transform: uppercase; margin-bottom: 0.25rem; }
+        .auth-card input {
+            width: 100%;
+            background: var(--slate-50);
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.5rem;
+            outline: none;
+            font-size: 13px;
+        }
+        .auth-card input:focus { border-color: var(--navy); }
+        .auth-btn {
+            width: 100%;
+            background: var(--navy);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        /* --- TICKER --- */
+        .ticker-wrap { background: #dc2626; color: white; padding: 6px 0; overflow: hidden; border-bottom: 1px solid #b91c1c; }
+        .ticker-move {
+            display: inline-block;
+            white-space: nowrap;
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            animation: ticker 28s linear infinite;
+        }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* --- NAV & HEADER --- */
+        nav {
+            background: var(--navy);
+            height: 42px;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        nav h1 { font-size: 10px; font-weight: 900; font-style: italic; color: var(--yellow); text-transform: uppercase; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { font-size: 8px; font-weight: bold; color: #dbeafe; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+        #userBadge { font-size: 8px; font-weight: 900; color: white; background: #1e40af; padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1); text-transform: uppercase; }
+
+        header { background: var(--navy); color: white; padding: 4rem 1.5rem; text-align: center; }
+        header h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; text-transform: uppercase; }
+        header p { font-size: 9px; opacity: 0.6; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+        .get-started { background: var(--yellow); color: var(--navy); padding: 0.75rem 2rem; border-radius: 0.75rem; text-decoration: none; font-weight: 900; font-size: 10px; text-transform: uppercase; }
+
+        /* --- TEST GRID --- */
+        main { padding: 4rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+        .grid-header { border-left: 4px solid var(--navy); padding-left: 1rem; margin-bottom: 2.5rem; }
+        .grid-header h3 { font-size: 1.5rem; font-weight: 900; color: var(--navy); text-transform: uppercase; }
+        .grid-header p { font-size: 9px; color: #94a3b8; font-weight: bold; text-transform: uppercase; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .test-card {
+            padding: 1.75rem;
+            border-radius: 2rem;
+            transition: 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .test-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1); }
+        .tag { font-size: 8px; font-weight: 900; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; }
+        .test-card h4 { font-size: 1.25rem; font-weight: 900; margin: 1.25rem 0 0.5rem; }
+        .test-card p { font-size: 9px; opacity: 0.6; margin-bottom: 2rem; }
+        .unlock-btn {
+            width: 100%;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 1rem;
+            font-weight: 900;
+            font-size: 9px;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: white;
+            transition: 0.3s;
+        }
+
+        /* Card Variations */
+        .bg-rose { background: #fff1f2; } .tag-rose { background: #fecdd3; color: #be123c; } .btn-rose { background: #e11d48; }
+        .bg-blue { background: #eff6ff; } .tag-blue { background: #dbeafe; color: #1d4ed8; } .btn-blue { background: #2563eb; }
+        .bg-emerald { background: #ecfdf5; } .tag-emerald { background: #d1fae5; color: #047857; } .btn-emerald { background: #10b981; }
+        .bg-indigo { background: #eef2ff; } .tag-indigo { background: #e0e7ff; color: #4338ca; } .btn-indigo { background: #4f46e5; }
+        .bg-orange { background: #fff7ed; } .tag-orange { background: #ffedd5; color: #c2410c; } .btn-orange { background: #ea580c; }
+        .bg-purple { background: #faf5ff; } .tag-purple { background: #f3e8ff; color: #7e22ce; } .btn-purple { background: #9333ea; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--navy); color: white; padding: 2rem 1.5rem; border-top: 2px solid var(--yellow); }
+        .footer-flex { display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+        @media (min-width: 768px) { .footer-flex { flex-direction: row; justify-content: space-between; text-align: left; } }
+        .footer-flex h2 { font-size: 12px; color: var(--yellow); font-style: italic; text-transform: uppercase; }
+        .footer-flex p { font-size: 7px; opacity: 0.5; }
+        .socials { display: flex; gap: 2rem; font-size: 18px; }
+        .socials a { color: white; text-decoration: none; }
+        .copyright { margin-top: 1.5rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; font-size: 7px; opacity: 0.2; letter-spacing: 3px; text-transform: uppercase; }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div id="authOverlay">
+        <div class="auth-card">
+            <h2>GloKash Academy</h2>
+            <p style="font-size: 8px; color: #94a3b8; margin-bottom: 1.5rem; text-transform: uppercase; font-weight: bold;">Secure Access 2026</p>
+            <form id="regForm">
+                <input type="text" id="regName" placeholder="Full Name" required>
+                <input type="tel" id="regMobile" placeholder="Mobile Number" required>
+                <input type="email" id="regEmail" placeholder="Gmail Address" required>
+                <button type="submit" class="auth-btn">Enter Portal</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            🚨 UPDATE: CUET PG EXAM Date Comming Soon  | 🛡️ Individual Pass-key Security Active | 🏆 All Test Series Live.
+        </div>
+    </div>
+
+    <nav>
+        <h1>GloKash Academy</h1>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#test-grid">Test Series</a></li>
+        </ul>
+        <div id="userBadge" class="hidden"></div>
+    </nav>
+    
+
+    <header>
+        <h2>Target MCA <span style="color: var(--yellow);">2026</span></h2>
+        <p>India's Most Secure Practice Portal.</p>
+        <a href="#test-grid" class="get-started">Get Started</a>
+    </header>
+
+    <main id="test-grid">
+        <div class="grid-header">
+            <h3>Mock Test Series</h3>
+            <p>Select your subject and enter key</p>
+        </div>
+
+        <div class="grid">
+            <div class="test-card bg-rose">
+                <div style="display:flex; justify-content: space-between; align-items: center;">
+                    <span class="tag tag-rose">CUET PG</span>
+                    <i class="fa-solid fa-lock" style="opacity: 0.2; font-size: 12px;"></i>
+                </div>
+                <h4>Full Mock Test</h4>
+                <p>Complete 75 questions based on 2026 pattern.</p>
+                <button onclick="window.unlock('Full Mock')" class="unlock-btn btn-rose">Unlock Test</button>
+            </div>
+
+            <div class="test-card bg-blue">
+                <span class="tag tag-blue">Computer Science</span>
+                <h4>CS Mastery</h4>
+                <p>DBMS, OS, and Data Structures special mock.</p>
+                <button onclick="window.unlock('CS Mastery')" class="unlock-btn btn-blue">UNLOCK TEST</button>
+            </div>
+
+            <div class="test-card bg-emerald">
+                <span class="tag tag-emerald">Mathematics</span>
+                <h4>CUET Math</h4>
+                <p>Calculus, Algebra, and Probability modules.</p>
+                <button onclick="window.unlock('Math Mastery')" class="unlock-btn btn-emerald">Unlock Test</button>
+            </div>
+
+            <div class="test-card bg-indigo">
+                <span class="tag tag-indigo">Reasoning</span>
+                <h4>Logical Ability</h4>
+                <p>Boost your analytical and abstract reasoning skills.</p>
+                <button onclick="window.unlock('Reasoning')" class="unlock-btn btn-indigo">Unlock Test</button>
+            </div>
+
+            <div class="test-card bg-orange">
+                <span class="tag tag-orange">MAH-CET</span>
+                <h4>MAH CET Mock</h4>
+                <p>Practice with 100 questions for March 30 exam.</p>
+                <button onclick="window.unlock('MAH CET')" class="unlock-btn btn-orange">COMMING SOON</button>
+            </div>
+
+            <div class="test-card bg-purple">
+                <span class="tag tag-purple">NIMCET</span>
+                <h4>NIT Entrance</h4>
+                <p>Specially designed mock series for NIT MCA seats.</p>
+                <button onclick="window.unlock('NIMCET')" class="unlock-btn btn-purple">UNLOCK SOON</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-flex">
+            <div>
+                <h2>GloKash Academy</h2>
+                <p>Excellence in MCA Entrance Prep. Founded by G & A Partners.</p>
+            </div>
+            <div class="socials">
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+       <div class="copyright" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+    <p>&copy; 2026 GloKash Academy | All Rights Reserved</p>
+    
+    <a href="javascript:void(0)" onclick="confirmReset()" 
+       style="color: #f87171; text-decoration: none; font-size: 8px; border: 1px solid rgba(248, 113, 113, 0.3); padding: 4px 10px; border-radius: 4px; transition: 0.3s;">
+       <i class="fa-solid fa-circle-exclamation"></i> RESET SESSION
+    </a>
+</div>
+        
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "ATzaSyBKV8C5QcPD8u7RSTK.jf4cSSXqMhg3M096",
+            authDomain: "glokash-academy.firebaseapp.com",
+            projectId: "glokash-academy",
+            storageBucket: "glokash-academy.firebasestorage.app",
+            messagingSenderId: "192461251648",
+            appId: "1:392461251648:web:ce49a48d1b78d78cd65bas"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Registration Handling
+        document.getElementById('regForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const n = document.getElementById('regName').value;
+            const m = document.getElementById('regMobile').value;
+            const em = document.getElementById('regEmail').value;
+
+            localStorage.setItem('gk_session_2026', JSON.stringify({ name: n, mobile: m }));
+            
+            try {
+                await addDoc(collection(db, "students"), { name: n, mobile: m, email: em, joinedAt: new Date().toLocaleString() });
+            } catch (err) { console.error("Firebase Sync Error"); }
+
+            alert(`Registration Successful! Welcome ${n}.`);
+            checkAuth();
+        });
+
+        function checkAuth() {
+            const user = JSON.parse(localStorage.getItem('gk_session_2026'));
+            if (user) {
+                document.getElementById('authOverlay').classList.add('hidden');
+                document.getElementById('userBadge').innerText = user.name;
+                document.getElementById('userBadge').classList.remove('hidden');
+            }
+        }
+
+        // Redirect Security
+        window.unlock = function(testName) {
+            const user = JSON.parse(localStorage.getItem('gk_session_2026'));
+            if (!user) return;
+            
+            const key = "GK" + user.name.slice(0,2).toUpperCase() + user.mobile.slice(-4);
+            const input = prompt(`🛡️ SECURITY ACCESS\nEnter Pass-key for ${testName}:`);
+            
+            if (input === key) {
+                alert("✅ GRANTED!");
+                const links = {
+                    'Full Mock': 'new.html', 'CS Mastery': 'cs.html', 'Math Mastery': 'math.html',
+                    'Reasoning': 'reasoning.html', 'MAH CET': 'mahcet.html', 'NIMCET': 'nimcet.html'
+                };
+                window.location.href = links[testName];
+            } else if (input !== null) {
+                alert("❌ DENIED!");
+            }
+        }
+
+       window.confirmReset = function() {
+    if (confirm("क्या आप वाकई डेटा रिसेट करना चाहते हैं? इससे आपका लॉगिन सेशन खत्म हो जाएगा।")) {
+        localStorage.clear();
+        alert("Session Cleared! Re-directing to Registration...");
+        location.reload();
+    }
+}
+
+        window.onload = checkAuth;
+    </script>
+</body>
+</html>

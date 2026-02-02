@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Results | StudyPath</title>
+  <meta name="description" content="सर्च परिणाम देखें - B.Sc, BBA, BA जैसे कोर्सेज़ की जानकारी पाएं।">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 font-sans">
+
+  <!-- Header -->
+  <section class="bg-blue-600 text-white py-6">
+    <div class="max-w-5xl mx-auto px-6">
+      <h1 class="text-2xl font-bold">🔍 सर्च परिणाम</h1>
+      <p class="text-sm text-blue-100 mt-1">आपकी खोज के अनुसार कोर्सेज़:</p>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="py-10">
+    <div class="max-w-5xl mx-auto px-6">
+      <div id="resultsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <p>लोड हो रहा है...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between">
+        <div>
+          <h3 class="text-lg font-semibold mb-2">StudyPath</h3>
+          <p class="text-sm text-gray-400">आपका करियर गाइड — सही कोर्स, कॉलेज और भविष्य चुनने में मदद करें।</p>
+        </div>
+        <div class="mt-4 md:mt-0">
+          <p class="text-sm text-gray-400">© 2025 StudyPath.in | सभी अधिकार सुरक्षित</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const courses = [
+      {
+        name: "B.Sc. Computer Science",
+        keywords: ["bsc", "computer science", "cs", "science"],
+        url: "course-bsc-cs.html"
+      },
+      {
+        name: "BBA - Bachelor of Business Administration",
+        keywords: ["bba", "business", "management"],
+        url: "course-bba.html"
+      },
+      {
+        name: "B.Com - Bachelor of Commerce",
+        keywords: ["bcom", "commerce", "accounts"],
+        url: "course-bcom.html"
+      },
+      {
+        name: "BA Psychology",
+        keywords: ["ba psychology", "psychology", "arts"],
+        url: "course-ba-psychology.html"
+      },
+      {
+        name: "MCA",
+        keywords: ["mca", "cs", "comuter"],
+        url: "mca.html"
+      },
+      {
+        name: "MBA",
+        keywords: ["mba", "arts"],
+        url: "mba.html"
+      },
+      {
+        name: "MTEC",
+        keywords: ["mtec", "cs", "computer science"],
+        url: "mtec.html"
+      },
+      {
+        name: "MCOM",
+        keywords: ["mcom", "banking", "comerce"],
+        url: "mcom.html"
+      },
+      {
+        name: "MSC",
+        keywords: ["msc", "math", "science"],
+        url: "msc.html"
+      },
+      {
+        name: "PHD",
+        keywords: ["phd arts", "phd", "arts"],
+        url: "phd-arts.html"
+      },
+      {
+        name: "PHD",
+        keywords: ["phd commerce", "commerce", "phd"],
+        url: "phd-commerce.html"
+      },
+      {
+        name: "PHD",
+        keywords: ["phd-engineering", "engineering", "phd"],
+        url: "phd-engineering.html"
+      },
+      {
+        name: "PHD",
+        keywords: ["phd management", "management", "phd"],
+        url: "phd-management.html"
+      },
+      {
+        name: "PHD",
+        keywords: ["phd science", "science", "phd"],
+        url: "phd-science.html"
+      }
+
+    ];
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param) || "";
+    }
+
+    function renderResults(list, query) {
+      const container = document.getElementById("resultsContainer");
+      if (list.length === 0) {
+        container.innerHTML = `<p class="text-center text-gray-600 col-span-2">"${query}" से संबंधित कोई कोर्स नहीं मिला।</p>`;
+        return;
+      }
+
+      let html = "";
+      for (let course of list) {
+        html += `
+          <a href="${course.url}" class="block border p-5 rounded hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-2">${course.name}</h3>
+            <p class="text-sm text-gray-600">और जानकारी →</p>
+          </a>
+        `;
+      }
+      container.innerHTML = html;
+    }
+
+    function performSearch() {
+      const query = getQueryParam("query").trim().toLowerCase();
+      if (!query) {
+        renderResults([], "");
+        return;
+      }
+
+      const matched = courses.filter(course => {
+        if (course.name.toLowerCase().includes(query)) return true;
+        return course.keywords.some(kw => kw.toLowerCase().includes(query));
+      });
+
+      renderResults(matched, query);
+    }
+
+    // Run on load
+    window.onload = performSearch;
+  </script>
+
+</body>
+</html>

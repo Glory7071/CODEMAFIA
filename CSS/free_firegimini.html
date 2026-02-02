@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="hi" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Tournament Registration</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Dark background with subtle texture */
+            background-color: #1a1a1a;
+            background-image: radial-gradient(at 0% 0%, #3d0000 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, #1a0000 0px, transparent 50%);
+        }
+
+        /* Custom Fiery Text Glow */
+        .gaming-font {
+            font-family: 'Inter', sans-serif;
+            text-shadow: 0 0 15px rgba(255, 69, 0, 1), 0 0 25px rgba(255, 140, 0, 0.8);
+        }
+
+        /* Fiery Border Effect for important cards */
+        .fiery-border {
+            border: 3px solid #ff4500; /* Deep Orange Red */
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.7), 0 0 30px rgba(255, 140, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+        .fiery-border:hover {
+             transform: translateY(-3px);
+             box-shadow: 0 0 20px rgba(255, 69, 0, 0.9), 0 0 40px rgba(255, 140, 0, 0.5);
+        }
+
+        /* Simple Fade-in Animation for entry */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Pulsing Registration Button */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.4); }
+            50% { box-shadow: 0 0 15px rgba(255, 0, 0, 1), 0 0 30px rgba(255, 0, 0, 0.7); }
+        }
+        .pulse-glow {
+            animation: pulseGlow 2s infinite alternate;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col items-center p-4 sm:p-8">
+
+    <!-- Tournament Header -->
+    <header class="w-full max-w-5xl text-center mb-12 animate-fadeIn">
+        <!-- FREE FIRE STYLE BANNER IMAGE (Placeholder - Aap isse badal sakte hain) -->
+        <img src="https://mrwallpaper.com/images/hd/free-fire-banner-in-open-grounds-8xt1oayx5wp9zp7u.jpg" 
+             alt="Free Fire Tournament Banner Placeholder" 
+             class="w-full rounded-xl mb-6 fiery-border mx-auto object-cover" 
+             style="height: 150px;"
+             onerror="this.onerror=null; this.src='https://placehold.co/800x200/1a1a1a/ffffff?text=Tournament+Banner';"
+        >
+        
+        <div class="bg-red-800/15 border-4 border-red-700 p-8 rounded-2xl shadow-2xl fiery-border">
+            <h1 class="gaming-font text-5xl sm:text-8xl font-black tracking-tight uppercase text-red-500 mb-2 leading-none">
+                Maha Sangram 
+                <span class="text-yellow-400 text-6xl block sm:inline-block sm:text-7xl">Free Fire</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-300 mt-3 font-semibold">Survival. Kills. Glory. Jeet Lo Maidan!</p>
+        </div>
+    </header>
+
+    <!-- Main Content Grid - Changed to 4 columns on large screens -->
+    <main class="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-4 gap-6">
+        
+        <!-- Registration Card & Prize Details (2 Columns on Desktop) -->
+        <div class="lg:col-span-2 space-y-6 animate-fadeIn">
+            
+            <!-- Prize Pool -->
+            <div class="bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-700 fiery-border">
+                <h3 class="text-2xl font-semibold text-yellow-400 mb-3 uppercase tracking-wider">Total Prize Pool: ₹XXXXX</h3>
+                <ul class="space-y-2 list-disc list-inside text-gray-300 text-sm">
+                    <li>**1st Place (Winner):** ₹XXXXX Cash + Exclusive In-game rewards</li>
+                    <li>**2nd Place (Runner-up):** ₹XXXXX Cash + In-game rewards</li>
+                    <li>**3rd Place:** ₹XXXX Cash</li>
+                    <li>**MVP (Most Kills):** Special Diamond Prize</li>
+                </ul>
+            </div>
+
+            <!-- Key Details -->
+            <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
+                <h2 class="text-3xl font-bold text-red-400 mb-4">Tournament Details</h2>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div class="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition">
+                        <p class="text-gray-400">Format</p>
+                        <p class="font-semibold text-lg">Squad (4v4)</p>
+                    </div>
+                    <div class="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition">
+                        <p class="text-gray-400">Entry Fees</p>
+                        <p class="font-bold text-lg text-green-400">₹40 Per Squad</p>
+                    </div>
+                    <div class="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition">
+                        <p class="text-gray-400">Registration End</p>
+                        <p class="font-semibold text-lg">15/01/2025</p>
+                    </div>
+                    <div class="bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition">
+                        <p class="text-gray-400">Start Date</p>
+                        <p class="font-semibold text-lg">20/01/2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Registration Button -->
+            <a href="https://forms.google.com/your-registration-link" target="_blank" 
+               class="block w-full text-center py-5 rounded-xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white text-2xl font-black uppercase tracking-widest shadow-2xl transition transform hover:scale-[1.02] pulse-glow">
+                FINAL REGISTRATION KAREIN &rarr;
+            </a>
+            
+        </div>
+
+        <!-- Communication Hub (1 Column) -->
+        <div class="lg:col-span-1 space-y-6 animate-fadeIn" style="animation-delay: 0.1s;">
+            
+            <!-- Google Sheet Scoreboard Link (NEW SECTION) -->
+            <div class="bg-gray-900 p-6 rounded-xl shadow-2xl border-4 border-green-500/50">
+                <h3 class="text-xl font-bold text-green-400 mb-3 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 mr-2 text-green-400"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="10" y1="15" x2="10" y2="19"></line><line x1="14" y1="15" x2="14" y2="19"></line><line x1="12" y1="17" x2="12" y2="17"></line></svg>
+                    LIVE SCOREBOARD
+                </h3>
+                <p class="text-gray-400 mb-4 text-sm">Har match ke turant baad yahan points dekhein:</p>
+                <a href="https://docs.google.com/spreadsheets/d/YOUR-GOOGLE-SHEET-ID" target="_blank" 
+                   class="block w-full text-center py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white font-bold transition transform hover:scale-105">
+                    Scoreboard (Google Sheet) Dekhein
+                </a>
+            </div>
+
+            <!-- Contact/Platform -->
+            <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
+                <h3 class="text-2xl font-bold text-red-400 mb-4">Communication Hub</h3>
+                <p class="text-gray-300 mb-4 text-sm">Room ID, Password aur Zaroori Announcements yahan milenge:</p>
+                <a href="#" class="block w-full text-center py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition transform hover:scale-105">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 inline-block mr-2"><path d="M22 10s-2 1-4 1c0 2-2 3-4 3s-4-1-4-3c-2 0-4-1-4-1V2h16z"></path><path d="M6 18c-2 0-4 1-4 1v3l4-2 4 2v-3c0-1-2-1-4-1z"></path></svg>
+                    Discord Server Join Karein
+                </a>
+            </div>
+        </div>
+
+        <!-- Rules (1 Column) -->
+        <div class="lg:col-span-1 space-y-6 animate-fadeIn" style="animation-delay: 0.2s;">
+            <!-- Rules Snippet -->
+            <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700">
+                <h3 class="text-2xl font-bold text-red-400 mb-4">Zaroori Niyam</h3>
+                <ul class="space-y-3 text-sm text-gray-300">
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-2 mt-1">&#10008;</span> <!-- Cross/Error Icon -->
+                        **Hacking / Cheating:** Pakde jaane par team turant **PERMANENTLY DISQUALIFY** ho jayegi.
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-2 mt-1">&#9679;</span>
+                        **Emulator:** Sirf **Mobile Players** allowed hain. Emulator Players disqualify.
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-2 mt-1">&#9679;</span>
+                        **Late Join:** Match shuru hone ke 2 minute baad room entry band.
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-2 mt-1">&#9679;</span>
+                        **Internet Issue:** Agar game disconnect hota hai, toh admin jimmedar nahi hoga.
+                    </li>
+                </ul>
+                <a href="#" class="text-yellow-400 hover:text-yellow-300 text-sm mt-4 block font-semibold underline">Poore Niyam PDF/Link &rarr;</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-5xl mt-12 text-center text-gray-500 border-t border-gray-800 pt-6">
+        <p class="text-xs sm:text-sm">&copy; 2025 Maha Sangram Tournament. All Rights Reserved. | Designed for the ultimate Garena Free Fire experience.</p>
+    </footer>
+
+</body>
+</html>

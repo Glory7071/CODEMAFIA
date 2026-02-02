@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillForge Academy — Web Dev Training</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #090b10;
+            --bg-card: rgba(22, 27, 38, 0.7);
+            --primary-color: #5b73ff;
+            --accent-cyan: #00dfff;
+            --accent-purple: #7a3cff;
+            --text-light: #e0e6ff;
+            --text-muted: #aeb4c7;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        
+        body { 
+            background: var(--bg-dark); 
+            color: var(--text-light); 
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(122, 60, 255, 0.08) 0%, transparent 25%), 
+                radial-gradient(circle at 85% 30%, rgba(0, 223, 255, 0.08) 0%, transparent 25%);
+            overflow-x: hidden;
+        }
+
+        /* --- 2. TYPOGRAPHY & UTILITIES --- */
+        h1, h2, h3 { color: #fff; font-weight: 700; letter-spacing: -0.5px; }
+        p { color: var(--text-muted); line-height: 1.7; margin-bottom: 15px; }
+        
+        .section-title { 
+            font-size: 36px; margin-bottom: 50px; text-align: center; font-weight: 800; position: relative;
+        }
+        .section-title span { color: var(--accent-cyan); }
+        
+        .btn-main {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-purple));
+            padding: 14px 30px; border-radius: 10px; color: #fff; text-decoration: none;
+            font-weight: 600; display: inline-block; transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(122, 60, 255, 0.3); border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
+        }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(122, 60, 255, 0.5); }
+
+        /* --- 3. HEADER & NAV --- */
+        header { 
+            padding: 15px 7%; display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(9, 11, 16, 0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .logo { font-size: 24px; font-weight: 700; color: #fff; text-decoration: none;}
+        .logo span { color: var(--accent-cyan); }
+
+        .desktop-nav a { margin-left: 30px; color: var(--text-light); text-decoration: none; font-size: 15px; transition: var(--transition); }
+        .desktop-nav a:hover { color: var(--accent-cyan); }
+        .nav-btn { background: rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .nav-btn:hover { background: var(--primary-color); border-color: var(--primary-color); }
+
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .bar { width: 25px; height: 3px; background-color: #fff; border-radius: 5px; transition: var(--transition); }
+
+        .mobile-menu {
+            position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+            background: #121620; z-index: 999; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 30px; transition: 0.4s ease;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+        }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu a { font-size: 20px; color: #fff; text-decoration: none; font-weight: 600; }
+        .close-menu { position: absolute; top: 20px; right: 25px; font-size: 30px; cursor: pointer; }
+
+        /* --- 4. SECTIONS & GLASS CARDS --- */
+        section { padding: 80px 7%; overflow: hidden; }
+        
+        .glass-card {
+            background: var(--bg-card); backdrop-filter: blur(10px); padding: 30px;
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition); position: relative; overflow: hidden;
+        }
+        .glass-card:hover { border-color: var(--accent-cyan); transform: translateY(-5px); }
+        .glass-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+            transition: 0.5s;
+        }
+        .glass-card:hover::before { left: 100%; }
+
+        /* Hero */
+        .hero { display: flex; align-items: center; justify-content: space-between; padding-top: 100px; padding-bottom: 60px; }
+        .hero-content { max-width: 600px; }
+        .hero h2 { font-size: 48px; line-height: 1.2; margin-bottom: 20px; }
+        .hero h2 span { background: linear-gradient(to right, var(--accent-cyan), var(--primary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-img { width: 45%; max-width: 500px; animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        /* Grid System */
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        
+        /* Roadmap */
+      .roadmap-container { max-width: 1100px; margin: auto; }
+        .roadmap-flex { display: flex; gap: 20px; flex-wrap: wrap; }
+        .roadmap-card { flex: 1; min-width: 250px; }
+        .roadmap-card h3 { color: var(--accent-cyan); margin-bottom: 15px; }
+        .roadmap-card ul { padding-left: 20px; color: var(--text-light); }
+        .roadmap-card li { margin-bottom: 10px; }
+
+        /* --- NEW: Gallery Styles --- */
+        .gallery-scroller { 
+            display: flex; gap: 20px; overflow-x: auto; padding: 20px 5px; 
+            scrollbar-width: thin; scrollbar-color: var(--primary-color) var(--bg-dark);
+        }
+        .gallery-img { 
+            width: 340px; height: 220px; object-fit: cover; border-radius: 16px; flex: 0 0 auto; 
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
+        }
+        .gallery-img:hover { transform: scale(1.02); border-color: var(--accent-cyan); }
+
+        /* FAQ */
+        .faq-container { max-width: 800px; margin: auto; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 15px 0; }
+        .faq-question { display: flex; justify-content: space-between; cursor: pointer; font-weight: 600; font-size: 18px; color: #fff; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.3s ease; color: var(--text-muted); margin-top: 0; }
+        .faq-item.active .faq-answer { max-height: 150px; margin-top: 10px; }
+        .faq-icon { transition: 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); color: var(--accent-cyan); }
+
+        /* Instructor */
+        .instructor-wrapper { display: flex; align-items: center; gap: 40px; max-width: 1000px; margin: auto; background: rgba(255,255,255,0.02); padding: 40px; border-radius: 20px; }
+        .instructor-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-cyan); }
+
+        /* Register Form */
+        .register-wrapper { max-width: 500px; margin: auto; }
+        input { width: 100%; padding: 15px; margin-bottom: 15px; background: #0d0f15; border: 1px solid #262b39; color: #fff; border-radius: 8px; outline: none; }
+        input:focus { border-color: var(--accent-cyan); }
+
+        /* --- PAYMENT MODAL --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 2000;
+            backdrop-filter: blur(8px);
+        }
+        .modal-box {
+            background: #161a25; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px;
+            text-align: center; border: 1px solid var(--accent-cyan); position: relative;
+            box-shadow: 0 0 30px rgba(0, 223, 255, 0.2);
+        }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #fff; }
+        .qr-code { width: 220px; height: 220px; margin: 15px 0; border-radius: 10px; border: 4px solid #fff; }
+
+        /* Footer */
+        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 14px; color: #6b7280; }
+
+        .mobile-sticky-cta {
+            display: none; position: fixed; bottom: 20px; left: 5%; width: 90%;
+            background: var(--accent-cyan); color: #000; text-align: center; padding: 15px;
+            border-radius: 50px; font-weight: 700; z-index: 990; box-shadow: 0 5px 20px rgba(0,223,255,0.4);
+            text-decoration: none;
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            .desktop-nav { display: none; }
+            .hamburger { display: flex; }
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 40px; }
+            .hero-img { width: 80%; margin-bottom: 30px; }
+            .hero h2 { font-size: 34px; }
+            .instructor-wrapper { flex-direction: column; text-align: center; padding: 25px; }
+            .section-title { font-size: 28px; }
+            section { padding: 50px 5%; }
+            .mobile-sticky-cta { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo">SkillForge<span>.</span></a>
+    
+    <nav class="desktop-nav">
+        <a href="#features">Why Us</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#register" class="nav-btn">Register Now</a>
+    </nav>
+
+    <div class="hamburger" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div class="close-menu" onclick="toggleMenu()">&times;</div>
+    <a href="#home" onclick="toggleMenu()">Home</a>
+    <a href="#roadmap" onclick="toggleMenu()">Roadmap</a>
+    <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+    <a href="#register" onclick="toggleMenu()" style="color: var(--accent-cyan);">Register Now</a>
+</div>
+
+<section class="hero" id="home">
+    <div class="hero-content reveal">
+        <h2>Master Web Dev<br><span>From Zero to Pro</span></h2>
+        <p>Perfect for College Students. Learn HTML, CSS, JS, & Deployment. Build real projects, get a portfolio, and launch your career.</p>
+        <div style="margin-top: 20px;">
+            <a href="#register" class="btn-main">Join Cohort — ₹500</a>
+            <a href="https://wa.me/918545999403" style="color: #fff; margin-left: 20px; text-decoration: underline;">Chat on WhatsApp</a>
+        </div>
+    </div>
+    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/web-development-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--website-coding-programming-pack-design-illustrations-4502215.png" alt="Coding 3D" class="hero-img reveal" />
+</section>
+
+<section id="features">
+    <h2 class="section-title reveal">Why <span>SkillForge?</span></h2>
+    <div class="grid-4">
+        <div class="glass-card reveal">
+            <h3 style="font-size:40px;">🚀</h3>
+            <h3>Beginner Friendly</h3>
+            <p>No coding background? No problem. We explain everything from A to Z.</p>
+        </div>
+        <div class="glass-card reveal">
+            <h3 style="font-size:40px;">💬</h3>
+            <h3>WhatsApp Support</h3>
+            <p>Stuck on code? Send a screenshot and get instant help from mentors.</p>
+        </div>
+        <div class="glass-card reveal">
+            <h3 style="font-size:40px;">💼</h3>
+            <h3>Portfolio Ready</h3>
+            <p>Build 5+ projects. You will leave this course with a live portfolio link.</p>
+        </div>
+        <div class="glass-card reveal">
+            <h3 style="font-size:40px;">📜</h3>
+            <h3>Certificate</h3>
+            <p>Earn a verified certificate of completion to add to your LinkedIn/CV.</p>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="roadmap">
+  <h2 class="section-title">30‑Day Weekly Roadmap</h2>
+  <div class="roadmap-container">
+    <div class="roadmap-flex">
+      <div class="glass-card roadmap-card">
+        <h3>Week 1 — HTML & CSS Core</h3>
+        <ul>
+          <li>Semantic HTML, forms & media</li>
+          <li>CSS fundamentals, Box model</li>
+          <li>Flexbox & Grid layouts</li>
+          <li>Mini project: Responsive landing page</li>
+        </ul>
+      </div>
+      <div class="glass-card roadmap-card">
+        <h3>Week 2 — JavaScript Magic</h3>
+        <ul>
+          <li>DOM manipulation & events</li>
+          <li>Async: fetch API & promises</li>
+          <li>LocalStorage & Validation</li>
+          <li>Mini project: Dynamic To‑do App</li>
+        </ul>
+      </div>
+      <div class="glass-card roadmap-card">
+        <h3>Week 3 — Git & Going Live</h3>
+        <ul>
+          <li>Git basics: Commit, Push, Pull</li>
+          <li>GitHub Workflows & PRs</li>
+          <li>Deploying to Vercel/Netlify</li>
+          <li>Project: Personal Portfolio Site</li>
+        </ul>
+      </div>
+      <div class="glass-card roadmap-card">
+        <h3>Week 4 — Career Ready</h3>
+        <ul>
+          <li>Final Major Capstone Project</li>
+          <li>Code Review & Optimization</li>
+          <li>Resume tips & Interview Tasks</li>
+          <li>Certificate Distribution</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="instructor">
+    <div class="instructor-wrapper reveal">
+        <img src="https://placehold.co/200x200/161a25/00dfff?text=Gaurav" alt="Mentor" class="instructor-img" />
+        <div>
+            <h3 style="font-size: 24px; margin-bottom: 10px;">Meet Your Mentor: Gaurav</h3>
+            <p>Hi! I'm a Full Stack Developer. I created this course because most college tutorials are boring. I teach how things actually work in the industry. No fluff, just code.</p>
+        </div>
+    </div>
+</section>
+
+<section id="faq">
+    <h2 class="section-title reveal">Frequently Asked <span>Questions</span></h2>
+    <div class="faq-container reveal">
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Who is this course for? <span class="faq-icon">▼</span></div>
+            <div class="faq-answer">This is perfect for 1st, 2nd, and 3rd-year students who want to learn Web Development from scratch.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Do I need a laptop? <span class="faq-icon">▼</span></div>
+            <div class="faq-answer">Yes, a laptop/PC is recommended for coding. However, you can watch lectures on mobile.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Will I get a certificate? <span class="faq-icon">▼</span></div>
+            <div class="faq-answer">Yes, upon completing the final project, you will receive a verifiable certificate.</div>
+        </div>
+    </div>
+</section>
+
+<section id="register">
+    <div class="glass-card register-wrapper reveal">
+        <h2 style="text-align:center; margin-bottom:20px;">Book Your Spot</h2>
+        <form id="regForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="text" id="year" placeholder="Year / Branch" required>
+            <input type="tel" id="phone" placeholder="WhatsApp Number" required>
+            <input type="email" id="email" placeholder="Email ID" required>
+            <button type="submit" class="btn-main" style="width:100%; border:none;">Pay & Register (₹500)</button>
+        </form>
+    </div>
+</section>
+
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal-box">
+        <div class="close-modal" onclick="closeModal()">&times;</div>
+        <h3 style="color: #fff; margin-bottom: 10px;">Scan & Pay ₹500</h3>
+        <p style="font-size: 14px; color: #ccc;">Scan using GPay / PhonePe / Paytm</p>
+        
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code" class="qr-code">
+        
+        <p style="font-size: 12px; color: var(--accent-cyan); margin-bottom: 10px;">After payment, enter Transaction ID below:</p>
+        
+        <input type="text" id="txnId" placeholder="Enter UPI Transaction ID (e.g. T230...)" style="text-align: center;">
+        
+        <button onclick="submitToFirestore()" class="btn-main" style="width: 100%; margin-top: 10px;">Confirm Registration</button>
+        <p id="loadingMsg" style="display:none; margin-top:10px; color: var(--accent-cyan);">Processing...</p>
+    </div>
+</div>
+
+<section id="gallery">
+    <h2 class="section-title reveal">Student <span>Projects</span></h2>
+    <div class="gallery-scroller reveal">
+        <img src="https://placehold.co/340x220/1f2736/ffffff?text=Landing+Page" class="gallery-img"/>
+        <img src="https://placehold.co/340x220/1f2736/ffffff?text=Todo+App" class="gallery-img"/>
+        <img src="https://placehold.co/340x220/1f2736/ffffff?text=Portfolio+Site" class="gallery-img"/>
+        <img src="https://placehold.co/340x220/1f2736/ffffff?text=E-Commerce" class="gallery-img"/>
+        <img src="https://placehold.co/340x220/1f2736/ffffff?text=Netflix+Clone" class="gallery-img"/>
+    </div>
+    <p style="text-align:center; margin-top:15px;" class="reveal">Swipe to see what you will build.</p>
+</section>
+
+<footer>
+    <p>© 2025 SkillForge Academy. Let's Code!</p>
+</footer>
+
+<a href="#register" class="mobile-sticky-cta">Register Now — ₹500</a>
+
+<script type="module">
+    // --- 1. FIREBASE SETUP (IMPORTANT: PUT YOUR KEYS HERE) ---
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+  apiKey: "AIzaSyCGDi9KZnwGd7FH3btOBqU7w1ZLXDye_gg",
+  authDomain: "skillforge-web.firebaseapp.com",
+  projectId: "skillforge-web",
+  storageBucket: "skillforge-web.firebasestorage.app",
+  messagingSenderId: "462383432132",
+  appId: "1:462383432132:web:23fe441ac596edc1622491"
+};
+
+    // Initialize Firebase (Will error if keys are empty, but page will load)
+    let db;
+    try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+    } catch(e) {
+        console.log("Firebase keys not set yet.");
+    }
+
+    // --- 2. UI LOGIC (Menu, Scroll, FAQ) ---
+    window.toggleMenu = function() {
+        document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    window.toggleFaq = function(element) {
+        element.classList.toggle('active');
+    }
+
+    window.addEventListener('scroll', reveal);
+    function reveal() {
+        var reveals = document.querySelectorAll('.reveal');
+        for (var i = 0; i < reveals.length; i++) {
+            var windowheight = window.innerHeight;
+            var revealtop = reveals[i].getBoundingClientRect().top;
+            if (revealtop < windowheight - 100) {
+                reveals[i].classList.add('active');
+            }
+        }
+    }
+    reveal(); // Trigger on load
+
+    // --- 3. PAYMENT POPUP LOGIC ---
+    const form = document.getElementById('regForm');
+    const modal = document.getElementById('paymentModal');
+    let formData = {};
+
+    // Form Submit -> Open Modal
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        formData = {
+            name: document.getElementById('name').value,
+            year: document.getElementById('year').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value,
+        };
+        modal.style.display = 'flex';
+    });
+
+    window.closeModal = function() {
+        modal.style.display = 'none';
+    }
+
+    // --- 4. FIRESTORE SUBMIT LOGIC ---
+    window.submitToFirestore = async function() {
+        const txnId = document.getElementById('txnId').value;
+        const btn = document.querySelector('#paymentModal button');
+        const loading = document.getElementById('loadingMsg');
+
+        if(!txnId) {
+            alert("Please enter the Transaction ID to confirm.");
+            return;
+        }
+
+        if(!db) {
+            alert("Error: Firebase not configured. Check console.");
+            return;
+        }
+
+        // Show loading
+        btn.style.display = 'none';
+        loading.style.display = 'block';
+
+        try {
+            await addDoc(collection(db, "registrations"), {
+                ...formData,
+                transactionId: txnId,
+                timestamp: serverTimestamp(),
+                status: "pending"
+            });
+
+            alert("Registration Successful! We will add you to the group shortly.");
+            location.reload(); 
+        } catch (e) {
+            console.error("Error adding document: ", e);
+            alert("Error submitting data. Try again or contact Admin.");
+            btn.style.display = 'block';
+            loading.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

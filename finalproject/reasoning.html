@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLORY - CUET MCA Hub 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <link rel="stylesheet" href="logical.css">
+</head>
+<body>
+
+<nav>
+    <a href="#" class="nav-brand">GLORY MCA</a>
+    <div class="nav-links">
+        <a href="https://exams.nta.nic.in/cuet-pg/" target="_blank">NTA CUET PG Official</a>
+        <a href="https://chat.whatsapp.com/HusWC2PPgzk0RkFFGW8qny" class="wa-btn">WhatsApp</a>
+    </div>
+</nav>
+
+<header>
+    <h1 onclick="location.reload()">GLORY</h1>
+    <div id="cbt-timer" class="cbt-badge">CBT PORTAL 2026</div>
+</header>
+
+<div class="container">
+    <div id="home-screen">
+        <div class="hero-banner">
+            <h2>GLORY Educational Hub</h2>
+            <p id="home-quote">"Focus on your goals, the noise doesn't matter."</p>
+        </div>
+
+        <div class="section-header">Practice Mock Sets (20 Qs)</div>
+        <div class="grid" id="test-grid"></div>
+
+        <div class="section-header">YouTube Resource Library [Restored]</div>
+        <div class="grid">
+            <div class="p-card yt-border">
+                <h3>CUET PG Wallah</h3>
+                <p class="desc">Expert MCA lectures for OS, DBMS, and Logic.</p>
+                <a href="https://www.youtube.com/@cuetpgwallah" target="_blank" class="yt-link">Join Playlist &raquo;</a>
+            </div>
+            <div class="p-card yt-border">
+                <h3>CUET PG Adda247</h3>
+                <p class="desc">Daily Math & Reasoning practice sessions.</p>
+                <a href="https://www.youtube.com/@cuetpgadda" target="_blank" class="yt-link">Join Playlist &raquo;</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="lock-screen" class="lock-box">
+        <h2>LOCKED SESSION</h2>
+        <input type="password" id="pass-code" placeholder="Enter Password (1234)">
+        <button class="action-btn" onclick="checkAccess()">Unlock Test</button>
+        <p onclick="location.reload()" class="back-text">&laquo; Back to Dashboard</p>
+    </div>
+
+    <div id="exam-screen">
+        <div class="main-quiz">
+            <div class="q-header-row">
+                <h3 id="q-label">Question 1</h3>
+                <span class="exam-tag">SCQP09 | PG</span>
+            </div>
+            <div id="q-text" class="question-body"></div>
+            <div id="opt-container"></div>
+            
+            <div class="controls-bar">
+                <div class="btn-group">
+                    <button class="nav-btn" onclick="prevStep()">&laquo; Prev</button>
+                    <button class="nav-btn" onclick="nextStep()">Next &raquo;</button>
+                </div>
+                <div class="btn-group">
+                    <button class="action-btn-red" onclick="clearStep()">Clear</button>
+                    <button class="action-btn-purple" onclick="markStep()">Review</button>
+                    <button class="action-btn-green" onclick="saveStep()">Save & Next</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h4>Palette</h4>
+            <div class="palette" id="palette-grid"></div>
+            <button onclick="confirmSubmit()" class="submit-btn-black">SUBMIT</button>
+        </div>
+    </div>
+
+   <div id="result-screen">
+    <div class="result-header">
+        <h2>GLORY SCORECARD</h2>
+        <div class="score-box" id="final-total">0</div>
+        <p>Out of 80</p>
+        <div id="result-motive" class="motive-box"></div>
+    </div>
+    
+    <div class="score-breakdown">
+        <h4>Performance Summary</h4>
+        <div class="breakdown-row"><span>Correct Answers (+4):</span> <span id="res-correct">0</span></div>
+        <div class="breakdown-row"><span>Wrong Answers (-1):</span> <span id="res-wrong">0</span></div>
+        <div class="breakdown-row"><span>Skipped Questions:</span> <span id="res-skipped">0</span></div>
+        <hr>
+        <h4>Subject Breakdown</h4>
+        <div class="breakdown-row"><span>CS (1-40)</span> <span id="score-cs">0</span></div>
+    </div>
+    <button class="action-btn-black" onclick="location.reload()" style="width:100%; margin-top:20px">BACK TO HOME</button>
+</div>
+
+</div>
+
+<footer class="main-footer">
+    <p>&copy; 2026 GLORY Educational Hub | Shaping Excellence</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+<script src="logical.js"></script>
+</body>
+</html>

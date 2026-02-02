@@ -1,0 +1,41 @@
+{
+  "leaderboard": {
+    "match1": {
+      "team01": { "name": "@Glory", "score": 0, "kills": 0, "placement": 0 },
+      "team02": { "name": "FLEXI", "score": 6, "kills": 2, "placement": 4 },
+      "team03": { "name": "RFFO MANAS", "score": 16, "kills": 4, "placement": 12 },
+      "team04": { "name": "Madara jod", "score": 7, "kills": 1, "placement": 6 },
+      "team05": { "name": "PRIME BILLA", "score": 12, "kills": 2, "placement": 10 },
+       "team06": { "name": "DK.ANOS", "score": 2, "kills": 0, "placement": 2 },
+      "team07": { "name": "ᥫ᭡HᴀʀsнYᴀᴅᴀᴠ", "score": 19, "kills": 4, "placement": 15 },
+      "team08": { "name": "LEG3ND-_OP!!", "score": 9, "kills": 1, "placement": 8 },
+      "team09": { "name": "DX3Z", "score": 0, "kills": 0, "placement": 0 }
+     
+       
+    },
+    "match2": {
+      "team01": { "name": "@Glory", "score": 0, "kills": 0, "placement": 0 },
+      "team02": { "name": "FLEXI", "score": 6, "kills": 0, "placement": 6 },
+      "team03": { "name": "RFFO MANAS", "score": 2, "kills": 0, "placement": 2 },
+      "team04": { "name": "Madara jod", "score": 10, "kills": 2, "placement": 8 },
+      "team05": { "name": "PRIME BILLA", "score": 24, "kills": 9, "placement": 15 },
+       "team06": { "name": "DK.ANOS", "score": 11, "kills": 1, "placement": 10 },
+      "team07": { "name": "ᥫ᭡HᴀʀsнYᴀᴅᴀᴠ", "score": 12, "kills": 0, "placement": 12 },
+      "team08": { "name": "LEG3ND-_OP!!", "score": 6, "kills": 2, "placement": 4 },
+      "team09": { "name": "DX3Z", "score": 0, "kills": 0, "placement": 0 }
+      
+    },
+    "match3": {
+    "team01": { "name": "@Glory", "score": 0, "kills": 0, "placement": 0 },
+      "team02": { "name": "FLEXI", "score": 7, "kills": 1, "placement": 6 },
+      "team03": { "name": "RFFO MANAS", "score": 11, "kills": 3, "placement": 8 },
+      "team04": { "name": "Madara jod", "score": 2, "kills": 0, "placement": 2 },
+      "team05": { "name": "PRIME BILLA", "score": 20, "kills": 5, "placement": 15 },
+       "team06": { "name": "DK.ANOS", "score": 5, "kills": 1, "placement": 4 },
+      "team07": { "name": "ᥫ᭡HᴀʀsнYᴀᴅᴀᴠ", "score": 12, "kills": 0, "placement": 12 },
+      "team08": { "name": "LEG3ND-_OP!!", "score": 15, "kills": 5, "placement": 10 },
+      "team09": { "name": "DX3Z", "score": 0, "kills": 0, "placement": 0 }
+    }
+    
+  }
+}

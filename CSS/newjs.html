@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Responsive Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .question {
+      display: none;
+      margin-bottom: 20px;
+    }
+    #timer {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    #controls {
+      text-align: center;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    .question {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+.question.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+    @media (max-width: 480px) {
+      button {
+        width: 100%;
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="timer">60</div>
+
+ <a href="#" onclick="shareScore()">📤 Share on WhatsApp</a> 
+  <button onclick="share()">Share Score</button>
+
+
+ <div id="player-info">
+  <label>Enter your name: <input type="text" id="playerName"></label>
+</div>
+  <div id="quiz-container">
+    <div class="question">
+      <p>Q1: What is Java?</p>
+      <label><input type="radio" name="q1" value="0">A scripting language</label><br>
+      <label><input type="radio" name="q1" value="1">An object-oriented language</label><br>
+      <label><input type="radio" name="q1" value="0">A markup language</label>
+    </div>
+
+    <div class="question">
+      <p>Q2: What is DBMS?</p>
+      <label><input type="radio" name="q2" value="1">Database Management System</label><br>
+      <label><input type="radio" name="q2" value="0">Data Backup Module</label><br>
+      <label><input type="radio" name="q2" value="0">Digital Base Mapping Software</label>
+    </div>
+
+    <div class="question">
+      <p>Q3: What is a Linked List?</p>
+      <label><input type="radio" name="q3" value="1">A linear data structure</label><br>
+      <label><input type="radio" name="q3" value="0">A type of database</label><br>
+      <label><input type="radio" name="q3" value="0">A sorting algorithm</label>
+    </div>
+
+    <div class="question">
+      <p>Q4: What is Normalization?</p>
+      <label><input type="radio" name="q4" value="1">Reducing data redundancy</label><br>
+      <label><input type="radio" name="q4" value="0">Increasing table size</label><br>
+      <label><input type="radio" name="q4" value="0">Encrypting data</label>
+    </div>
+  </div>
+
+  <div id="controls">
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
+    <button onclick="submitQuiz()">Submit</button>
+  </div>
+
+  <script>
+    let timeLeft = 60;
+    let currentQuestion = 0;
+    const questions = document.querySelectorAll(".question");
+    const totalQuestions = questions.length;
+
+    showQuestion(currentQuestion);
+
+    const timer = setInterval(() => {
+      timeLeft--;
+      document.getElementById("timer").textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        submitQuiz();
+      }
+    }, 1000);
+
+    function showQuestion(index) {
+  questions.forEach(q => q.classList.remove("active"));
+  questions.forEach(q => q.style.display = "none");
+  questions[index].style.display = "block";
+  questions[index].classList.add("active");
+}
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      if (currentQuestion < totalQuestions - 1) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+      }
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+      }
+    });
+
+    function submitQuiz() {
+  let score = 0;
+  for (let i = 1; i <= totalQuestions; i++) {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (selected) {
+      score += parseInt(selected.value);
+      localStorage.setItem(`q${i}`, selected.nextSibling.textContent.trim());
+    } else {
+      localStorage.setItem(`q${i}`, "Not answered");
+    }
+  }
+
+  
+
+  const name = document.getElementById("playerName").value || "Anonymous";
+  const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+  leaderboard.push({ name, score });
+  leaderboard.sort((a, b) => b.score - a.score);
+  localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+  // ✅ Add this block here
+  const shareText = `I scored ${score} in Gaurav's quiz! Try it here: https://yourquizsite.com`;
+  const encoded = encodeURIComponent(shareText);
+  const shareURL = `https://wa.me/?text=${encoded}`;
+
+
+
+  alert(`Quiz Over! ${name}, your score is ${score}/${totalQuestions}`);
+  showLeaderboard();
+}
+
+function showLeaderboard() {
+  const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+  let html = "<h2>🏆 Leaderboard</h2><ol>";
+  leaderboard.forEach(player => {
+    html += `<li>${player.name}: ${player.score}</li>`;
+  });
+  html += "</ol>";
+
+  document.body.innerHTML = html; // Replace quiz with leaderboard
+}
+
+//function shareScore() {
+  window.open(shareURL, "_blank");
+//}
+
+document.getElementById("shareBtn").addEventListener("click", () => {
+  window.open(shareURL, "_blank");
+});
+
+document.getElementById("shareBtn").style.display = "inline-block";
+
+if (navigator.share) {
+  navigator.share({
+    title: "Quiz Score",
+    text: shareText,
+    url: "https://yourquizsite.com"
+  });
+}
+
+function share() {
+  const score = 4;
+  const shareText = `I scored ${score} in Gaurav's quiz! Try it here: https://yourquizsite.com`;
+  const encoded = encodeURIComponent(shareText);
+  const shareURL = `https://wa.me/?text=${encoded}`;
+  window.open(shareURL, "_blank");
+}
+
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLORY - CUET MCA Final 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #002147; --secondary: #007bff; --accent: #28a745; --danger: #f44336; --review: #6a4c93; --bg: #f4f7f9; --white: #ffffff; --card-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+        * { box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg); color: #333; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+        
+        /* Compact Unified Nav & Header */
+        nav { background: var(--white); padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        .nav-brand { font-weight: 800; font-size: 1.4em; color: var(--primary); text-decoration: none; }
+        .wa-btn { background: #25D366; color: white !important; padding: 6px 18px; border-radius: 50px; font-weight: 700; text-decoration: none; font-size: 0.85em; box-shadow: 0 4px 12px rgba(37,211,102,0.25); }
+
+        header { background: var(--primary); color: white; padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--secondary); }
+        header h1 { margin: 0; cursor: pointer; font-size: 1.5em; font-weight: 800; letter-spacing: 1px; }
+
+        .container { flex: 1; padding: 15px 2%; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Sleek & Compact Motivation Section */
+        #home-screen { width: 100%; max-width: 1400px; display: flex; flex-direction: column; gap: 20px; }
+        .hero-banner { background: linear-gradient(135deg, var(--primary) 0%, #004080 100%); color: white; padding: 15px 30px; border-radius: 12px; text-align: center; box-shadow: 0 8px 25px rgba(0,33,71,0.15); }
+        .hero-banner h2 { margin: 0; font-size: 1.3em; font-weight: 800; }
+        .hero-banner p { margin: 5px 0 0; font-style: italic; opacity: 0.9; font-size: 0.95em; }
+
+        .section-header { font-size: 1.3em; font-weight: 800; color: var(--primary); border-left: 5px solid var(--secondary); padding-left: 12px; margin: 10px 0; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .p-card { background: var(--white); border-radius: 12px; padding: 25px; box-shadow: var(--card-shadow); border: 1px solid #f0f2f4; transition: 0.3s ease; text-align: center; }
+        .p-card:hover { transform: translateY(-5px); border-color: var(--secondary); }
+        .p-card h3 { color: var(--primary); margin: 0 0 10px; font-size: 1.2em; }
+        .p-card .desc { color: #666; font-size: 0.85em; line-height: 1.5; margin-bottom: 15px; }
+        .action-btn { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 700; width: 100%; font-size: 0.95em; }
+
+        /* Security Lock */
+        #lock-screen { display: none; background: var(--white); padding: 40px; border-radius: 15px; text-align: center; max-width: 450px; width: 90%; margin-top: 40px; box-shadow: 0 15px 50px rgba(0,0,0,0.08); }
+        #lock-screen input { padding: 12px; width: 100%; border-radius: 10px; border: 1px solid #e1e4e8; font-size: 1.1em; margin-bottom: 20px; text-align: center; background: #fafafa; }
+
+        /* CBT Mode Styles */
+        #exam-screen { display: none; width: 99%; max-width: 1750px; gap: 15px; }
+        .main-quiz { flex: 5; background: var(--white); padding: 40px; border-radius: 15px; box-shadow: var(--card-shadow); border: 1px solid #eee; }
+        .sidebar { flex: 1.3; background: var(--white); padding: 20px; border-radius: 15px; border: 1px solid #eee; box-shadow: var(--card-shadow); min-width: 300px; }
+        .palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(45px, 1fr)); gap: 8px; margin-top: 15px; }
+        .q-box { width: 45px; height: 45px; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 5px; font-weight: 700; font-size: 0.9em; background: #fff; }
+        .q-box.active { border: 3px solid var(--secondary); background: #f0f7ff; }
+        .q-box.answered { background: var(--accent); color: white; border: none; }
+        .q-box.review { background: var(--review); color: white; border: none; }
+        .opt-btn { display: block; width: 100%; padding: 16px; margin: 10px 0; border: 2px solid #f0f0f0; border-radius: 8px; background: #fff; text-align: left; cursor: pointer; font-size: 1.05em; font-family: inherit; }
+        .opt-btn.selected { border-color: var(--secondary); background: #f1f8ff; color: var(--secondary); font-weight: 700; }
+        .controls { display: flex; justify-content: space-between; margin-top: 40px; }
+
+        /* Result Page UI */
+        #result-screen { display: none; width: 95%; max-width: 900px; flex-direction: column; gap: 20px; }
+        .result-header { background: white; padding: 30px; border-radius: 15px; box-shadow: var(--card-shadow); text-align: center; }
+        .score-box { font-size: 3em; font-weight: 800; color: var(--primary); margin: 10px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+        .stat-item { padding: 15px; border-radius: 10px; text-align: center; font-weight: 700; font-size: 0.9em; }
+        .sub-score-card { background: white; padding: 20px; border-radius: 15px; box-shadow: var(--card-shadow); }
+        .sub-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 0.95em; }
+
+        footer { background: #111; color: #666; text-align: center; padding: 25px; font-size: 0.85em; margin-top: auto; }
+        @media (max-width: 1100px) { #exam-screen { flex-direction: column; } .sidebar { order: -1; width: 100%; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="nav-brand">GLORY MCA</a>
+    <div style="display:flex; align-items:center; gap:15px;">
+        <a href="https://exams.nta.nic.in/cuet-pg/" target="_blank" style="color:#666; text-decoration:none; font-weight:600; font-size:0.85em;">NTA Official</a>
+        <a href="https://chat.whatsapp.com" class="wa-btn">Join WhatsApp</a>
+    </div>
+</nav>
+
+<header>
+    <h1 onclick="location.reload()">GLORY</h1>
+    <div id="cbt-timer" style="font-weight: 800; font-size: 1.05em; color: #ffeb3b; background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 50px;">TIMER: 90 MINS</div>
+</header>
+
+<div class="container">
+    <!-- Compact Home Dashboard -->
+    <div id="home-screen">
+        <div class="hero-banner">
+            <h2>GLORY Edu Hub</h2>
+            <p id="home-quote">"Your goal is closer than you think."</p>
+        </div>
+
+        <div class="section-header">MCA Mock Tests (SCQP09)</div>
+        <div class="grid" id="test-grid"></div>
+
+        <div class="section-header">Resource Library</div>
+        <div class="grid">
+            <div class="p-card" style="border-top: 4px solid var(--secondary);">
+                <h3>Study Playlists</h3>
+                <p class="desc">Core CS and MCA specific preparation videos from top educators.</p>
+                <a href="https://www.youtube.com/@cuetpgadda" target="_blank" style="color:var(--secondary); font-weight:700; text-decoration:none; font-size:0.85em;">Open YouTube &raquo;</a>
+            </div>
+            <div class="p-card" style="border-top: 4px solid var(--secondary);">
+                <h3>NTA Mock Portal</h3>
+                <p class="desc">Official NTA interface practice to master the CBT environment.</p>
+                <a href="https://exams.nta.nic.in/cuet-pg/" target="_blank" style="color:var(--secondary); font-weight:700; text-decoration:none; font-size:0.85em;">Official Site &raquo;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Lock -->
+    <div id="lock-screen">
+        <h2 style="color:var(--primary); font-weight:800; margin:0 0 10px;">LOCKED SESSION</h2>
+        <p style="color:#666; margin-bottom:25px; font-size:0.9em;">Enter code to begin your timed 75-question practice set.</p>
+        <input type="password" id="pass-code" placeholder="Default Password: 1234">
+        <button class="action-btn" onclick="checkAccess()">Unlock Now</button>
+        <p onclick="location.reload()" style="color:var(--secondary); cursor:pointer; margin-top:20px; font-weight:600; font-size:0.85em;">&laquo; Back to Hub</p>
+    </div>
+
+    <!-- CBT Mode Screen -->
+    <div id="exam-screen">
+        <div class="main-quiz">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #f0f2f5; padding-bottom:12px; margin-bottom:30px;">
+                <h3 id="q-label" style="margin:0; font-weight:800; color:var(--primary);">Question 1</h3>
+                <span style="background:#e8f5e9; color:var(--accent); font-weight:800; padding:5px 12px; border-radius:50px; font-size:0.9em;">MCA: +4 | -1</span>
+            </div>
+            <p id="q-text" style="font-size: 1.45em; color:#333; line-height:1.4; margin-bottom:40px;">Preparing Questions...</p>
+            <div id="opt-container"></div>
+            <div class="controls">
+                <div style="display:flex; gap:10px;">
+                    <button class="action-btn" onclick="prevStep()" style="background:#adb5bd; width:auto; padding:12px 25px;">&laquo; Prev</button>
+                    <button class="action-btn" onclick="nextStep()" style="background:#adb5bd; width:auto; padding:12px 25px;">Next &raquo;</button>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button class="action-btn" onclick="clearStep()" style="background:var(--danger); width:auto; padding:12px 25px;">Clear</button>
+                    <button class="action-btn" onclick="markStep()" style="background:var(--review); width:auto; padding:12px 25px;">Review</button>
+                    <button class="action-btn" onclick="saveStep()" style="background:var(--accent); width:auto; padding:12px 40px; box-shadow:0 5px 12px rgba(40,167,69,0.2);">Save & Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <h4 style="margin:0; color:var(--primary); font-weight:800;">Navigation</h4>
+            <div class="palette" id="palette-grid"></div>
+            <div style="margin-top:30px; border-top:1px dashed #eee; padding-top:15px; font-size:0.8em;">
+                <div style="display:flex; align-items:center; margin-bottom:8px;"><div style="width:12px; height:12px; background:var(--accent); border-radius:3px; margin-right:10px;"></div> Answered</div>
+                <div style="display:flex; align-items:center; margin-bottom:8px;"><div style="width:12px; height:12px; background:var(--review); border-radius:3px; margin-right:10px;"></div> Mark Review</div>
+                <div style="display:flex; align-items:center;"><div style="width:12px; height:12px; border:1px solid #ccc; border-radius:3px; margin-right:10px;"></div> Not Visited</div>
+            </div>
+            <button onclick="confirmSubmit()" style="width:100%; margin-top:40px; padding:18px; background:#000; color:#fff; border:none; border-radius:10px; cursor:pointer; font-weight:800; letter-spacing:1px; box-shadow:0 6px 20px rgba(0,0,0,0.2);">SUBMIT EXAM</button>
+        </div>
+    </div>
+
+    <!-- Improved Scorecard Dashboard -->
+    <div id="result-screen">
+        <div class="result-header">
+            <h2 style="color:var(--primary); font-weight:800; margin:0;">MCA PERFORMANCE REPORT</h2>
+            <div class="score-box" id="final-total">0</div>
+            <p style="font-weight:700; color:#666; margin:0;">Total Score Out of 300</p>
+            <div id="result-motive" style="font-style:italic; color:var(--secondary); margin-top:15px; padding:10px; background:#f0f7ff; border-radius:8px; font-size:0.95em;"></div>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item" style="background:#e8f5e9; color:#2e7d32;">Correct: <span id="res-correct">0</span></div>
+            <div class="stat-item" style="background:#ffebee; color:#c62828;">Wrong: <span id="res-wrong">0</span></div>
+            <div class="stat-item" style="background:#f5f5f5; color:#616161;">Skipped: <span id="res-skip">0</span></div>
+        </div>
+        <div class="sub-score-card">
+            <h4 style="margin-top:0; color:var(--primary); border-bottom:2px solid #eee; padding-bottom:8px;">Subject Performance</h4>
+            <div class="sub-row"><span>Computer Science (Core)</span> <span id="score-cs" style="font-weight:800;">0/160</span></div>
+            <div class="sub-row"><span>Mathematics (NCERT 12)</span> <span id="score-math" style="font-weight:800;">0/92</span></div>
+            <div class="sub-row"><span>Logic & Reasoning</span> <span id="score-reason" style="font-weight:800;">0/48</span></div>
+        </div>
+        <button class="action-btn" onclick="location.reload()" style="background:#000; padding:15px; border-radius:10px;">RETURN TO HUB</button>
+    </div>
+</div>
+
+<footer>&copy; 2026 GLORY | Shaping the Future of MCA Aspirants</footer>
+
+<script>
+    const motives = [
+        "Focus on your goals, the noise doesn't matter. GLORY awaits!",
+        "Doubt kills more dreams than failure ever will.",
+        "CUET MCA requires 75 right decisions. Start now.",
+        "The harder you work, the luckier you get. Keep pushing!",
+        "Every MCQ brings you closer to your Dream University.",
+        "Persistence is the path to success. Don't quit.",
+        "Success is a habit, not an act. Practice daily!",
+        "Dream big, work hard, stay humble.",
+        "Consistency is more important than intensity.",
+        "Master the basics, and the results will follow."
+    ];
+
+    const quizData = {
+        "Set 1": { pass: "1234", msg: motives[0], questions: [
+  // SET 2: COMPUTER SCIENCE (1-40)
+  { q: "In binary, (1010) is equal to which decimal number?", o: ["8", "9", "10", "11"], a: 2 },
+  { q: "Which of the following is NOT a primary function of an OS?", o: ["Memory management", "File management", "Internet browsing", "Process scheduling"], a: 2 },
+  { q: "Which data structure uses FIFO (First In First Out)?", o: ["Stack", "Queue", "Tree", "Graph"], a: 1 },
+  { q: "In a doubly linked list, each node has how many pointers?", o: ["1", "2", "3", "4"], a: 1 },
+  { q: "What is the best case time complexity of Merge Sort?", o: ["O(n)", "O(log n)", "O(n log n)", "O(n^2)"], a: 2 },
+  { q: "Which programming language is known as the 'mother of all languages'?", o: ["C", "Java", "Assembly", "Python"], a: 0 },
+  { q: "What does the last node's next pointer contain in a standard linked list?", o: ["0", "1", "NULL", "Pointer to head"], a: 2 },
+
+  // SET 2: MATHEMATICS (41-63)
+  { q: "If the roots of the quadratic equation x^2 - 5x + 6 = 0 are p and q, find p and q.", o: ["2, 3", "-2, -3", "1, 6", "0, 5"], a: 0 },
+  { q: "The sum of the first 10 terms of the arithmetic progression 3, 6, 9, ... is?", o: ["120", "150", "165", "210"], a: 2 },
+  { q: "The value of Integral (from 0 to pi/2) of sin(x) dx is?", o: ["0", "1", "pi", "pi/2"], a: 1 },
+  { q: "If A = [1 2; 3 4], then the determinant |A| is?", o: ["10", "2", "-2", "-10"], a: 2 },
+  { q: "What is the derivative of x^3 - 3x + 2?", o: ["3x^2 - 3", "3x^2 + 3", "x^2 - 3", "0"], a: 0 },
+
+  // SET 2: REASONING (64-75)
+  { q: "Find the next term in the series: 2, 6, 12, 20, 30, ?", o: ["40", "42", "44", "46"], a: 1 },
+  { q: "A is the brother of B. B is the sister of C. How is C related to A?", o: ["Brother", "Sister", "Cannot be determined", "Father"], a: 2 },
+  { q: "If 5 pens cost Rs 75, how many pens can be bought for Rs 300?", o: ["15", "18", "20", "25"], a: 2 },
+  { q: "Select the odd one out: Circle, Square, Rectangle, Triangle.", o: ["Circle", "Square", "Rectangle", "Triangle"], a: 0 },
+  { q: "Statements: All bottles are plastic. Some bags are plastic. Conclusion: Some bags are bottles.", o: ["True", "False", "Cannot be determined", "None Follows"], a: 3 }
+]
+ },
+        "Set 2": { pass: "1234", msg: motives[1], questions: [] },
+        "Set 3": { pass: "1234", msg: motives[2], questions: [] },
+        "Set 4": { pass: "1234", msg: motives[3], questions: [] },
+        "Set 5": { pass: "1234", msg: motives[4], questions: [] },
+        "Set 6": { pass: "1234", msg: motives[5], questions: [] },
+        "Set 7": { pass: "1234", msg: motives[6], questions: [] },
+        "Set 8": { pass: "1234", msg: motives[7], questions: [] },
+        "Set 9": { pass: "1234", msg: motives[8], questions: [] },
+        "Set 10": { pass: "1234", msg: motives[9], questions: [] }
+    };
+
+    let activeSet = null, curr = 0, userAns = [], qStatus = [], timeLeft = 5400;
+
+    function initHome() {
+        const grid = document.getElementById("test-grid");
+        document.getElementById("home-quote").innerText = `"${motives[Math.floor(Math.random() * motives.length)]}"`;
+        Object.keys(quizData).forEach(name => {
+            grid.innerHTML += `
+                <div class="p-card">
+                    <h3>${name}</h3>
+                    <p class="desc">SCQP09: 40 CS | 23 Math | 12 Logic.</p>
+                    <button class="action-btn" onclick="openGate('${name}')">Start Mock</button>
+                </div>
+            `;
+        });
+    }
+
+    function openGate(name) { activeSet = name; document.getElementById("home-screen").style.display = "none"; document.getElementById("lock-screen").style.display = "block"; }
+    function checkAccess() {
+        if(document.getElementById("pass-code").value === quizData[activeSet].pass) {
+            document.getElementById("lock-screen").style.display = "none"; document.getElementById("exam-screen").style.display = "flex";
+            const qCount = quizData[activeSet].questions.length || 75;
+            userAns = new Array(qCount).fill(null); qStatus = new Array(qCount).fill('not-visited');
+            loadStep(0); setInterval(runClock, 1000);
+        } else { alert("Wrong Code!"); }
+    }
+
+    function loadStep(i) {
+        curr = i; const data = quizData[activeSet].questions[i] || { q: "No Questions Added Yet. Use Step 7.", o: ["A","B","C","D"], a: 0 };
+        document.getElementById("q-label").innerText = `Question ${i+1}`; document.getElementById("q-text").innerText = data.q;
+        const opts = document.getElementById("opt-container"); opts.innerHTML = "";
+        data.o.forEach((txt, idx) => { const cls = (userAns[curr] === idx) ? 'selected' : ''; opts.innerHTML += `<button class="opt-btn ${cls}" onclick="pick(${idx})">${txt}</button>`; });
+        refreshPalette();
+    }
+
+    function refreshPalette() {
+        const grid = document.getElementById("palette-grid"), count = quizData[activeSet].questions.length || 75; grid.innerHTML = "";
+        for(let i=0; i<count; i++) grid.innerHTML += `<div class="q-box ${qStatus[i]} ${i===curr?'active':''}" onclick="loadStep(${i})">${i+1}</div>`;
+    }
+
+    function pick(idx) { userAns[curr] = idx; loadStep(curr); }
+    function clearStep() { userAns[curr] = null; qStatus[curr] = 'not-visited'; loadStep(curr); }
+    function prevStep() { if(curr > 0) loadStep(curr-1); }
+    function nextStep() { if(curr < userAns.length-1) loadStep(curr+1); }
+    function markStep() { qStatus[curr] = 'review'; autoMove(); }
+    function saveStep() { qStatus[curr] = (userAns[curr] !== null) ? 'answered' : 'not-visited'; autoMove(); }
+    function autoMove() { if(curr < userAns.length-1) loadStep(curr+1); else refreshPalette(); }
+    function runClock() { timeLeft--; let m = Math.floor(timeLeft/60), s = timeLeft%60; document.getElementById("cbt-timer").innerText = `TIME: ${m}:${s<10?'0'+s:s}`; if(timeLeft <= 0) finalize(); }
+    function confirmSubmit() { if(confirm("Submit Final Exam?")) finalize(); }
+
+    function finalize() {
+        document.getElementById("exam-screen").style.display = "none"; document.getElementById("result-screen").style.display = "flex";
+        let total = 0, correct = 0, wrong = 0, skipped = 0, cs = 0, math = 0, reason = 0;
+        userAns.forEach((ans, i) => {
+            const actual = quizData[activeSet].questions[i]?.a;
+            if(ans === null) skipped++;
+            else if(ans === actual) { correct++; total += 4; if(i<40) cs+=4; else if(i<63) math+=4; else reason+=4; }
+            else { wrong++; total -= 1; if(i<40) cs-=1; else if(i<63) math-=1; else reason-=1; }
+        });
+        document.getElementById("final-total").innerText = total; document.getElementById("res-correct").innerText = correct;
+        document.getElementById("res-wrong").innerText = wrong; document.getElementById("res-skip").innerText = skipped;
+        document.getElementById("score-cs").innerText = `${cs}/160`; document.getElementById("score-math").innerText = `${math}/92`;
+        document.getElementById("score-reason").innerText = `${reason}/48`; document.getElementById("result-motive").innerText = quizData[activeSet].msg;
+    }
+    initHome();
+</script>
+</body>
+</html>

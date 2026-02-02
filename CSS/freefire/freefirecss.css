@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
+}
+
+body {
+  color: white;
+  overflow-x: hidden;
+  background: #0a0a0a;
+}
+
+/* 🔥 Canvas Background */
+#fireBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+/* Header */
+header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+}
+
+.title-glow {
+  font-size: 3rem;
+  color: #ff4d00;
+  text-shadow: 0 0 20px #ff6600, 0 0 40px #ff3300, 0 0 80px #ff2200;
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  from { text-shadow: 0 0 20px #ff6600; }
+  to { text-shadow: 0 0 50px #ff2200, 0 0 100px #ff0000; }
+}
+
+.subtitle {
+  margin: 15px 0;
+  font-size: 1.2rem;
+  color: #ffd700;
+}
+
+.btn-glow {
+  padding: 12px 25px;
+  border: 2px solid #ff4d00;
+  background: transparent;
+  color: #ff4d00;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.btn-glow:hover {
+  background: #ff4d00;
+  color: #000;
+  box-shadow: 0 0 20px #ff4d00, 0 0 40px #ff0000;
+}
+
+/* Section Styles */
+section {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+h2 {
+  color: #ffcc00;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #ff9900;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 77, 0, 0.7);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(255, 77, 0, 0.4);
+}
+
+.card p {
+  margin: 10px 0;
+}
+
+/* Registration Form */
+.form-card input {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid #ff4d00;
+  color: white;
+  border-radius: 5px;
+  outline: none;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.entry {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #ff4d00;
+  width: 300px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.entry:hover {
+  background: rgba(255,77,0,0.3);
+  transform: scale(1.05);
+}
+
+footer {
+  padding: 20px;
+  background: #111;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.highlight {
+  color: #ff4d00;
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1s all ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+  
+
+
+
+

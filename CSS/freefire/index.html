@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔵 F.F.R.I.P. E-Sports 2025 🏆</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="GAH.css">
+</head>
+<body>
+    <div class="grid-overlay"></div>
+    <header>
+        <div class="container">
+            <nav>
+                <h3>G.A.h eSports Club</h3>
+                <div class="nav-hamburger" onclick="toggleMenu()">&#9776;</div>
+                <div>
+                    <a href="#home"><i class="fas fa-home"></i> Home</a>
+                    <a href="#registration"><i class="fas fa-edit"></i> Registration</a>
+                    <a href="#combined-info"><i class="fas fa-trophy"></i> Prize / Leaderboard / Stream</a>
+                    <a href="#schedule-rules"><i class="fas fa-calendar-alt"></i> schedule / Rules </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="slider-container">
+            <div class="slide active" style="background-image: url('https://freefiremobile-a.akamaihd.net/common/web_event/official2.ff.garena.all/img/20228/cfcb1a406472b51de2e4de00c96973d8.jpg');"></div>
+            <div class="slide" style="background-image: url('https://freefiremobile-a.akamaihd.net/common/web_event/official2.ff.garena.all/img/20228/9fbbaf1adc6d6ac26653eac5f147aaa9.jpg');"></div>
+            <div class="slide" style="background-image: url('https://freefiremobile-a.akamaihd.net/common/web_event/official2.ff.garena.all/img/20228/220cd00d9f9a91b12e52af9fc8f54aba.jpg');"></div>
+        </div>
+        <div class="hero-content">
+            <h1>🔵 F.F.R.I.P. CHAMPIONSHIP 2025 🏆</h1>
+            <p>The total prize pool is ₹1000/-. Get your squad ready!</p>
+            <a href="#registration" class="cta-button">🛡️ Register now!</a>
+            <div class="timer" id="countdown">Registration closes in: 05 days 12 hours 30 minutes</div>
+        </div>
+    </section>
+
+
+    <section id="whatsapp-join" class="container" style="margin-top: 40px; margin-bottom: 40px;">
+        <div class="card whatsapp-card" style="
+            background-color: #121212; 
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--highlight-color); 
+            box-shadow: 0 0 15px rgba(183, 28, 28, 0.5); 
+        ">
+            
+            <h2 style="color: var(--highlight-color); margin-top: 0; font-size: 2em;">
+                👥 For important updates, join our WhatsApp group!
+            </h2>
+            <p style="color: var(--text-light); font-size: 1.1em; margin-bottom: 25px;">
+                Get the Room ID, Password, Match Schedule, and all necessary information right away।
+            </p>
+            
+            <a href="https://chat.whatsapp.com/Gxve7efJHo2F95MDlzTyGG?mode=wwt" target="_blank" class="cta-button whatsapp-button" 
+                style="
+                    background-color: #25D366; 
+                    border: 2px solid #128C7E; 
+                    color: #fff;
+                    font-size: 1.3em;
+                    padding: 15px 40px;
+                    border-radius: 50px;
+                    font-weight: bold;
+                    transition: transform 0.3s, opacity 0.3s;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                "
+                onmouseover="this.style.transform='scale(1.05)'" 
+                onmouseout="this.style.transform='scale(1)'"
+            >
+                <i class="fab fa-whatsapp" style="font-size: 1.5em;"></i>
+                Join the group immediately
+            </a>
+            
+            <p style="color: #90A4AE; font-size: 0.9em; margin-top: 20px;">
+                ⚠️ Only share tournament-related information in the group.
+            </p>
+
+        </div>
+    </section>
+
+ <section id="registration" class="container">
+    <h2>📝 Single Player Registration and Payment (₹99/-)</h2>
+    
+    <div class="card" style="text-align:center; border-left:4px solid var(--highlight-color);">
+        
+        <div class="reg-step-payment" style="border: 2px solid var(--accent-color); padding: 20px; border-radius: 8px; margin-bottom: 25px; background-color: #2D3748;">
+    <h3 style="color: var(--highlight-color); margin-top: 0; font-size: 1.4em;">
+        1. 💳 Pay the registration fee (₹99/-)
+    </h3>
+    
+    <div style="background-color: #1A202C; padding: 10px; border-radius: 6px; border: 1px dashed var(--accent-color);">
+        <p style="font-weight:bold; color:var(--text-light); margin: 0;">
+            <span style="font-size: 0.9em; color: #90A4AE;">UPI ID:</span>
+            <br>
+            <span id="upi-id-copy" style="cursor:text; font-size: 1.3em; color: var(--highlight-color);">ankitkumarbind2222@okaxis</span>
+        </p>
+    </div>
+    
+    <button id="copy-upi-btn" class="cta-button" 
+        style="width: 100%; max-width: 400px; padding: 12px 0; margin-top: 15px; font-size: 1.1em; background-color: var(--accent-color) !important; border-color: var(--accent-color) !important;">
+        📋 Copy the UPI ID
+    </button>
+    
+    <p style="color:#FFC107; font-weight:bold; font-size: 0.9em; margin-top: 15px;">
+        After payment, make sure to keep your 12-digit UTR/Transaction ID safe.
+    </p>
+</div>
+
+        <p style="font-size:1.2em; font-weight:700; color:var(--text-light); margin-top:20px; margin-bottom:10px;">
+            2. Submit the Transaction ID and Player Details
+        </p>
+        
+        <form id="final-registration-form">
+            
+            <input type="text" id="player-name" placeholder="👤  Name " required>
+            <input type="text" id="ign" placeholder="🎮 (IGN)" required>
+            <input type="text" id="ffuid" placeholder="🆔 FF UID " required>
+            
+            <select id="device" required>
+                <option value="" disabled selected>📱 Select device </option>
+                <option value="Android">Android</option>
+                <option value="iOS">iOS</option>
+                <option value="Emulator">Emulator (PC)</option>
+            </select>
+            
+            <input type="email" id="player-email" placeholder="📧 Gmail " required>
+            <input type="text" id="player-whatsapp" placeholder="📞 WhatsApp " required>
+            
+            <input type="text" id="transaction-id" placeholder="💰 12-अंकों की UTR/Transaction ID (भुगतान के बाद)" required>
+            
+            <button type="submit" id="submit-reg-btn" class="cta-button" 
+                style="padding:15px 40px; font-size:1.2em; margin-top:20px; background-color:var(--success-color); border-color:var(--success-color);">
+                ✅ Confirm and Complete Registration
+            </button>
+            <p id="reg-feedback" style="margin-top:15px; font-weight:bold;"></p>
+        </form>
+
+    </div>
+</section>
+
+
+
+<section id="registrant-gallery" class="container" style="margin-top: 50px; margin-bottom: 50px;">
+    
+    <h2 style="color: var(--highlight-color); text-align: center; margin-bottom: 30px;">
+        🔥 अभी रजिस्टर हुए प्लेयर्स (Join The Battle!)
+    </h2>
+    
+    <div class="card gallery-wrapper" style="
+        background-color: var(--background-light); 
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    ">
+        <div id="player-carousel" class="player-carousel-container">
+            <div style="text-align: center; color: #90A4AE;">
+                <i class="fas fa-spinner fa-spin"></i> लोड हो रहा है...
+            </div>
+
+        </div>
+        
+        <button class="nav-button prev-btn" onclick="scrollCarousel(-1)">&#10094;</button>
+        <button class="nav-button next-btn" onclick="scrollCarousel(1)">&#10095;</button>
+
+    </div>
+</section>
+
+    <section id="combined-info" class="container two-column-section">
+        <div>
+            <h2>🏆 Prizes</h2>
+            <div class="card">
+                <p>🥇 1st Place: ₹150/-<br>🥈 2nd Place: ₹75/-<br>🥉 3rd Place: ₹50/-</p>
+            </div>
+        </div>
+        
+        <div>
+            <h2>📊 Leaderboard</h2>
+            <div class="card leaderboard">
+                <div class="leaderboard-controls" style="margin-bottom:15px;">
+                    <label>Select Match:</label>
+                    <select id="matchSelect">
+                        <option value="match1">Match 1</option>
+                        <option value="match2">Match 2</option>
+                        <option value="match3">Match 3</option>
+                        <option value="final">Final Leaderboard</option>
+                    </select>
+                </div>
+
+                <div class="leaderboard-controls">
+                    <label for="sortCriteria">Sort By:</label>
+                    <select id="sortCriteria">
+                        <option value="score">Score</option>
+                        <option value="kills">Kills</option>
+                        <option value="placement">Placement</option>
+                    </select>
+                </div>
+
+                <div class="responsive-table-wrapper leaderboard-scroll">
+                    <table id="leaderboardTable">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Players</th>
+                                <th>Score</th>
+                                <th>Kills</th>
+                                <th>Placement</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <tr>
+                                <td colspan="5" style="text-align:center;">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>📺 Live Stream</h2>
+            <div class="card stream-card">
+                <iframe src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Live Stream" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================= -->
+<!-- 🏆 FINAL WINNERS SECTION      -->
+<!-- ============================= -->
+
+<!-- ============================= -->
+<!-- 🏆 FINAL WINNERS SECTION (Upgraded) -->
+<!-- ============================= -->
+
+<section id="final-winners" class="winner-section container">
+
+    <h2 class="winner-title">
+        🏆 FINAL WINNERS – F.F.R.I.P Championship 2025
+    </h2>
+
+    <div class="winner-wrapper">
+
+        <!-- 🥇 FIRST PLACE -->
+        <div class="winner-card gold" id="winner1">
+            <div class="winner-ring">
+                <img id="winner1-img" src="https://i.pinimg.com/736x/07/55/59/0755597833c20a7a5caa3b0a8afa41a3.jpg" alt="Winner 1">
+            </div>
+            <h3>🥇 1st Place</h3>
+            <p id="winner1-name">PRIME BILLA</p>
+            <span id="winner1-prize">₹100/-</span>
+            <p>I didn't just played the game.... I owned it.</p>
+        </div>
+
+        <!-- 🥈 SECOND PLACE -->
+        <div class="winner-card silver" id="winner2">
+            <div class="winner-ring">
+                <img id="winner2-img" src="https://i.pinimg.com/1200x/91/e6/7e/91e67eb7f0105f814620b8b0c39ce856.jpg" alt="Winner 2">
+            </div>
+            <h3>🥈 2nd Place</h3>
+            <p id="winner2-name">PLAYER XYZ</p>
+            <span id="winner2-prize">₹75/-</span>
+            <p>(Luck is never on my side, so I rely on my skills )</p>
+        </div>
+
+        <!-- 🥉 THIRD PLACE -->
+        <div class="winner-card bronze" id="winner3">
+            <div class="winner-ring">
+                <img id="winner3-img" src="https://i.pinimg.com/736x/b3/7f/4c/b37f4c59a3f14e82736413f485573e4b.jpg" alt="Winner 3">
+            </div>
+            <h3>🥉 3rd Place</h3>
+            <p id="winner3-name">PLAYER PQR</p>
+            <span id="winner3-prize">₹50/-</span>
+        </div>
+
+    </div>
+
+    <p class="winner-note">
+        ⭐ Tournament Results will auto-update from Firebase after the final match.
+    </p>
+
+</section>
+
+    <section id="schedule-rules" class="container">
+        <h2>🗓️ Match Schedule</h2>
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Match</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>16-Nov-2025</td>
+                        <td>6:00 PM</td>
+                        <td>Qualifier</td>
+                    </tr>
+                    <tr>
+                        <td>22-Nov-2025</td>
+                        <td>7:00 PM</td>
+                        <td>Finals</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>📜 Rules and Contact</h2>
+        <div class="card">
+            <h3 style="color: var(--accent-color); text-align:left; margin-top:0;">Main Rules</h3>
+            <ul style="list-style-type: disc; margin-left:20px; padding-left:0;">
+                <li>It is mandatory for all players to join the WhatsApp group</li>
+                <li>The Room ID and Password will be shared 15 minutes before the match.</li>
+                <li>Any hacking or unethical behavior will lead to immediate disqualification</li>
+                <li>Providing the correct UPI ID is compulsory for the prize pool disbursement</li>
+            </ul>
+            <h3 style="color: var(--accent-color); text-align:left; margin-top:20px;">Contact Us</h3>
+            <p>For any questions or technical assistance, please contact our... <a href="[Discord Link]" style="color: var(--highlight-color); text-decoration:none; font-weight:bold;">डिस्कोर्ड सर्वर</a> से जुड़ें।</p>
+            <p>WhatsApp support</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© G.A.H eSports Club.All rights reserved.</p>
+    </footer>
+    
+   
+
+
+   <script type="module" src="GAH.js"></script>
+
+</body>
+</html>

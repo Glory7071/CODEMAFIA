@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GloKash Academy - CUET PG Prep</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .test-card:hover { transform: translateY(-5px); transition: all 0.3s; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold italic">GloKash Academy</h1>
+            <ul class="flex space-x-6">
+                <li><a href="#" class="hover:text-yellow-400">Home</a></li>
+                <li><a href="#tests" class="hover:text-yellow-400">Tests</a></li>
+                <li><a href="#" class="hover:text-yellow-400">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-20 px-4 text-center">
+        <h2 class="text-4xl md:text-6xl font-extrabold mb-4">Master CUET PG MCA 2026</h2>
+        <p class="text-xl mb-8">Secure your seat in top Central Universities with our locked practice series.</p>
+        <a href="#tests" class="bg-yellow-400 text-blue-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-yellow-300">Start Practice Now</a>
+    </header>
+
+    <!-- Test Categories -->
+    <main id="tests" class="container mx-auto py-16 px-4">
+        <h3 class="text-3xl font-bold text-center mb-12 text-gray-800 border-b-4 border-blue-900 inline-block">Explore Test Series</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Full Mock Test Card -->
+            <div class="test-card bg-white p-6 rounded-xl shadow-md border-t-4 border-red-500">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-red-100 text-red-700 px-3 py-1 rounded text-sm font-bold">SCQP09</span>
+                    <i class="fa-solid fa-lock text-gray-400"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-2">Full-Length Mock Test</h4>
+                <p class="text-gray-600 mb-6">75 Questions based on 2026 NTA Pattern.</p>
+                <button onclick="unlockTest('Full Mock', 'test.html')" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 font-bold">Unlock Test</button>
+            </div>
+
+            <!-- Subject Wise CS Card -->
+            <div class="test-card bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm font-bold">CS Awareness</span>
+                    <i class="fa-solid fa-lock text-gray-400"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-2">Computer Science (MCA)</h4>
+                <p class="text-gray-600 mb-6">OS, DBMS, Data Structures & Networks.</p>
+                <button onclick="unlockTest('Computer Science', 'cs-test.html')" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 font-bold">Unlock Test</button>
+            </div>
+
+            <!-- Mathematics Card -->
+            <div class="test-card bg-white p-6 rounded-xl shadow-md border-t-4 border-green-500">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded text-sm font-bold">Mathematics</span>
+                    <i class="fa-solid fa-lock text-gray-400"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-2">CUET Math (SCQP19)</h4>
+                <p class="text-gray-600 mb-6">Calculus, Algebra, & Vectors.</p>
+                <button onclick="unlockTest('Mathematics', 'math-test.html')" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 font-bold">Unlock Test</button>
+            </div>
+
+            <!-- Reasoning Card -->
+            <div class="test-card bg-white p-6 rounded-xl shadow-md border-t-4 border-purple-500">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded text-sm font-bold">Reasoning</span>
+                    <i class="fa-solid fa-lock text-gray-400"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-2">Analytical Reasoning</h4>
+                <p class="text-gray-600 mb-6">Logic, Series, & Syllogisms.</p>
+                <button onclick="unlockTest('Reasoning', 'reasoning-test.html')" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 font-bold">Unlock Test</button>
+            </div>
+
+            <!-- Physics Card -->
+            <div class="test-card bg-white p-6 rounded-xl shadow-md border-t-4 border-orange-500">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded text-sm font-bold">Physics</span>
+                    <i class="fa-solid fa-lock text-gray-400"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-2">CUET Physics (SCQP24)</h4>
+                <p class="text-gray-600 mb-6">Solid State, Electronics & Mechanics.</p>
+                <button onclick="unlockTest('Physics', 'phy-test.html')" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 font-bold">Unlock Test</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-8 text-center">
+        <p>&copy; 2026 GloKash Academy | Built with ❤️ for Future Tech Leaders.</p>
+    </footer>
+
+    <!-- Pass-Key Logic -->
+    <script>
+        function unlockTest(testName, redirectUrl) {
+            const passkey = "GLOKASH2026"; // Default Pass-key
+            const userInput = prompt(`🔒 Enter Pass-key to unlock ${testName}:`);
+            
+            if (userInput === passkey) {
+                alert("✅ Success! Redirecting to test window...");
+                window.location.href = redirectUrl;
+            } else if (userInput !== null) {
+                alert("❌ Incorrect Pass-key! Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

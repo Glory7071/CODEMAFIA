@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Warriors Cup 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="freefire.css">
+</head>
+<body>
+
+  <!-- 🎧 Background Music -->
+  <audio id="bgMusic" loop autoplay>
+    <source src="wrong-place-129242.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="musicToggle" class="btn-glow" style="position:fixed;bottom:20px;right:20px;z-index:1000;">
+    🔊 Music
+  </button>
+
+  <!-- 🔥 Animated Background -->
+  <canvas id="fireBackground"></canvas>
+
+  <!-- 🏆 Header -->
+  <header>
+    <h1 class="title-glow">🔥 FREE FIRE WARRIORS CUP 2025 🔥</h1>
+    <p class="subtitle">Join the Battle • Win Glory • Rule the Arena</p>
+    <a href="#register" class="btn-glow">Register Now</a>
+  </header>
+
+  <!-- 📅 About Section -->
+  <section id="about" class="reveal">
+    <h2>🏆 Tournament Details 🏆</h2>
+    <div class="card">
+      <p><b>Date:</b> 20 November 2025</p>
+      <p><b>Prize Pool:</b> ₹10,000 + Exclusive Skins</p>
+      <p><b>Mode:</b> Squad • Custom Room</p>
+      <p><b>Teams:</b> Limited to 48 Only</p>
+      <p><b>Entry Fee:</b> ₹100 per Team</p>
+    </div>
+  </section>
+
+  <!-- 📝 Register Section -->
+  <section id="register" class="reveal">
+    <h2>📝 Squad Registration</h2>
+    <form id="registerForm" class="card form-card">
+      <input id="teamName" type="text" placeholder="Team Name" required>
+      <input id="leaderName" type="text" placeholder="Leader Name" required>
+      <input id="uid" type="number" placeholder="Free Fire UID" required>
+      <input id="email" type="email" placeholder="Email Address" required>
+      <button type="submit" class="btn-glow">Submit Registration</button>
+    </form>
+  </section>
+
+  <!-- 💸 Payment Section -->
+  <section id="payment" class="reveal">
+    <h2>💸 Complete Your Payment</h2>
+    <div class="card">
+      <p>📍 Entry Fee: ₹100 per team</p>
+      <p>UPI ID: <b>ffwarriors@ybl</b></p>
+      <img src="upi-qr.png" alt="UPI QR" style="width:200px;border-radius:10px;">
+      <p>After payment, click below to confirm:</p>
+      <a href="upi://pay?pa=ffwarriors@ybl&pn=FreeFireCup&am=100&cu=INR" class="btn-glow">💸 Pay via UPI</a>
+      <p style="margin-top:10px;">📲 Send screenshot on WhatsApp after payment:</p>
+      <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK" class="btn-glow">📱 Join WhatsApp Group</a>
+    </div>
+  </section>
+
+  <!-- 🏅 Leaderboard -->
+  <section id="leaderboard" class="reveal">
+    <h2>🔥 Leaderboard 🔥</h2>
+    <div class="board">
+      <div class="entry"><span>1.</span> <b>Team Phoenix</b> - 102 pts</div>
+      <div class="entry"><span>2.</span> <b>FF Legends</b> - 89 pts</div>
+      <div class="entry"><span>3.</span> <b>Death Squad</b> - 78 pts</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Free Fire Warriors Cup | Designed by <span class="highlight">YourName</span></p>
+  </footer>
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+document.addEventListener("click", () => { if (bgMusic.paused) bgMusic.play(); });
+bgMusic.volume = 0.4;
+
+const toggleBtn = document.getElementById("musicToggle");
+toggleBtn.addEventListener("click", () => {
+  if (bgMusic.paused) { bgMusic.play(); toggleBtn.textContent = "🔊 Music"; }
+  else { bgMusic.pause(); toggleBtn.textContent = "🔇 Muted"; }
+});
+
+// 🔥 Fire particle background
+const canvas = document.getElementById("fireBackground");
+const ctx = canvas.getContext("2d");
+let particles = [];
+function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+class Particle {
+  constructor() { this.x = Math.random()*canvas.width; this.y = canvas.height;
+    this.size = Math.random()*3+2; this.speedY = Math.random()*2+1;
+    this.color = `rgba(255, ${Math.floor(Math.random()*100)}, 0, ${Math.random()})`; }
+  update() { this.y -= this.speedY; if (this.y<0) this.y=canvas.height; }
+  draw() { ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fillStyle=this.color; ctx.fill(); }
+}
+for (let i=0;i<200;i++) particles.push(new Particle());
+function animateFire(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animateFire);}
+animateFire();
+
+// ⚡ Scroll reveal
+window.addEventListener("scroll",()=>{document.querySelectorAll(".reveal").forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-100)el.classList.add("active");});});
+
+// ✅ Registration form submit to Google Sheet
+const scriptURL = "YOUR_WEB_APP_URL"; // <-- Replace with Apps Script URL
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = {
+    teamName: document.getElementById("teamName").value,
+    leaderName: document.getElementById("leaderName").value,
+    uid: document.getElementById("uid").value,
+    email: document.getElementById("email").value,
+    paymentStatus: "Pending"
+  };
+
+  const response = await fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response.ok) {
+    alert("✅ Registration Successful! Please complete payment to confirm your slot.");
+    document.getElementById("registerForm").reset();
+    window.location.href = "#payment";
+  } else {
+    alert("❌ Error submitting form. Try again later.");
+  }
+});
+</script>
+
+</body>
+</html>

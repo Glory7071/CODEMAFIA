@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PhD & Career Options | StudyPath</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #333;
+      margin: 0; padding: 0;
+    }
+    header {
+      background-color: #2563eb; /* blue-600 */
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      max-width: 960px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      color: #1e3a8a; /* blue-900 */
+      margin-top: 40px;
+      margin-bottom: 15px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      background: #f9fafb;
+      transition: box-shadow 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .card-title {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+      color: #1e3a8a;
+    }
+    .card-desc {
+      font-size: 0.95em;
+      margin-bottom: 15px;
+      color: #555;
+    }
+    .card-link {
+      display: inline-block;
+      text-decoration: none;
+      color: #059669; /* green-600 */
+      font-weight: bold;
+      border: 1px solid #059669;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .card-link:hover {
+      background-color: #059669;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎓 PhD & Career Options | StudyPath</h1>
+  <p>अपने करियर को नई ऊँचाइयों पर ले जाएं</p>
+</header>
+
+<main>
+
+  <!-- PhD Courses -->
+  <section>
+    <h2>PhD कोर्सेज़</h2>
+    <div class="grid" id="phdCoursesGrid">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- Career Options -->
+  <section>
+    <h2>करियर विकल्प</h2>
+    <div class="grid" id="careerOptionsGrid">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+</main>
+
+<script>
+  const phdCourses = [
+    {
+      name: "PhD in Science",
+      description: "विज्ञान के विभिन्न क्षेत्रों में शोध और उन्नत अध्ययन।",
+      url: "phd-science.html"
+    },
+    {
+      name: "PhD in Engineering",
+      description: "इंजीनियरिंग में विशेषज्ञता और अनुसंधान।",
+      url: "phd-engineering.html"
+    },
+    {
+      name: "PhD in Management",
+      description: "बिजनेस मैनेजमेंट के क्षेत्रों में शोध।",
+      url: "phd-management.html"
+    },
+    {
+      name: "PhD in Commerce",
+      description: "कॉमर्स और वित्त में अनुसंधान।",
+      url: "phd-commerce.html"
+    },
+    {
+      name: "PhD in Arts",
+      description: "मानविकी एवं सामाजिक विज्ञान में गहन अध्ययन।",
+      url: "phd-arts.html"
+    }
+  ];
+
+  const careerOptions = [
+    {
+      name: "Research Scientist",
+      description: "अनुसंधान में करियर, वैज्ञानिक प्रयोग और नवाचार।",
+      url: "career-research-scientist.html"
+    },
+    {
+      name: "University Professor",
+      description: "शिक्षण और अकादमिक क्षेत्र में करियर।",
+      url: "career-professor.html"
+    },
+    {
+      name: "Data Scientist",
+      description: "डेटा विश्लेषण और मशीन लर्निंग विशेषज्ञ।",
+      url: "career-data-scientist.html"
+    },
+    {
+      name: "Management Consultant",
+      description: "व्यवसाय सलाहकार, रणनीति और सुधार।",
+      url: "career-management-consultant.html"
+    },
+    {
+      name: "Entrepreneur",
+      description: "अपने व्यवसाय की शुरुआत और नेतृत्व।",
+      url: "career-entrepreneur.html"
+    }
+  ];
+
+  function loadGridItems(gridId, items) {
+    const grid = document.getElementById(gridId);
+    let html = "";
+    items.forEach(item => {
+      html += `
+        <div class="card">
+          <h3 class="card-title">${item.name}</h3>
+          <p class="card-desc">${item.description}</p>
+          <a href="${item.url}" class="card-link" target="_blank" rel="noopener noreferrer">डिटेल्स देखें →</a>
+        </div>
+      `;
+    });
+    grid.innerHTML = html;
+  }
+
+  window.onload = function() {
+    loadGridItems("phdCoursesGrid", phdCourses);
+    loadGridItems("careerOptionsGrid", careerOptions);
+  }
+</script>
+
+</body>
+</html>

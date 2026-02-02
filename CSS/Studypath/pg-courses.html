@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PG Courses | StudyPath</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #333;
+      margin: 0; padding: 0;
+    }
+    header {
+      background-color: #2563eb; /* blue-600 */
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      max-width: 960px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .course-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      background: #f9fafb;
+      transition: box-shadow 0.3s ease;
+    }
+    .course-card:hover {
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .course-title {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+      color: #1e3a8a; /* blue-900 */
+    }
+    .course-desc {
+      font-size: 0.95em;
+      margin-bottom: 15px;
+      color: #555;
+    }
+    .course-link {
+      display: inline-block;
+      text-decoration: none;
+      color: #059669; /* green-600 */
+      font-weight: bold;
+      border: 1px solid #059669;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .course-link:hover {
+      background-color: #059669;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎓 Postgraduate Courses (PG) | StudyPath</h1>
+  <p>कोर्स पर क्लिक करें विवरण देखने के लिए</p>
+</header>
+
+<main>
+  <div class="courses-grid" id="pgCoursesGrid">
+    <!-- PG Courses injected here -->
+  </div>
+</main>
+
+<script>
+  const pgCourses = [
+    {
+      name: "M.Sc. (Master of Science)",
+      description: "साइंस के विभिन्न विषयों में गहन अध्ययन के लिए 2 वर्षीय PG डिग्री।",
+      url: "msc.cs.html"
+    },
+    {
+      name: "MCA (Master of Computer Applications)",
+      description: "कंप्यूटर एप्लीकेशन और सॉफ्टवेयर डेवलपमेंट में उन्नत डिग्री।",
+      url: "mca.html"
+    },
+    {
+      name: "M.Tech (Master of Technology)",
+      description: "इंजीनियरिंग और टेक्नोलॉजी के क्षेत्रों में विशेषज्ञता के लिए।",
+      url: "mtech.html"
+    },
+    {
+      name: "MBA (Master of Business Administration)",
+      description: "बिजनेस मैनेजमेंट, मार्केटिंग, HR, और फाइनेंस में मास्टर्स डिग्री।",
+      url: "mba.html"
+    },
+    {
+      name: "M.Com (Master of Commerce)",
+      description: "कॉमर्स, अकाउंटिंग, फाइनेंस में मास्टर्स स्तर की पढ़ाई।",
+      url: "mcom.html"
+    },
+    {
+      name: "MA (Master of Arts)",
+      description: "मानविकी, सामाजिक विज्ञान, और कला के क्षेत्रों में मास्टर्स डिग्री।",
+      url: "ma.html"
+    }
+  ];
+
+  const grid = document.getElementById('pgCoursesGrid');
+
+  function loadPGCourses() {
+    let html = "";
+    pgCourses.forEach(course => {
+      html += `
+        <div class="course-card">
+          <h2 class="course-title">${course.name}</h2>
+          <p class="course-desc">${course.description}</p>
+          <a href="${course.url}" class="course-link" target="_blank" rel="noopener noreferrer">डिटेल्स देखें →</a>
+        </div>
+      `;
+    });
+    grid.innerHTML = html;
+  }
+
+  window.onload = loadPGCourses;
+</script>
+
+</body>
+</html>

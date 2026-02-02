@@ -1,0 +1,143 @@
+#outer{
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+    margin-left: 4px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-radius: 5px;
+    border-color: black;
+    box-shadow: 0px 4px 8px black;
+    transition: 2s;
+    display: inline-block;
+    
+}
+img{
+    height: 100px;
+    width: 200px;
+}
+#inner{
+    padding-left: 2px;
+}
+#outer:hover{
+    box-shadow: 0px 8px 16px rgb(3, 199, 206);
+}
+p{
+    padding-left: 2px;
+}
+
+/*dropdown*/
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h2, p {
+  margin: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #38444d;
+  border-right: 1px solid #bbbbbb;
+}
+
+li {
+  float: left;
+  border-right: 1px solid #bbbbbb;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(24, 26, 41);
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color:rgb(161, 170, 237);}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+#intro{
+    background-image:url("photo.jpg") ;
+    border: 5px solid green;
+    margin-top: 5px;
+
+}
+
+table,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table{
+    width: 90%;
+}
+th,td {
+    padding: 5px;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}  
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: gainsboro;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}

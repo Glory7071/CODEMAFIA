@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SKILLHUB — The Elite Web Dev Cohort</title>
+    
+    <!-- Fonts: Inter for modern, clean look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Saare Styles (CSS) yahan hain -->
+    <style>
+        :root {
+            --primary-color: #38BDF8; /* Sky Blue/Cyan for SKILLHUB */
+            --bg-dark: #0f172a; /* Darker Slate */
+            --bg-medium: #1e293b; /* Medium Slate */
+            --text-light: #f1f5f9;
+            --shadow-neon: 0 0 10px rgba(56, 189, 248, 0.4);
+            --border-neon: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 60px; /* Mobile sticky CTA ke liye padding */
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            background: rgba(15, 23, 42, 0.95); /* Darker BG */
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+            text-shadow: var(--shadow-neon);
+        }
+
+        .desktop-nav a {
+            font-weight: 500;
+            margin-left: 30px;
+        }
+
+        .nav-btn {
+            background: var(--primary-color);
+            color: var(--bg-dark) !important;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .nav-btn:hover {
+            color: var(--bg-dark) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.6);
+        }
+
+        /* Hamburger Menu and Mobile Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--primary-color);
+            transition: 0.4s;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background: var(--bg-medium);
+            padding: 40px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            transition: right 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .mobile-menu a {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            /* FIX 1: Hero height further reduced to 55vh */
+            padding: 100px 5% 60px; /* Padding retained from previous compact version */
+            min-height: 55vh; /* Reduced minimum height */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2;
+        }
+        
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* FIX 2: Overlay transparency set to 80% opacity (much darker) */
+            background: rgba(0, 0, 0, 0.8); 
+            backdrop-filter: blur(2px);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 550px;
+            z-index: 10;
+        }
+
+        .hero-content h2 {
+            font-size: 48px; /* Fixed size for better control on desktop */
+            line-height: 1.1;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-content h2 {
+                font-size: 5vw; /* Allow scaling on very wide screens */
+                max-width: 600px;
+            }
+        }
+
+
+        .hero-content h2 span {
+            color: var(--primary-color);
+            text-shadow: var(--shadow-neon);
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            max-width: 450px;
+        }
+        
+        .hero-img {
+            max-width: 400px;
+            height: 300px;
+            z-index: 10;
+            opacity: 1;
+            filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3));
+        }
+
+        .btn-main {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            margin-top: 10px;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            border: none;
+        }
+
+        .btn-main:hover {
+            background: #60a5fa;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.6);
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+        }
+
+        /* --- Global Section Styling --- */
+        section {
+            padding: 60px 5%; 
+            min-height: 20vh;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 40px; /* Reduced margin */
+        }
+        
+        .section-title span {
+            color: var(--primary-color);
+            text-shadow: var(--shadow-neon);
+        }
+
+        /* --- Glass Card / Component Styling --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: var(--border-neon);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(56, 189, 248, 0.15);
+        }
+        
+        /* --- Registration Form Styling --- */
+        #register {
+            background-color: var(--bg-medium);
+        }
+        
+        .register-wrapper {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        
+        #regForm input:not([type="radio"]), #txnId {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        .payment-options {
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+        }
+
+        .option-card {
+            display: flex;
+            align-items: center;
+            background: var(--bg-dark);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary-color);
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .option-card input[type="radio"] {
+            margin-right: 15px;
+            min-width: 20px;
+            min-height: 20px;
+            accent-color: var(--primary-color);
+        }
+
+        .option-card label {
+            flex-grow: 1;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .option-card .price {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        /* --- Modal Styling (Updated for cleaner payment flow) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.4s;
+        }
+
+        .modal-overlay.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-box {
+            background: var(--bg-medium);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 90%;
+            width: 400px;
+            position: relative;
+            text-align: center;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+        }
+
+        .qr-code-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 15px auto;
+        }
+
+        .qr-code {
+            width: 180px;
+            height: 180px;
+            display: block;
+        }
+        
+        .upi-id {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-top: 10px;
+            font-size: 1rem;
+            border: 1px dashed var(--primary-color);
+        }
+        
+        /* --- Ticker, Roadmap, Community, Instructor, FAQ styles... (fixed/updated) --- */
+        .student-ticker {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            padding: 10px 0;
+            overflow: hidden; /* FIX: Hiding overflow for clean scroll */
+            white-space: nowrap;
+            font-weight: 600;
+            position: relative;
+            z-index: 100;
+        }
+        
+        /* FIX: CSS for Continuous Marquee Scroll */
+        .ticker-content {
+            display: flex; 
+            width: max-content; 
+            animation: ticker-roll 30s linear infinite; /* Animation applied */
+        }
+        
+        @keyframes ticker-roll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Scroll distance for duplicated content */
+        }
+
+        .ticker-item {
+            padding-right: 50px; /* Items ke beech mein space */
+            white-space: nowrap;
+        }
+
+        
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .roadmap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .roadmap-flex {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .roadmap-card h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .roadmap-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .roadmap-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        
+        .roadmap-card li::before {
+            content: '✓';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+        
+        #community {
+            padding-top: 40px; 
+            padding-bottom: 40px;
+        }
+        
+        .community-cta {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-medium);
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .instructor-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: var(--bg-medium);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .instructor-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            box-shadow: var(--shadow-neon);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--bg-medium);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .faq-question {
+            padding: 15px 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* FAQ Answer Hide/Show logic */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px; /* Hide padding when closed */
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px; /* Ensure content is visible */
+            padding: 10px 20px 20px; /* Show padding when open */
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+            color: var(--primary-color);
+            font-weight: 900;
+            display: inline-block;
+        }
+        
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hero {
+                flex-direction: column;
+                height: auto;
+                /* FIX 1: Mobile Hero padding retained */
+                padding: 80px 5% 40px; 
+                text-align: center;
+                /* FIX 1: Mobile Hero min-height also reduced */
+                min-height: 55vh; 
+            }
+            .hero-content h2 {
+                font-size: 10vw;
+            }
+            .instructor-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+            .mobile-sticky-cta {
+                display: block;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: var(--primary-color);
+                color: var(--bg-dark) !important;
+                padding: 15px 10px;
+                text-align: center;
+                font-weight: 700;
+                z-index: 900;
+                box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+            }
+            /* Mobile Section padding adjustment (Previous fix retained) */
+            section {
+                padding: 40px 5%;
+            }
+            .section-title {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo">SKILL<span>HUB.</span></a>
+    
+    <nav class="desktop-nav">
+        <a href="#features">The Mission</a>
+        <a href="#community">Community</a>
+        <a href="#roadmap">Battle Plan</a>
+        <a href="#register" class="nav-btn">Join Elite Cohort</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div class="close-menu" onclick="toggleMenu()">&times;</div>
+    <a href="#home" onclick="toggleMenu()">Home Base</a>
+    <a href="#features" onclick="toggleMenu()">The Mission</a>
+    <a href="#community" onclick="toggleMenu()">Community</a>
+    <a href="#roadmap" onclick="toggleMenu()">Plan</a>
+    <a href="#register" onclick="toggleMenu()" style="color: var(--primary-color);">Join Elite Cohort</a>
+</div>
+
+<section class="hero" id="home">
+    
+    <!-- Video background (Agar file available nahi hai toh ye hide ho jaayega) -->
+    <div class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="WhatsApp Video 2025-11-23 at 12.30.39 AM.mp4" type="video/mp4" onerror="this.onerror=null; this.parentNode.style.display='none';">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+    <div class="hero-content reveal">
+        <h2>Master Web Dev <br><span>The SKILLHUB Way.</span></h2>
+        <p>Welcome to **SKILLHUB**. Join the Elite Coding Team. We focus on building modern web applications, premium portfolios, and achieving real-world mastery. Trust the process.</p>
+        <div style="margin-top: 30px;">
+            <a href="#register" class="btn-main">Enroll Now — From ₹249</a>
+            <a href="https://wa.me/918545999403" class="btn-secondary" style="margin-left: 20px;">Chat with Mentor</a>
+        </div>
+    </div>
+    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/web-development-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--website-coding-programming-pack-design-illustrations-4502215.png" alt="3D Coding Illustration" class="hero-img reveal" />
+</section>
+
+<!-- FIX 1: Ticker Content is duplicated inside ticker-content for seamless scrolling -->
+<div class="student-ticker">
+    <div class="ticker-content">
+        <!-- Original Content Block 1 -->
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">A</span> **Amit** joined the Elite Cohort!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">S</span> **Sneha** is building her portfolio!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">R</span> **Ravi** secured his seat!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">P</span> **Priya** started the Frontend journey!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">M</span> **Manish** is ready for deployment!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">V</span> **Vikrant** joined the Elite Cohort!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">G</span> **Glory** is mastering JS!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">C</span> **Chemist** is mastering CSS!</span>
+        
+        <!-- Duplicated Content Block 2 (For seamless loop) -->
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">A</span> **Amit** joined the Elite Cohort!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">S</span> **Sneha** is building her portfolio!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">R</span> **Ravi** secured his seat!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">P</span> **Priya** started the Frontend journey!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">M</span> **Manish** is ready for deployment!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">V</span> **Vikrant** joined the Elite Cohort!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">G</span> **Glory** is mastering JS!</span>
+        <span class="ticker-item"><span class="avatar" style="background:var(--bg-dark); color:var(--primary-color);">C</span> **Chemist** is mastering CSS!</span>
+    </div>
+</div>
+
+
+<section id="community">
+    <div class="community-cta reveal">
+        <div>
+            <h3>Build your <span style="color:var(--primary-color); text-shadow: 0 0 5px rgba(56, 189, 248, 0.5);">Elite SKILLHUB</span> coding team!</h3>
+            <p>Join our exclusive pre-registration group. Connect with future batchmates and get instant updates and resources before the main program begins.</p>
+        </div>
+        <a href="https://wa.me/918545999403" class="btn-main" style="color: var(--bg-dark) !important;">
+            <span style="font-size:20px;">💬</span> Join WhatsApp Group Now
+        </a>
+    </div>
+</section>
+
+
+<section id="features">
+    <h2 class="section-title reveal">Why <span>SKILLHUB?</span></h2>
+    <div class="grid-4">
+        <div class="glass-card reveal">
+            <h3 style="font-size:40px; color: var(--primary-color);">💡</h3>
+            <h3>Zero To Elite</h3>
+            <p>Core basics se advanced deployment tak. Hum mastery pakki karte hain, sirf jankari nahi.</p>
+        </div>
+        <div class="glass-card reveal">
+            <h3 style="font-size:40px; color: var(--primary-color);">🛡️</h3>
+            <h3>24/7 Priority Support</h3>
+            <p>Dedicated mentors se instant, high-quality help paayein jab bhi aapko problem ho.</p>
+        </div>
+        <div class="glass-card reveal">
+            <h3 style="font-size:40px; color: var(--primary-color);">📈</h3>
+            <h3>Portfolio Premium</h3>
+            <p>5+ sleek, deployable projects banaayein jo recruiters ko impress karein.</p>
+        </div>
+        <div class="glass-card reveal">
+            <h3 style="font-size:40px; color: var(--primary-color);">🏅</h3>
+            <h3>Verified Credential</h3>
+            <p>Final project successfully complete karne par verifiable certificate hasil karein।</p>
+        </div>
+    </div>
+</section>
+
+<section id="roadmap">
+  <h2 class="section-title reveal">The Battle <span>Plan (Roadmap)</span></h2>
+  <div class="roadmap-container reveal">
+    <div class="roadmap-flex">
+      <div class="glass-card roadmap-card">
+        <h3>Week 1 — Frontend Foundation</h3>
+        <ul>
+          <li>Semantic HTML & Structure</li>
+          <li>CSS Layouts (Flex & Grid)</li>
+          <li>Responsive Design Mastery</li>
+          <li>Mission: Premium Landing Page Build</li>
+        </ul>
+      </div>
+      <div class="glass-card roadmap-card">
+        <h3>Week 2 — Core Logic (JS)</h3>
+        <ul>
+          <li>DOM Manipulation Techniques</li>
+          <li>Async/Await & Fetching APIs</li>
+          <li>Data Handling & Validation</li>
+          <li>Mission: Dynamic Web App Dashboard</li>
+        </ul>
+      </div>
+      <div class="glass-card roadmap-card">
+        <h3>Week 3 — Going Live</h3>
+        <ul>
+          <li>Git & GitHub Collaboration Workflow</li>
+          <li>Deployment on Vercel/Netlify</li>
+          <li>Code Optimization & Review</li>
+          <li>Mission: Portfolio Launch</li>
+        </ul>
+      </div>
+      <div class="glass-card roadmap-card">
+        <h3>Week 4 — Career Handoff</h3>
+        <ul>
+          <li>Final Major Capstone Project</li>
+          <li>Advanced Feature Integration</li>
+          <li>Resume & Interview Preparation</li>
+          <li>Verified Certificate Distribution</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="instructor">
+    <div class="instructor-wrapper reveal">
+        <img src="https://placehold.co/200x200/1e293b/38BDF8?text=Mentor+G" alt="Mentor" class="instructor-img" />
+        <div>
+            <h3 style="font-size: 26px; margin-bottom: 10px; color: #fff;">The Lead Architect: Gaurav</h3>
+            <p>Mera focus practical, industry-relevant coding par hai. Humara mission hai college theory aur real-world deployment ke beech ke gap ko fill karna. Scalable projects banane ke liye mere saath judiye।</p>
+        </div>
+    </div>
+</section>
+
+<section id="faq">
+    <h2 class="section-title reveal">Key Program <span>Details</span></h2>
+    <div class="faq-container reveal">
+        <!-- FIX 2: FAQ structure updated to use 'open' class for toggle -->
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">SKILLHUB cohort kaun join kar sakta hai? <span class="faq-icon">▼</span></div>
+            <div class="faq-answer">Yeh program 1st, 2nd, aur 3rd-year ke students ke liye design kiya gaya hai jinke paas coding ka experience kam ya bilkul nahi hai, lekin jo web dev mein serious career banana chahte hain।</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Kya equipment chahiye hoga? <span class="faq-icon">▼</span></div>
+            <div class="faq-answer">Ek working laptop/PC, koi bhi modern browser, aur VS Code installed hona kafi hai।</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Installment Plan kaise kaam karta hai? <span class="faq-icon">▼</span></div>
+            <div class="faq-answer">Aap ₹249 ki first installment se turant access le sakte hain. Baaki ₹250 ki payment aapko 10 din ke andar karni hogi. Total program fee ₹499 hi hai।</div>
+        </div>
+    </div>
+</section>
+
+<!-- Registration section with Payment Options -->
+<section id="register">
+    <div class="glass-card register-wrapper reveal">
+        <h2 style="text-align:center; margin-bottom:20px; color: var(--primary-color);">Secure Your Access (Enrollment)</h2>
+        <form id="regForm">
+            <input type="text" id="name" name="name" placeholder="Full Name (Your Codename)" required>
+            <input type="text" id="year" name="year" placeholder="College Year / Branch" required>
+            <input type="tel" id="phone" name="phone" placeholder="WhatsApp Number (Secure Line)" required>
+            <input type="email" id="email" name="email" placeholder="Email ID" required>
+
+            <!-- Payment Options -->
+            <div class="payment-options">
+                <label class="option-card" for="plan-full" onclick="document.getElementById('plan-full').checked = true;">
+                    <input type="radio" id="plan-full" name="paymentPlan" value="full" checked>
+                    <label for="plan-full">Full Payment (Best Value)</label>
+                    <span class="price">₹499</span>
+                </label>
+                
+                <label class="option-card" for="plan-installment" onclick="document.getElementById('plan-installment').checked = true;">
+                    <input type="radio" id="plan-installment" name="paymentPlan" value="installment">
+                    <label for="plan-installment">Installment (Initial Enrollment)</label>
+                    <span class="price">₹249</span>
+                </label>
+                <p style="font-size: 0.9rem; color: #aaa; text-align: left; margin-top: -10px;">(Installment plan mein baki ₹250 10 din mein dene honge। Total fee ₹499 hi rahegi।)</p>
+            </div>
+
+
+            <button type="submit" class="btn-main" style="width:100%;">Proceed to Payment</button>
+        </form>
+        <p id="regError" style="color: #f87171; text-align: center; margin-top: 15px; display: none;">Kripya saare zaroori fields bharein aur ek Payment Plan chunein।</p>
+    </div>
+</section>
+
+<!-- Payment Modal (Hidden by default) -->
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal-box">
+        <div class="close-modal" onclick="closeModal()" style="font-size: 20px; color: #fff; top: 10px; right: 15px; cursor: pointer;">&times;</div>
+        <h3 style="color: var(--primary-color); margin-bottom: 5px; font-size: 1.5rem;">FINAL STEP: COMPLETE PAYMENT</h3>
+        <p style="font-size: 14px; color: #ccc; margin-bottom: 20px;">
+            <span id="paymentInstruction">Apna enrollment shuru karne ke liye ₹249 pay karein।</span>
+        </p>
+        
+        <!-- Payment Details -->
+        <div class="qr-code-box">
+             <!-- Placeholder QR Code for payment -->
+            <img src="https://placehold.co/180x180/ffffff/000?text=SCAN+FOR+UPI" alt="QR Code" class="qr-code">
+        </div>
+        
+        <p style="font-size: 14px; color: #aaa; margin-top: 15px;">**OR Pay via UPI ID:**</p>
+        <div class="upi-id" id="upiIdText" onclick="copyUpiId()">
+            gaurav-skillhub@okaxis <span style="color: var(--primary-color); font-size: 0.8rem; margin-left: 10px;">(Tap to Copy)</span>
+        </div>
+        
+        <p style="font-size: 12px; color: var(--text-light); margin-top: 25px; margin-bottom: 10px;">Payment ke baad, zaroor **Transaction ID** daalein:</p>
+        
+        <input type="text" id="txnId" placeholder="ENTER UPI TRANSACTION ID (MANDATORY)" style="text-align: center;"/>
+        
+        <button onclick="submitToFirestore()" class="btn-main" style="width: 100%; margin-top: 15px;">Confirm Payment & Get Instant Access</button>
+        <p id="modalMessage" style="margin-top:10px; font-weight: 600;">Verification ka intezaar...</p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 SKILLHUB. Elite Cohort Program. All Rights Reserved. </p>
+</footer>
+
+<a href="#register" class="mobile-sticky-cta">JOIN THE ELITE COHORT — FROM ₹249</a>
+
+<!-- Combined JavaScript with Firebase/Firestore and UI logic -->
+<script type="module">
+    // Firebase Imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, addDoc, collection, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // Configuration and Initialization - Global variables ka upyog
+    const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+    
+    // Firebase services ke liye Global variables
+    let db, auth;
+    let registrationData = null; // Temporary storage for registration form data (includes paymentPlan)
+    let isAuthReady = false;
+    
+    // Payment constants
+    const FULL_AMOUNT = 499;
+    const INSTALLMENT_AMOUNT = 249;
+    
+    // Set Firestore log level for debugging
+    setLogLevel('Debug');
+
+    /**
+     * Firebase ko initialize karta hai aur user ko authenticate karta hai.
+     */
+    async function initFirebase() {
+        try {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+
+            // Auth state change hone ka intezaar karein
+            onAuthStateChanged(auth, async (user) => {
+                if (!user) {
+                    if (initialAuthToken) {
+                        // Agar token mila hai, toh custom token se sign in karein
+                        await signInWithCustomToken(auth, initialAuthToken);
+                        console.log("Custom token se sign in kiya।");
+                    } else {
+                        // Agar token nahi mila, toh anonymous sign-in karein
+                        await signInAnonymously(auth);
+                        console.log("Anonymous sign-in kiya।");
+                    }
+                }
+                isAuthReady = true;
+                console.log("Firebase Auth Ready. Current User ID:", auth.currentUser?.uid);
+            });
+        } catch (error) {
+            console.error("Firebase initialization fail ho gaya:", error);
+        }
+    }
+    
+    // Firebase ko shuru karein
+    initFirebase();
+    
+    // --- UI FUNCTIONS ---
+
+    window.toggleMenu = function() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('open');
+    }
+
+    /**
+     * FIX 2: FAQ Accordion function ko theek kiya gaya
+     * @param {HTMLElement} element - The element (div) that was clicked.
+     */
+    window.toggleFaq = function(element) {
+        // Parent .faq-item ko dhundhe
+        const parent = element.closest('.faq-item');
+        if (parent) {
+            // Sirf 'open' class ko toggle karein। CSS abhi is class par hi hide/show handle karega।
+            parent.classList.toggle('open');
+        }
+    }
+
+    window.closeModal = function() {
+        document.getElementById('paymentModal').classList.remove('open');
+    }
+
+    /**
+     * UPI ID ko clipboard mein copy karta hai
+     */
+    window.copyUpiId = function() {
+        const upiIdElement = document.getElementById('upiIdText');
+        const upiId = upiIdElement.textContent.trim().split(' ')[0]; // Sirf ID extract karein
+        
+        try {
+            // execCommand method is used for wider compatibility in iframes
+            const tempInput = document.createElement('input');
+            tempInput.value = upiId;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            // UI Feedback
+            const originalText = upiIdElement.innerHTML;
+            upiIdElement.innerHTML = `<span style="color: #4CAF50;">Copied: ${upiId}</span>`;
+            setTimeout(() => {
+                upiIdElement.innerHTML = originalText;
+            }, 1500);
+
+        } catch (err) {
+            console.error('Copy karne mein error:', err);
+            // Fallback: Agar copy fail ho toh user ko bataayein
+            const modalMessage = document.getElementById('modalMessage');
+            modalMessage.textContent = 'Error: UPI ID copy nahi ho paya। Manualy type karein।';
+            modalMessage.style.color = '#ff5555';
+        }
+    }
+
+    /**
+     * Payment modal kholta hai aur form data ko temporary store karta hai।
+     * @param {object} data - Validated registration form data।
+     */
+    function openModal(data) {
+        registrationData = data;
+        document.getElementById('txnId').value = ''; // Transaction ID field ko clear karein
+        document.getElementById('modalMessage').textContent = 'Verification ka intezaar...';
+        document.getElementById('modalMessage').style.color = 'var(--text-light)';
+        
+        const amountToPay = data.paymentPlan === 'full' ? FULL_AMOUNT : INSTALLMENT_AMOUNT;
+        const instructionElement = document.getElementById('paymentInstruction');
+        
+        if (data.paymentPlan === 'full') {
+            instructionElement.innerHTML = `Full Enrollment ke liye **₹${amountToPay}** pay karein।`;
+        } else {
+            instructionElement.innerHTML = `Initial enrollment ke liye **₹${amountToPay}** pay karein। (Remaining ₹250 due in 10 days।)`;
+        }
+        
+        document.getElementById('paymentModal').classList.add('open');
+    }
+
+    // Registration Form Submission Handle karna
+    document.getElementById('regForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const errorMsg = document.getElementById('regError');
+        
+        const name = document.getElementById('name').value.trim();
+        const year = document.getElementById('year').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const paymentPlan = document.querySelector('input[name="paymentPlan"]:checked')?.value;
+        
+        if (!name || !year || !phone || !email || !paymentPlan) {
+            errorMsg.textContent = "Kripya payment se pehle saare zaroori fields bharein aur ek Payment Plan chunein।";
+            errorMsg.style.display = 'block';
+            return;
+        }
+
+        errorMsg.style.display = 'none';
+
+        const formData = { name, year, phone, email, paymentPlan };
+        openModal(formData);
+    });
+
+    /**
+     * Registration aur Transaction ID data ko Firestore mein save karta hai।
+     */
+    window.submitToFirestore = async function() {
+        if (!isAuthReady || !db || !registrationData) {
+            document.getElementById('modalMessage').textContent = 'Error: System ready nahi hai। Phir se try karein।';
+            document.getElementById('modalMessage').style.color = '#ff5555';
+            console.error("Submit fail ho gaya: Firebase not ready or data missing।");
+            return;
+        }
+        
+        const txnIdInput = document.getElementById('txnId');
+        const txnId = txnIdInput.value.trim();
+        const modalMessage = document.getElementById('modalMessage');
+
+        if (!txnId || txnId.length < 8) { // Basic validation
+            modalMessage.textContent = 'Kripya sahi UPI Transaction ID daalein।';
+            modalMessage.style.color = '#ff5555';
+            txnIdInput.focus();
+            return;
+        }
+
+        modalMessage.textContent = 'PAYMENT VERIFY HO RAHA HAI... Kripya intezaar karein।';
+        modalMessage.style.color = 'var(--primary-color)';
+        
+        const amountPaid = registrationData.paymentPlan === 'full' ? FULL_AMOUNT : INSTALLMENT_AMOUNT;
+
+        const finalData = {
+            ...registrationData,
+            transactionId: txnId,
+            amountPaid: amountPaid,
+            totalFee: FULL_AMOUNT,
+            userId: auth.currentUser?.uid || 'anonymous-' + crypto.randomUUID(), // Current user ID ya anonymous ID
+            timestamp: new Date().toISOString(),
+            status: registrationData.paymentPlan === 'full' ? 'FULL_PAID_PENDING_VERIFICATION' : 'INSTALLMENT_1_PAID_PENDING_VERIFICATION',
+        };
+
+        try {
+            // Data ko public collection mein save karein: /artifacts/{appId}/public/data/registrations
+            const docRef = await addDoc(collection(db, `artifacts/${appId}/public/data/registrations`), finalData);
+            
+            modalMessage.textContent = 'SAFAL! Aapka registration record ho gaya hai। WhatsApp par next steps check karein।';
+            modalMessage.style.color = '#4CAF50';
+            
+            // Temporary data aur form ko clear karein
+            registrationData = null;
+            document.getElementById('regForm').reset();
+
+            console.log("Registration successfully written with ID: ", docRef.id);
+            // 4 second baad modal band karein
+            setTimeout(closeModal, 4000);
+
+        } catch (e) {
+            modalMessage.textContent = 'ERROR! Data save nahi ho paya। Details ke liye console check karein।';
+            modalMessage.color = '#ff5555';
+            console.error("Error adding document: ", e);
+        }
+    }
+    
+    // --- Intersection Observer for Scroll Animations (Reveal) ---
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    window.addEventListener('load', function() {
+        // 'reveal' class wale saare elements ko observe karein
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    });
+
+</script>
+
+</body>
+</html>

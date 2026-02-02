@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduMCQHub | MCQ & Notes for PG Entrance</title>
+
+<style>
+:root{
+  --primary:#2563eb;
+  --dark:#0f172a;
+  --light:#f8fafc;
+  --muted:#64748b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:var(--light);
+  color:var(--dark);
+}
+
+/* ===== NAVBAR ===== */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:white;
+  border-bottom:1px solid #e5e7eb;
+  z-index:1000;
+}
+.navbar{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{
+  font-size:1.4rem;
+  font-weight:800;
+  color:var(--primary);
+}
+nav ul{
+  display:flex;
+  list-style:none;
+}
+nav ul li a{
+  margin-left:18px;
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:600;
+}
+.hamburger{
+  display:none;
+  font-size:1.9rem;
+  cursor:pointer;
+}
+
+/* ===== MOBILE DRAWER ===== */
+.drawer{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:260px;
+  height:100%;
+  background:white;
+  padding:24px;
+  transition:.35s ease;
+  box-shadow:4px 0 20px rgba(0,0,0,.25);
+  z-index:2000;
+}
+.drawer.active{left:0}
+.drawer a{
+  display:block;
+  margin:16px 0;
+  font-weight:600;
+  color:var(--dark);
+  text-decoration:none;
+}
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+}
+.overlay.active{display:block}
+
+/* ===== HERO (WITH IMAGE) ===== */
+.hero{
+  background:
+    linear-gradient(rgba(15,23,42,.65), rgba(15,23,42,.65)),
+    url('https://img.freepik.com/premium-photo/stylish-workspace-with-stationery-floral-elements_29120-44763.jpg?semt=ais_hybrid&w=740&q=80')
+    no-repeat center center/cover;
+  color:white;
+  text-align:center;
+  padding:7rem 2rem 6rem;
+  margin-top:70px;
+}
+.hero-content{
+  max-width:900px;
+  margin:auto;
+}
+.hero h2{
+  font-size:2.6rem;
+  font-weight:800;
+}
+.hero p{
+  margin:16px auto 28px;
+  font-size:1.05rem;
+  color:#e5e7eb;
+}
+.btn,.btn-outline{
+  display:inline-block;
+  padding:12px 24px;
+  margin:6px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:700;
+}
+.btn{
+  background:var(--primary);
+  color:white;
+}
+.btn-outline{
+  border:2px solid white;
+  color:white;
+}
+
+/* ===== FEATURES ===== */
+.features{
+  padding:70px 20px;
+  max-width:1200px;
+  margin:auto;
+}
+.features h2{
+  text-align:center;
+  margin-bottom:40px;
+}
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
+}
+.feature-box{
+  background:white;
+  padding:26px;
+  border-radius:14px;
+  border:1px solid #e5e7eb;
+  text-align:center;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+.feature-box:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 35px rgba(0,0,0,.12);
+}
+
+/* ===== EXAMS ===== */
+.exams{
+  background:white;
+  padding:70px 20px;
+}
+.exams h2{
+  text-align:center;
+  margin-bottom:30px;
+}
+.exam-cards{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:18px;
+}
+.exam-card{
+  padding:20px;
+  background:#f1f5f9;
+  border-radius:12px;
+  text-align:center;
+  font-weight:600;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#0f172a;
+  color:#cbd5f5;
+  padding:26px;
+  text-align:center;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  nav ul{display:none}
+  .hamburger{display:block}
+}
+@media(max-width:768px){
+  .hero{
+    padding:5.5rem 1.5rem 5rem;
+  }
+  .hero h2{
+    font-size:1.9rem;
+  }
+  .hero p{
+    font-size:.95rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- DRAWER -->
+<div class="drawer" id="drawer">
+  <a href="#">Home</a>
+  <a href="#">Exams</a>
+  <a href="mcq.html">MCQs</a>
+  <a href="notes.html">Notes</a>
+  <a href="pyq.html">PYQs</a>
+  <a href="discussion.html">Q&A</a>
+  <a href="blog.html">Blog</a>
+</div>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<!-- NAVBAR -->
+<header>
+  <div class="navbar">
+    <h1 class="logo">EduMCQHub</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Exams</a></li>
+        <li><a href="mcq.html">MCQs</a></li>
+        <li><a href="notes.html">Notes</a></li>
+        <li><a href="pyq.html">PYQs</a></li>
+        <li><a href="discussion.html">Q&A</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h2>Crack MCA, MSc, CUET PG, IIT JAM – All in One Platform!</h2>
+    <p>Practice MCQs, Download Notes & Previous Year Papers</p>
+    <a href="#" class="btn">Start Practicing</a>
+    <a href="#" class="btn-outline">Download Notes</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <h2>Features</h2>
+  <div class="features-grid">
+    <div class="feature-box" onclick="location.href='10k+mcq.html'">📘 10,000+ Topic-wise MCQs</div>
+    <div class="feature-box" onclick="location.href='notes.html'">📝 Expert Notes PDFs</div>
+    <div class="feature-box" onclick="location.href='pyq.html'">🧪 PYQs from Top Exams</div>
+    <div class="feature-box" onclick="location.href='mocktest1st.html'">📊 Mock Tests</div>
+    <div class="feature-box" onclick="location.href='Q&Adiscussion.html'">💬 Doubt Discussion</div>
+  </div>
+</section>
+
+<!-- EXAMS -->
+<section class="exams">
+  <h2>Exams We Cover</h2>
+  <div class="exam-cards">
+    <div class="exam-card">MCA Entrance</div>
+    <div class="exam-card">MSc Entrance</div>
+    <div class="exam-card">CUET PG</div>
+    <div class="exam-card">IIT JAM</div>
+    <div class="exam-card">Other PG Exams</div>
+  </div>
+</section>
+
+<footer>
+  © 2025 EduMCQHub | Made with ❤️ for Students
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("drawer").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GloKash Academy | MCA 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Firebase Scripts (Optional but recommended for Leaderboard) -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <style>
+        /* Ultra Slim UI Styles */
+        nav { height: 42px; } /* Slimmed Header */
+        .test-card { transition: transform 0.2s ease, box-shadow 0.2s ease; border: 1px solid rgba(0,0,0,0.05); }
+        .test-card:hover { transform: scale(1.02); box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1); }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .ticker-move { animation: ticker 28s linear infinite; }
+        .bg-navy { background-color: #0f172a; }
+        .text-gold { color: #facc15; }
+        #loginOverlay { background: rgba(15, 23, 42, 0.98); }
+    </style>
+</head>
+<body class="bg-white font-sans text-slate-900">
+
+    <!-- Login System -->
+    <div id="loginOverlay" class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl border-b-8 border-indigo-950 text-center">
+            <h2 class="text-xl font-black text-indigo-950 mb-1 italic tracking-tighter">GLOKASH ACADEMY</h2>
+            <p class="text-[8px] text-gray-400 mb-6 uppercase tracking-[0.2em] font-bold">Official Registration 2026</p>
+            <form onsubmit="doLogin(event)">
+                <input type="text" id="regName" placeholder="Full Name" required class="w-full bg-gray-50 border p-3 rounded-xl mb-2 text-xs outline-none focus:ring-1 focus:ring-indigo-950">
+                <input type="tel" id="regMobile" placeholder="Mobile Number" required class="w-full bg-gray-50 border p-3 rounded-xl mb-2 text-xs outline-none focus:ring-1 focus:ring-indigo-950">
+                <input type="email" id="regEmail" placeholder="Email Address" required class="w-full bg-gray-50 border p-3 rounded-xl mb-6 text-xs outline-none focus:ring-1 focus:ring-indigo-950">
+                <button type="submit" class="w-full bg-indigo-950 text-white py-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-black transition">Verify & Enter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Alert Ticker -->
+    <div class="bg-red-600 text-white py-1 overflow-hidden">
+        <div class="ticker-move whitespace-nowrap inline-block text-[9px] font-black uppercase tracking-widest">
+            🔥 CUET PG Correction Closes Jan 30! | 🛡️ Secure Individual Token System | 🏆 NIMCET & MAH CET Mock Series Live.
+        </div>
+    </div>
+
+    <!-- Slim Navy Header -->
+    <nav class="bg-navy text-white px-8 flex items-center justify-between sticky top-0 z-50">
+        <h1 class="text-sm font-black italic tracking-tighter text-gold uppercase">GloKash Academy</h1>
+        <ul class="hidden md:flex space-x-6 text-[9px] font-bold uppercase tracking-widest text-slate-400">
+            <li><a href="#" class="hover:text-gold">Home</a></li>
+            <li><a href="#tests" class="hover:text-gold">Tests</a></li>
+            <li><a href="#" class="hover:text-gold">Support</a></li>
+        </ul>
+        <div id="userBadge" class="hidden text-[8px] font-bold text-green-400 bg-slate-800 px-2 py-0.5 rounded uppercase"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-navy text-white py-16 px-8 text-center border-b border-slate-800">
+        <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tighter">Target MCA <span class="text-gold">2026</span></h2>
+        <p class="text-[10px] md:text-xs opacity-50 mb-8 max-w-lg mx-auto font-medium leading-relaxed">India's most accurate practice tests for CUET PG, NIMCET and MAH CET aspirants.</p>
+        <div class="flex justify-center">
+            <a href="#tests" class="bg-gold text-navy px-10 py-3 rounded-lg font-black text-[10px] uppercase hover:bg-yellow-300 transition shadow-lg">View Test Portal</a>
+        </div>
+    </header>
+
+    <!-- Main White Section -->
+    <main class="py-16 px-8">
+        <div class="container mx-auto">
+            
+            <div id="tests" class="mb-12 flex items-center space-x-4">
+                <div class="h-6 w-2 bg-red-600"></div>
+                <h3 class="text-2xl font-black text-indigo-950 uppercase tracking-tighter">MCA Test Series</h3>
+            </div>
+
+            <!-- Colorful Test Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                
+                <!-- Card 1: CUET Mock (Red Theme) -->
+                <div class="test-card bg-red-50 p-6 rounded-3xl">
+                    <div class="flex justify-between items-center mb-4 text-red-600 text-[10px] font-black uppercase">
+                        <span>SCQP09 Mock</span>
+                        <i class="fa-solid fa-lock opacity-30"></i>
+                    </div>
+                    <h4 class="text-xl font-black text-red-950 mb-2">Full-Length Mock</h4>
+                    <p class="text-[10px] text-red-800/60 mb-6 leading-relaxed">Exact 2026 exam pattern with negative marking.</p>
+                    <button onclick="accessTest('Full Mock')" class="w-full bg-red-600 text-white py-3 rounded-xl font-black text-[9px] uppercase hover:bg-red-700 transition">Unlock Test</button>
+                </div>
+
+                <!-- Card 2: CS (Blue Theme) -->
+                <div class="test-card bg-blue-50 p-6 rounded-3xl">
+                    <div class="flex justify-between items-center mb-4 text-blue-600 text-[10px] font-black uppercase">
+                        <span>Computer Science</span>
+                    </div>
+                    <h4 class="text-xl font-black text-blue-950 mb-2">CS Awareness</h4>
+                    <p class="text-[10px] text-blue-800/60 mb-6 leading-relaxed">Focus on DBMS, OS, Data Structures and Algorithms.</p>
+                    <button onclick="accessTest('CS Mastery')" class="w-full bg-blue-600 text-white py-3 rounded-xl font-black text-[9px] uppercase hover:bg-blue-700 transition">Unlock Test</button>
+                </div>
+
+                <!-- Card 3: Math (Green Theme) -->
+                <div class="test-card bg-emerald-50 p-6 rounded-3xl">
+                    <div class="flex justify-between items-center mb-4 text-emerald-600 text-[10px] font-black uppercase">
+                        <span>CUET Math</span>
+                    </div>
+                    <h4 class="text-xl font-black text-emerald-950 mb-2">Mathematics</h4>
+                    <p class="text-[10px] text-emerald-800/60 mb-6 leading-relaxed">Calculus, Vectors, and Algebra for SCQP19 aspirants.</p>
+                    <button onclick="accessTest('Math Mastery')" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-black text-[9px] uppercase hover:bg-emerald-700 transition">Unlock Test</button>
+                </div>
+
+                <!-- Card 4: Reasoning (Indigo Theme) -->
+                <div class="test-card bg-indigo-50 p-6 rounded-3xl">
+                    <div class="flex justify-between items-center mb-4 text-indigo-600 text-[10px] font-black uppercase">
+                        <span>Analytical</span>
+                    </div>
+                    <h4 class="text-xl font-black text-indigo-950 mb-2">Reasoning</h4>
+                    <p class="text-[10px] text-indigo-800/60 mb-6 leading-relaxed">Analytical Ability & Logical Reasoning for MCA.</p>
+                    <button onclick="accessTest('Reasoning')" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-black text-[9px] uppercase hover:bg-indigo-700 transition">Unlock Test</button>
+                </div>
+
+                <!-- Card 5: MAH CET (Orange Theme) -->
+                <div class="test-card bg-orange-50 p-6 rounded-3xl">
+                    <div class="flex justify-between items-center mb-4 text-orange-600 text-[10px] font-black uppercase">
+                        <span>MAH CET MCA</span>
+                    </div>
+                    <h4 class="text-xl font-black text-orange-950 mb-2">MAH CET Mock</h4>
+                    <p class="text-[10px] text-orange-800/60 mb-6 leading-relaxed">100 Qs | 90 Mins | Target: March 30, 2026.</p>
+                    <button onclick="accessTest('MAH CET')" class="w-full bg-orange-600 text-white py-3 rounded-xl font-black text-[9px] uppercase hover:bg-orange-700 transition">Unlock Test</button>
+                </div>
+
+                <!-- Card 6: NIMCET (Purple Theme) -->
+                <div class="test-card bg-purple-50 p-6 rounded-3xl">
+                    <div class="flex justify-between items-center mb-4 text-purple-600 text-[10px] font-black uppercase">
+                        <span>NIT Entrance</span>
+                    </div>
+                    <h4 class="text-xl font-black text-purple-950 mb-2">NIMCET 2026</h4>
+                    <p class="text-[10px] text-purple-800/60 mb-6 leading-relaxed">120 Qs | 1000 Marks | NIT Special Practice.</p>
+                    <button onclick="accessTest('NIMCET')" class="w-full bg-purple-600 text-white py-3 rounded-xl font-black text-[9px] uppercase hover:bg-purple-700 transition">Unlock Test</button>
+                </div>
+            </div>
+
+            <!-- YouTube Guide -->
+            <div class="mb-8 border-l-4 border-yellow-400 pl-4">
+                <h3 class="text-lg font-black text-indigo-950 uppercase tracking-tighter">Study Material 📺</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-50 border rounded-2xl overflow-hidden flex items-center group">
+                    <img src="https://img.youtube.com" class="w-40 h-28 object-cover opacity-80 group-hover:opacity-100 transition">
+                    <div class="p-4">
+                        <h5 class="font-black text-xs text-indigo-950 uppercase mb-1">Math Revision</h5>
+                        <a href="https://www.youtube.com/watch?v=VpYzQJczLMg" class="text-[9px] font-black text-red-600 uppercase">Watch Now</a>
+                    </div>
+                </div>
+                <div class="bg-slate-50 border rounded-2xl overflow-hidden flex items-center group">
+                    <img src="https://img.youtube.com" class="w-40 h-28 object-cover opacity-80 group-hover:opacity-100 transition">
+                    <div class="p-4">
+                        <h5 class="font-black text-xs text-indigo-950 uppercase mb-1">Prep Strategy</h5>
+                        <a href="https://www.youtube.com/watch?v=xDgvBpov_4U" class="text-[9px] font-black text-red-600 uppercase">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Slim Navy Footer -->
+    <footer class="bg-navy text-white py-10 text-center border-t-2 border-gold">
+        <h2 class="text-sm font-black italic tracking-tighter mb-4 text-gold uppercase">GloKash Academy</h2>
+        <p class="text-[9px] text-slate-500 mb-6 italic uppercase tracking-widest">"Programming isn't about what you know; it's about what you can figure out."</p>
+        <div class="flex justify-center space-x-8 text-[8px] font-bold uppercase tracking-widest text-slate-500 mb-6">
+            <a href="#" class="hover:text-gold transition">Privacy Policy</a>
+            <a href="#" class="hover:text-gold transition">Admin WhatsApp</a>
+        </div>
+        <p class="text-[7px] opacity-20 uppercase tracking-[0.4em]">&copy; 2026 GloKash Academy | Glory & Akash Partners</p>
+    </footer>
+
+    <script>
+        // =========================================================
+        // 1. PASTE FIREBASE CONFIG HERE
+        // =========================================================
+        
+        const firebaseConfig = {
+  apiKey: "AIzaSyBKv8C5QcPDguZBsIKjf4cSSXqMhg3MO9s",
+  authDomain: "glokash-academy.firebaseapp.com",
+  projectId: "glokash-academy",
+  storageBucket: "glokash-academy.firebasestorage.app",
+  messagingSenderId: "392461251648",
+  appId: "1:392461251648:web:ce49a48d1b78d78cd65ba5",
+  measurementId: "G-3TMBVTQ47N"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+        
+        // =========================================================
+
+        // Session Handling
+        function doLogin(e) {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('regName').value,
+                mobile: document.getElementById('regMobile').value,
+                email: document.getElementById('regEmail').value
+            };
+            localStorage.setItem('gk_auth_session', JSON.stringify(data));
+            initSession();
+        }
+
+        function initSession() {
+            const user = JSON.parse(localStorage.getItem('gk_auth_session'));
+            if (user) {
+                document.getElementById('loginOverlay').classList.add('hidden');
+                const badge = document.getElementById('userBadge');
+                badge.innerText = `User: ${user.name}`;
+                badge.classList.remove('hidden');
+            }
+        }
+
+        // Security Check
+        function accessTest(name) {
+            const user = JSON.parse(localStorage.getItem('gk_auth_session'));
+            if (!user) return;
+
+            // Individual Pass-key Formula
+            const myKey = "GK" + user.name.slice(0,2).toUpperCase() + user.mobile.slice(-4);
+            const input = prompt(`🛡️ GLOKASH SECURITY SYSTEM\n\nStudent: ${user.name}\n\nEnter Pass-key for ${name}:`);
+            
+            if (input === myKey) {
+                alert(`✅ VERIFIED!\n\nKey ${input} is uniquely linked to your mobile. Starting ${name}...`);
+            } else if (input !== null) {
+                alert(`❌ DENIED!\n\nInvalid key. Each student has a unique key linked to their mobile.`);
+            }
+        }
+
+        window.onload = initSession;
+    </script>
+</body>
+</html>

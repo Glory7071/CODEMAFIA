@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>🛡️ F.F.R.I.P. — Neo Championship 2025</title>
+<meta name="description" content="F.F.R.I.P. Championship — Neon Blue theme, live updates, gallery, registration (Google Form preserved)" />
+<style>
+  /* ---------------------------
+     Variables & Reset
+     --------------------------- */
+  :root{
+    --card:#0f1724;
+    --glass: rgba(255,255,255,0.04);
+    --neon: #00d1ff;   /* main neon blue */
+    --neon-2:#00a4ff;
+    --muted:#9aa7b2;
+    --accent:#00d1ff;
+    --glass-border: rgba(0,209,255,0.06);
+    --glass-strong: rgba(255,255,255,0.06);
+    --max-w:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+
+    /* Background Image */
+    background: url('https://img.freepik.com/premium-photo/dark-blue-background-battle-effect-cinematic-look_674520-6.jpg?semt=ais_hybrid&w=740&q=80') no-repeat center center fixed;
+    background-size: cover;
+
+    color: #fff; /* text color for readability */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* ---------------------------
+     Layout
+     --------------------------- */
+  .wrap{max-width:var(--max-w);margin:0 auto;padding:28px 20px;position:relative}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{
+    width:56px;height:56px;border-radius:12px;
+    background:linear-gradient(135deg,var(--neon),var(--neon-2));
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:#00141a;box-shadow:0 6px 30px rgba(0,209,255,0.08);
+    font-family:monospace;font-size:18px;
+  }
+  .title{font-size:18px;font-weight:700;color:var(--neon);letter-spacing:0.6px}
+  nav{display:flex;gap:10px;align-items:center}
+  nav a{
+    color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;font-size:14px;transition:all .18s;
+  }
+  nav a:hover{color:#fff;background:linear-gradient(90deg, rgba(0,209,255,0.06), rgba(0,164,255,0.03));box-shadow:0 6px 20px rgba(0,209,255,0.04);}
+
+  /* main layout: content + right sidebar */
+  .main-grid{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start;margin-top:18px}
+  @media (max-width:980px){.main-grid{grid-template-columns:1fr;}.sidebar{order:2}}
+
+  /* ---------------------------
+     HERO (slideshow) + overlay
+     --------------------------- */
+  .hero{
+    position:relative;border-radius:14px;overflow:hidden;min-height:420px;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.6), inset 0 0 120px rgba(0,0,0,0.25);
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .slideshow{position:absolute;inset:0}
+  .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .9s ease;filter:contrast(1.05) saturate(1.05)}
+  .slide.active{opacity:1}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.25));pointer-events:none}
+  .hero-content{
+    position:relative;z-index:3;padding:48px;display:flex;flex-direction:column;gap:14px;max-width:680px;
+  }
+  .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-weight:700;font-size:13px}
+  .hero h1{font-size:42px;line-height:1.02;color:var(--neon);text-shadow:0 8px 30px rgba(0,209,255,0.08)}
+  .hero p{color:var(--muted);font-size:15px}
+  .hero-cta{display:flex;gap:12px;margin-top:10px;align-items:center}
+  .btn-primary{
+    background:linear-gradient(90deg,var(--neon),var(--neon-2));color:#00141a;padding:12px 18px;border-radius:10px;font-weight:700;text-decoration:none;
+    box-shadow:0 10px 30px rgba(0,209,255,0.08);transition:transform .18s, box-shadow .18s;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 40px rgba(0,209,255,0.14)}
+  .btn-outline{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);color:var(--muted);text-decoration:none;font-weight:700}
+  .hero-meta{display:flex;gap:12px;margin-top:18px;align-items:center}
+  .meta-pill{background:var(--glass);padding:10px 12px;border-radius:10px;border:1px solid var(--glass-border);font-weight:700;color:var(--neon);}
+
+  /* small slider controls (bottom-left) */
+  .hero-controls{position:absolute;left:18px;bottom:18px;display:flex;gap:8px;z-index:4}
+  .dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,0.12);cursor:pointer;transition:all .18s}
+  .dot.active{background:var(--neon);box-shadow:0 6px 16px rgba(0,209,255,0.12)}
+
+  /* ---------------------------
+     Sidebar (right) Live / Updates
+     --------------------------- */
+  .sidebar{position:relative}
+  .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+  .live-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .live-badge{background:linear-gradient(90deg,#ff005a, #ff7a00);padding:6px 8px;border-radius:999px;color:white;font-weight:800;font-size:12px}
+  .countdown{font-weight:800;color: #ffe56b;background:rgba(0,0,0,0.35);padding:8px;border-radius:10px;display:inline-block;margin-top:8px}
+  .top-teams{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+  .team-row{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:linear-gradient(90deg, rgba(0,0,0,0.16), rgba(0,0,0,0.06));border:1px solid rgba(0,209,255,0.04)}
+  .team-rank{width:40px;height:40;border-radius:8px;background:linear-gradient(90deg,var(--neon),var(--neon-2));display:flex;align-items:center;justify-content:center;color:#00141a;font-weight:800}
+  .team-name{font-weight:700}
+  .small-muted{color:var(--muted);font-size:13px}
+
+  /* ---------------------------
+     Content Sections (cards)
+     --------------------------- */
+  .section-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:980px){.section-grid{grid-template-columns:1fr}}
+  .card-title{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .card-title h3{color:var(--neon);font-size:20px}
+
+  .leaderboard table{width:100%;border-collapse:collapse}
+  .leaderboard th, .leaderboard td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left}
+  .rank-1{background:linear-gradient(90deg, rgba(255,215,0,0.12), rgba(255,255,255,0.02));color:gold;font-weight:800}
+  .rank-2{color:silver}
+  .gallery{display:flex;gap:8px;flex-wrap:wrap}
+  .gallery img{width:calc(33.333% - 8px);border-radius:8px;cursor:pointer;border:1px solid rgba(255,255,255,0.03)}
+  @media(max-width:760px){.gallery img{width:calc(50% - 8px)}}
+
+  .sponsors{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .sponsors img{height:40px;filter:grayscale(70%);opacity:0.85;transition:filter .18s,transform .18s}
+  .sponsors img:hover{filter:none;transform:translateY(-6px)}
+
+  /* winners wall */
+  .winners{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .winner-card{flex:1;min-width:160px;padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+  .winner-card h4{font-size:18px;color:var(--neon);margin-bottom:6px}
+
+  /* FAQ */
+  .faq-item{margin-bottom:10px}
+  .faq-q{font-weight:700;color:var(--neon);cursor:pointer}
+  .faq-a{color:var(--muted);margin-top:6px;display:none}
+
+  /* Footer */
+  footer{padding:28px 20px;margin-top:36px;text-align:center;color:var(--muted);font-size:14px}
+
+  /* Light streaks canvas */
+  #streaks{position:fixed;right:0;left:0;top:0;bottom:0;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:0.25}
+  /* ensure content on top */
+  .hero,.wrap,header,.sidebar,.panel{position:relative;z-index:2}
+</style>
+</head>
+<body>
+
+<!-- canvas for light streaks -->
+<canvas id="streaks"></canvas>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">🛡</div>
+      <div>
+        <div class="title">F.F.R.I.P. — Neo Championship</div>
+        <div style="font-size:12px;color:var(--muted)">Presented by Community • 2025</div>
+      </div>
+    </div>
+
+    <nav>
+      <div>
+        <a href="#home">होम</a>
+        <a href="#registration">रजिस्ट्रेशन</a>
+        <a href="#schedule">शेड्यूल</a>
+        <a href="#leaderboard">लीडरबोर्ड</a>
+        <a href="#gallery">गेलरी</a>
+        <a href="#rules">नियम</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="main-grid">
+    <!-- Left: Hero + content -->
+    <div>
+      <!-- HERO -->
+      <section class="hero" id="home" aria-label="Hero section">
+        <div class="slideshow" id="slideshow">
+          <!-- Slides: replace these image URLs with your own images -->
+          <div class="slide active" style="background-image:url('https://wallpapers.com/images/hd/garena-free-fire-kelly-ctbn1ynccovhcfrd.jpg')"></div>
+          <div class="slide" style="background-image:url('https://wallpapers.com/images/hd/free-fire-season-1-in-front-of-tank-fez2dnkeo1hlydyg.jpg')"></div>
+          <div class="slide" style="background-image:url('https://dl.dir.freefiremobile.com/common/web_event/official2.ff.garena.all/202210/2f81eaed8ecbc91322df8b5c417d1ab8.jpg')"></div>
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+          <span class="eyebrow">LIMITED SLOTS • 128 TEAMS</span>
+          <h1>⚔️ Neo F.F.R.I.P. Championship 2025</h1>
+          <p>एक futuristic gaming experience — neon blue vibes, live matches, stream & big prizes. दिखाओ अपनी टीम की ताकत और बनो चैंपियन।</p>
+
+          <div class="hero-cta">
+            <a class="btn-primary" href="https://forms.gle/b5cvZxQNaxaLQDbB6" target="_blank" rel="noopener">🛡️ अभी रजिस्टर करें</a>
+            <a class="btn-outline" href="#schedule">शेड्यूल देखें</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-pill">Prize Pool: <strong style="margin-left:8px;color:#fff">₹50,000</strong></div>
+            <div class="meta-pill">Format: Squad (4v4)</div>
+            <div class="meta-pill">Region: India (IST)</div>
+          </div>
+        </div>
+
+        <div class="hero-controls" id="hero-dots"></div>
+      </section>
+
+      <!-- Rest of sections remain the same as your original code... -->
+       <section id="about">
+        <div class="card">
+          <div class="card-title"><h3>🎮 About Tournament</h3></div>
+          <p style="color:var(--muted);line-height:1.6">
+            Neo F.F.R.I.P. Championship — competitive Free Fire style tournament with fair play policy, live streaming on event days, and community-driven prize distribution. Matches will be scheduled across qualifiers, semifinals and grand finale.
+          </p>
+        </div>
+      </section>
+
+      <section id="schedule">
+        <div class="card">
+          <div class="card-title"><h3>📅 Schedule</h3></div>
+          <div class="section-grid">
+            <div>
+              <strong class="small-muted">Qualifier Round</strong>
+              <p style="margin-top:8px;color:var(--muted)">10 December 2025 • 10:00 AM — 4:00 PM</p>
+            </div>
+            <div>
+              <strong class="small-muted">Semi-Finals</strong>
+              <p style="margin-top:8px;color:var(--muted)">15 December 2025 • 7:00 PM — 10:00 PM</p>
+            </div>
+            <div>
+              <strong class="small-muted">Grand Finals</strong>
+              <p style="margin-top:8px;color:var(--muted)">20 December 2025 • 6:30 PM — Live Stream</p>
+            </div>
+            <div>
+              <strong class="small-muted">Map Rotation</strong>
+              <p style="margin-top:8px;color:var(--muted)">Bermuda • Kalahari • Purgatory</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="leaderboard">
+        <div class="card leaderboard">
+          <div class="card-title"><h3>🏆 Live Leaderboard</h3></div>
+          <table>
+            <thead>
+              <tr><th>Rank</th><th>Team</th><th>Points</th><th>Kills</th></tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <tr class="rank-1"><td>#1</td><td>Team Phoenix</td><td>125</td><td>60</td></tr>
+              <tr class="rank-2"><td>#2</td><td>Predators X</td><td>110</td><td>55</td></tr>
+              <tr><td>#3</td><td>No Mercy</td><td>98</td><td>40</td></tr>
+              <tr><td>#4</td><td>Invincible</td><td>85</td><td>45</td></tr>
+            </tbody>
+          </table>
+          <p style="color:var(--muted);margin-top:12px">*Leaderboard will update after each match. (Manual / API integration later)</p>
+        </div>
+      </section>
+
+      <section id="gallery">
+        <div class="card">
+          <div class="card-title"><h3>📸 Gallery (click to enlarge)</h3></div>
+          <div class="gallery" id="gallery-grid">
+            <!-- placeholder images — replace with your own -->
+            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000" alt="gallery1" data-large="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600">
+            <img src="https://i.pinimg.com/564x/d7/bb/a2/d7bba2474cdd0273330e9f053faeaa09.jpg" alt="gallery2" data-large="https://images.unsplash.com/photo-1602524814307-43f14f3a1c6c?q=80&w=1600">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000" alt="gallery3" data-large="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600">
+          </div>
+        </div>
+      </section>
+
+      <section id="sponsors">
+        <div class="card">
+          <div class="card-title"><h3>🤝 Sponsors & Partners</h3></div>
+          <div class="sponsors">
+            <img src="https://i.pinimg.com/564x/d7/bb/a2/d7bba2474cdd0273330e9f053faeaa09.jpg" alt="s1">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBVGFZQsfSXGNBBbBbtBHHbZczONt1BRGx3A&s" alt="s2">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfy6GqpIHC9ayMl3TivZNwZWakypq__KhKpQ&s" alt="s3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThMj2fU6D5tmJpCwptXF5CvU-JpEaoExtgpjO1e47PUos93KuVNe4AXHID69Em-1-mwA4&usqp=CAU" alt="p1">
+          </div>
+        </div>
+      </section>
+
+      <section id="winners">
+        <div class="card">
+          <div class="card-title"><h3>🏅 Winners Wall</h3></div>
+          <div class="winners">
+            <div class="winner-card"><h4>#1 Team Phoenix</h4><p style="color:var(--muted)">Champion • Grand Finals 2024</p></div>
+            <div class="winner-card"><h4>#2 Predators X</h4><p style="color:var(--muted)">Runner-up • 2024</p></div>
+            <div class="winner-card"><h4>Hall of Fame</h4><p style="color:var(--muted)">Top performers & MVPs</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="card">
+          <div class="card-title"><h3>❓ FAQ</h3></div>
+          <div class="faq-item">
+            <div class="faq-q">कौन रजिस्टर कर सकता है?</div>
+            <div class="faq-a">भारत में रहने वाले 16+ उम्र के खिलाड़ी टीम बना कर रजिस्टर कर सकते हैं।</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Entry Fee कितना है?</div>
+            <div class="faq-a">Entry Fee: ₹200 per team (payment details रजिस्ट्रेशन के बाद भेजे जाएंगे)।</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Sidebar remains same -->
+     <aside class="sidebar">
+      <div class="panel">
+        <div class="live-title">
+          <div style="font-weight:800">🔴 Live Updates</div>
+          <div class="small-muted">Updated now</div>
+        </div>
+
+        <div style="margin-top:8px">
+          <div style="font-size:13px;color:var(--muted)">Next Match</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
+            <div>
+              <div style="font-weight:800">Blaze Squad vs Omega</div>
+              <div class="small-muted" style="margin-top:4px">Nov 20, 2025 • 7:00 PM IST</div>
+            </div>
+            <div><span class="countdown" id="mini-count">05d 12h</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px" class="small-muted">Top Teams</div>
+        <div class="top-teams" id="top-teams">
+          <div class="team-row">
+            <div class="team-rank">1</div>
+            <div>
+              <div class="team-name">Team Phoenix</div>
+              <div class="small-muted">125 pts • 60 kills</div>
+            </div>
+          </div>
+          <div class="team-row">
+            <div class="team-rank">2</div>
+            <div>
+              <div class="team-name">Predators X</div>
+              <div class="small-muted">110 pts • 55 kills</div>
+            </div>
+          </div>
+          <div class="team-row">
+            <div class="team-rank">3</div>
+            <div>
+              <div class="team-name">No Mercy</div>
+              <div class="small-muted">98 pts • 40 kills</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:18px">
+          <a class="btn-primary" href="https://forms.gle/KQAHeeZqg8G1M54Y9" target="_blank" rel="noopener">Register (Google Form)</a>
+        </div>
+
+        <div style="margin-top:14px" class="small-muted">
+          Stream: <strong style="color:var(--neon)">YouTube / Twitch</strong><br>
+          Contact: <span style="color:var(--muted)">+91 98765 43210</span>
+        </div>
+      </div>
+
+      <div style="height:18px"></div>
+
+      <div class="panel" style="margin-top:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:800">🔔 Latest News</div>
+          <div class="small-muted">live</div>
+        </div>
+        <ul style="margin-top:12px;list-style:none;padding-left:0;color:var(--muted);font-size:14px">
+          <li style="margin-bottom:8px">Match 5 results uploaded — Blaze Squad top the table.</li>
+          <li style="margin-bottom:8px">Streaming scheduled for Grand Finals.</li>
+          <li style="margin-bottom:8px">Merch drop for top 3 teams announced.</li>
+        </ul>
+      </div>
+      <!-- Payment & WhatsApp Panel (paste inside .sidebar or below other panels) -->
+<div style="height:18px"></div>
+
+<div class="panel" id="payment-panel" style="margin-top:12px">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div style="font-weight:800">💳 Payment & Support</div>
+    <div class="small-muted">secure</div>
+  </div>
+
+  <div style="margin-top:12px;color:var(--muted);font-size:14px">
+    <p style="margin-bottom:8px">Support the tournament — ₹200 per team (or custom donation). Use UPI or join our WhatsApp for help/payment screenshots.</p>
+
+    <!-- WhatsApp -->
+    <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+      <!-- Replace WHATSAPP_GROUP_LINK_HERE with your actual group invite URL (starts with https://chat.whatsapp.com/...) -->
+      <a class="btn-outline" href="https://chat.whatsapp.com/Gxve7efJHo2F95MDlzTyGG?mode=wwt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="filter:drop-shadow(0 4px 8px rgba(0,0,0,0.25))">
+          <path d="M20.52 3.48A11.92 11.92 0 0 0 12 0C5.37 0 .1 4.92.1 11.02c0 1.94.5 3.78 1.45 5.4L0 24l7.9-2.07c1.53.43 3.13.65 4.64.65 6.63 0 11.9-4.92 11.9-11.02 0-1.77-.4-3.44-1.42-4.88z" fill="#25D366"/>
+          <path d="M17.2 14.1c-.5-.25-2.96-1.46-3.42-1.63-.46-.18-.8-.25-1.14.25-.33.5-1.28 1.63-1.57 1.97-.29.33-.57.37-1.06.12-.46-.25-1.95-.72-3.7-2.29-1.37-1.29-2.28-2.88-2.55-3.4-.26-.5-.03-.77.18-.99.18-.17.5-.45.75-.68.25-.25.33-.42.5-.7.17-.25.08-.5-.04-.7-.12-.17-1.14-2.76-1.56-3.78-.41-1-.83-.9-1.14-.91H3c-.37 0-1 .12-1.45.6C1.1 5.63 2.1 7.6 3.2 9.18c1.1 1.59 2.95 3.53 4.77 4.67 1.83 1.16 3.78 1.96 6.13 2.28 1.72.23 2.9.17 3.98-.34.68-.33 1.66-1.06 1.88-1.92.22-.86-.04-1.25-.78-1.53z" fill="#fff"/>
+        </svg>
+        WhatsApp Group
+      </a>
+    </div>
+
+    <!-- UPI -->
+    <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <div>
+          <div class="small-muted" style="font-size:13px">UPI ID</div>
+          <!-- Replace YOUR_UPI_ID_HERE with your actual UPI ID, e.g., myname@upi -->
+          <div style="font-weight:800;font-size:16px;color:var(--neon);margin-top:4px" id="upi-id">YOUR_UPI_ID_HERE</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+          <button class="btn-outline" id="copy-upi-btn" style="padding:8px 10px">Copy UPI</button>
+          <!-- Deep link format (works on mobile) -->
+          <a id="upi-deeplink" class="btn-primary" href="#" style="padding:8px 10px;font-size:14px">Pay with UPI</a>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center">
+        <!-- Replace 'upi-qr.png' with your QR image filename or URL -->
+        <img id="upi-qr-thumb" src="upi-qr.png" alt="UPI QR" style="width:86px;height:86px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);object-fit:cover;cursor:pointer">
+        <div style="color:var(--muted);font-size:13px">
+          <div style="font-weight:700">Scan QR to Pay</div>
+          <div style="margin-top:6px">Show this QR to participants or let them scan from the site.</div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;color:var(--muted);margin-top:6px">
+        Tip: On mobile, use <strong>Pay with UPI</strong> button — it opens UPI intent apps. On desktop, scan the QR or copy the UPI ID.
+      </div>
+    </div>
+  </div>
+</div>
+
+    </aside>
+
+  </div>
+
+  <footer>
+    <div style="max-width:var(--max-w);margin:0 auto;padding:8px 20px">
+      © 2025 F.F.R.I.P. Championship • Built with neon-blue vibes • Google Form link preserved
+    </div>
+  </footer>
+</div>
+
+<!-- Rest of JS scripts remain the same as original -->
+<!-- Lightbox modal (gallery) -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;z-index:9999">
+  <img id="lightbox-img" src="" alt="enlarged" style="max-width:92%;max-height:92%;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,0.6)">
+</div>
+
+<script>
+/* -------------------------
+   Slideshow Logic
+   Replace slide URLs above as you like.
+   ------------------------- */
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const dotsWrap = document.getElementById('hero-dots');
+  let idx = 0, timer= null;
+  slides.forEach((s,i)=> {
+    const dot = document.createElement('div');
+    dot.className='dot' + (i===0? ' active':'');
+    dot.addEventListener('click', ()=> { goTo(i); });
+    dotsWrap.appendChild(dot);
+  });
+  const dots = dotsWrap.querySelectorAll('.dot');
+
+  function show(i){
+    slides.forEach((s,si)=> s.classList.toggle('active', si===i));
+    dots.forEach((d,di)=> d.classList.toggle('active', di===i));
+  }
+  function next(){ idx = (idx+1) % slides.length; show(idx); }
+  function goTo(i){ idx=i; show(idx); resetTimer(); }
+  function resetTimer(){ if(timer) clearInterval(timer); timer = setInterval(next,5000); }
+  resetTimer();
+})();
+
+/* -------------------------
+   Lightbox for gallery
+   ------------------------- */
+(function(){
+  const grid = document.getElementById('gallery-grid');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  grid.addEventListener('click', e=>{
+    const img = e.target.closest('img');
+    if(!img) return;
+    lbImg.src = img.dataset.large || img.src;
+    lightbox.style.display = 'flex';
+  });
+  lightbox.addEventListener('click', ()=> lightbox.style.display='none');
+})();
+
+/* -------------------------
+   Simple mini countdown (right panel)
+   ------------------------- */
+(function(){
+  // target date for next match (example)
+  const target = new Date('2025-11-20T19:00:00'); // change as needed
+  const el = document.getElementById('mini-count');
+  function update(){
+    const now = new Date();
+    const diff = Math.max(0, target - now);
+    const days = Math.floor(diff/86400000);
+    const hours = Math.floor((diff%86400000)/3600000);
+    el.textContent = `${days}d ${hours}h`;
+  }
+  update(); setInterval(update,60000);
+})();
+
+/* -------------------------
+   FAQ toggle
+   ------------------------- */
+(function(){
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click', ()=>{
+      const a = q.nextElementSibling;
+      if(!a) return;
+      a.style.display = a.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+})();
+
+/* -------------------------
+   Canvas Light Streaks (subtle)
+   ------------------------- */
+(function(){
+  const c = document.getElementById('streaks');
+  const ctx = c.getContext('2d');
+  let w=0,h=0, particles=[];
+  function resize(){ w = c.width = window.innerWidth; h = c.height = window.innerHeight; particles = []; for(let i=0;i<16;i++) particles.push(create()); }
+  function create(){
+    const len = Math.random()*220 + 120;
+    return {
+      x: Math.random()*w,
+      y: Math.random()*h,
+      vx: (Math.random()*2 - 0.6) * 0.6,
+      vy: (Math.random()*-1 - 0.2) * 0.3,
+      life: Math.random()*8000 + 4000,
+      t: 0,
+      len,
+      color: `rgba(0,209,255,${0.08 + Math.random()*0.12})`,
+      rot: Math.random()*Math.PI*2
+    };
+  }
+  function draw(ts){
+    ctx.clearRect(0,0,w,h);
+    for(const p of particles){
+      p.t += 16;
+      p.x += p.vx * 1.6;
+      p.y += p.vy * 1.6;
+      p.rot += 0.003;
+      const alpha = Math.max(0, 1 - p.t / p.life);
+      const grad = ctx.createLinearGradient(p.x, p.y, p.x + Math.cos(p.rot)*p.len, p.y + Math.sin(p.rot)*p.len);
+      grad.addColorStop(0, `rgba(0,209,255,${0.0 * alpha})`);
+      grad.addColorStop(0.3, `rgba(0,160,255,${0.02 * alpha})`);
+      grad.addColorStop(1, `rgba(0,209,255,${0.12 * alpha})`);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(p.x + Math.cos(p.rot)*p.len, p.y + Math.sin(p.rot)*p.len);
+      ctx.stroke();
+      // respawn when life ends or offscreen
+      if(p.t > p.life || p.x < -200 || p.x > w + 200 || p.y < -200) {
+        Object.assign(p, create());
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(draw);
+})();
+
+/* -------------------------
+   Small accessibility: skip to content via keyboard (optional)
+   ------------------------- */
+(function(){
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+      document.querySelector('#home').scrollIntoView({behavior:'smooth'});
+    }
+  });
+})();
+</script>
+<script>
+
+    // ---------- Payment panel helpers ----------
+(function(){
+  const copyBtn = document.getElementById('copy-upi-btn');
+  const upiIdEl = document.getElementById('upi-id');
+  const upiDeep = document.getElementById('upi-deeplink');
+  const qrThumb = document.getElementById('upi-qr-thumb');
+
+  // Configure these values (replace placeholders if needed)
+  const upiId = (upiIdEl && upiIdEl.textContent.trim()) || 'YOUR_UPI_ID_HERE';
+  const payAmount = ''; // leave blank for payer to enter amount, or set like '200.00'
+  const payName = encodeURIComponent('F.F.R.I.P. Championship'); // optional in deep link
+  const upiScheme = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${payName}${payAmount ? '&am='+payAmount : ''}&cu=INR`;
+
+  if(upiDeep) upiDeep.href = upiScheme;
+
+  // Copy UPI ID
+  if(copyBtn){
+    copyBtn.addEventListener('click', async ()=>{
+      try {
+        await navigator.clipboard.writeText(upiId);
+        copyBtn.textContent = 'Copied ✓';
+        setTimeout(()=> copyBtn.textContent = 'Copy UPI', 2000);
+      } catch (e) {
+        // fallback
+        const tmp = document.createElement('input');
+        document.body.appendChild(tmp);
+        tmp.value = upiId;
+        tmp.select();
+        document.execCommand('copy');
+        document.body.removeChild(tmp);
+        copyBtn.textContent = 'Copied ✓';
+        setTimeout(()=> copyBtn.textContent = 'Copy UPI', 2000);
+      }
+    });
+  }
+
+  // Lightbox modal for QR
+  const existingLightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  if(qrThumb && existingLightbox && lbImg){
+    qrThumb.addEventListener('click', ()=>{
+      const src = qrThumb.src || 'upi-qr.png';
+      lbImg.src = src;
+      existingLightbox.style.display = 'flex';
+    });
+  }
+})();
+
+</script>
+</body>
+</html>
+

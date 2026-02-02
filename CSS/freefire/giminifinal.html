@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔵 F.F.R.I.P. E-Sports 2025 🏆</title>
+<!-- SEO Meta Tags -->
+<meta name="description" content="F.F.R.I.P. Championship 2025 – Free Fire tournament with ₹50,000 prize pool. Register your squad now!">
+<meta name="keywords" content="Free Fire tournament, F.F.R.I.P., Esports, Squad registration, Live leaderboard, Prize pool">
+<meta name="author" content="F.F.R.I.P. E-Sports">
+<meta property="og:title" content="F.F.R.I.P. Championship 2025">
+<meta property="og:description" content="Join the ultimate Free Fire tournament with a ₹50,000 prize pool. Register your squad today!">
+<meta property="og:type" content="website">
+<meta property="og:image" content="URL_TO_YOUR_PREVIEW_IMAGE">
+<meta property="og:url" content="YOUR_WEBSITE_URL">
+<meta name="twitter:card" content="summary_large_image">
+
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+:root {
+    --dark-bg: #141D2B;
+    --card-bg: #1F2A38;
+    --accent-color: #00BFFF;
+    --highlight-color: #00FFFF;
+    --text-light: #E0E6F0;
+    --text-dark: #FFFFFF;
+    --font-main: 'Exo 2', sans-serif;
+    --font-heading: 'Orbitron', sans-serif;
+}
+body {
+    font-family: var(--font-main);
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+.grid-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
+    background-image: linear-gradient(to right, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                     linear-gradient(to bottom, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveGrid 30s linear infinite;
+    opacity: 0.2;
+}
+@keyframes moveGrid { from { background-position: 0 0; } to { background-position: 50px 50px; } }
+
+.container { width: 90%; max-width: 1200px; margin: auto; padding: 10px 0; position: relative; z-index: 10; }
+
+h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    color: var(--highlight-color);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center;
+}
+h2::after {
+    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 3px; background-color: var(--accent-color); border-radius: 2px;
+}
+
+header {
+    background-color: rgba(20, 29, 43, 0.95);
+    padding: 10px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    border-bottom: 3px solid var(--accent-color);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transition: top 0.3s;
+}
+nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+nav h3 { font-family: var(--font-heading); font-size: 1.6em; color: var(--highlight-color); margin: 0; padding: 5px 0; white-space: nowrap; }
+nav div { display: flex; flex-wrap: wrap; justify-content: flex-end; margin-top: 5px; }
+nav a { color: var(--text-light) !important; text-decoration: none !important; padding: 8px 12px; margin: 3px 5px; border-radius: 6px; transition: all 0.3s ease; font-weight: 700; border: 1px solid transparent; font-size: 0.9em; white-space: nowrap; }
+nav a:hover { background-color: var(--accent-color); color: var(--dark-bg) !important; box-shadow: 0 0 10px var(--highlight-color); border-color: var(--highlight-color); }
+
+.hero { height: 50vh; display: flex; justify-content: center; align-items: center; text-align: center; position: relative; margin-top: 80px; }
+.hero-content { z-index: 10; padding: 0 20px; }
+.hero h1 {
+    font-size: 4em;
+    color: var(--text-dark);
+    text-shadow: 0 0 20px var(--highlight-color), 0 0 40px rgba(0, 191, 255, 0.5);
+    margin-bottom: 10px;
+    font-family: var(--font-heading);
+}
+.hero p { font-size: 1.5em; font-weight: 700; color: var(--text-light); text-shadow: 1px 1px 3px #000; }
+.timer { margin-top: 20px; font-size: 1.8em; padding: 10px 30px; border-radius: 8px; background-color: rgba(0,0,0,0.5); border: 1px solid var(--highlight-color); color: var(--highlight-color); }
+.timer strong { color: var(--text-dark); }
+
+.slider-container { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; z-index: 1; }
+.slide { width: 100%; height: 100%; position: absolute; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s ease-in-out; filter: brightness(0.7); }
+.slide.active { opacity: 1; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 5; }
+
+.cta-button { display: inline-block; background-color: var(--accent-color); color: var(--text-dark) !important; padding: 15px 40px; text-decoration: none; border-radius: 40px; font-size: 1.3em; font-weight: 900; margin: 15px; box-shadow: 0 0 15px var(--highlight-color); transition: all 0.4s ease; border: 2px solid var(--highlight-color); }
+.cta-button:hover { background-color: var(--highlight-color); color: var(--dark-bg) !important; transform: scale(1.05); box-shadow: 0 0 30px var(--highlight-color); }
+
+section { padding: 30px 0; position: relative; }
+
+.card { background-color: var(--card-bg); padding: 25px; margin: 15px 0; border-radius: 12px; border-left: 4px solid var(--accent-color); box-shadow: 0 5px 20px rgba(0,0,0,0.8); transition: transform 0.3s, box-shadow 0.3s; height: 100%; display: flex; flex-direction: column; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,1); }
+
+.two-column-section { display: flex; gap: 50px; align-items: stretch; margin-top: 20px; }
+.two-column-section > div { flex: 1; display: flex; flex-direction: column; }
+.two-column-section > div .card { flex: 1; }
+
+.stream-card iframe { width: 100%; aspect-ratio: 16 / 9; border-radius: 8px; }
+
+.reg-step { background-color: #283747; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--accent-color); text-align: left; display: flex; align-items: center; }
+.reg-step i { font-size: 2em; color: var(--highlight-color); margin-right: 15px; width: 40px; text-align: center; }
+.reg-step h3 { margin: 0; font-size: 1.1em; color: var(--text-dark); font-family: var(--font-main); text-transform: none; }
+.reg-step p { margin: 5px 0 0 0; font-size: 0.9em; color: #ccc; }
+
+.leaderboard-controls { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 15px; font-size: 1em; }
+.leaderboard-controls label { margin-right: 10px; font-weight: 700; color: var(--accent-color); }
+.leaderboard-controls select { padding: 8px; border-radius: 6px; border: 1px solid var(--accent-color); background-color: var(--card-bg); color: var(--text-light); appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%2300FFFF" d="M6 9l-4-4h8z"/></svg>'); background-repeat: no-repeat; background-position: right 8px center; padding-right: 25px; cursor: pointer; }
+
+.responsive-table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
+
+.leaderboard table, #schedule table { width: 100%; min-width: 450px; border-collapse: collapse; margin-top: 15px; }
+.leaderboard th, .leaderboard td, #schedule th, #schedule td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #333; }
+.leaderboard th, #schedule thead th { background-color: rgba(0,191,255,0.15); color: var(--highlight-color); font-size: 0.9em; letter-spacing: 1px; }
+.leaderboard tr:nth-child(even), #schedule tbody tr:nth-child(even) { background-color: #253342; }
+.leaderboard tr:hover, #schedule tbody tr:hover { background-color: #314256; }
+.leaderboard tr.rank-1 { background-color: rgba(0,255,255,0.2); border-left: 5px solid var(--highlight-color); color: var(--highlight-color); font-weight: bold;}
+.leaderboard tr.rank-2 { background-color: rgba(100,149,237,0.2); border-left: 5px solid #6495ED; color: #6495ED;}
+.leaderboard tr.rank-3 { background-color: rgba(173,216,230,0.2); border-left: 5px solid #ADD8E6; color: #ADD8E6;}
+#schedule table { border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; }
+#schedule thead th { background-color: var(--accent-color); color: var(--dark-bg); font-weight: 900; }
+
+footer { background-color: var(--card-bg); padding: 20px 0; border-top: 3px solid var(--accent-color); text-align: center; font-size: 0.9em; }
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .hero h1 { font-size: 3.5em; }
+    .hero p { font-size: 1.2em; }
+    .cta-button { font-size: 1.2em; padding: 15px 30px; }
+    .timer { font-size: 1.5em; padding: 10px 20px; }
+    h2 { font-size: 2em; }
+    nav a { padding: 8px 10px; margin: 3px; }
+}
+@media (max-width: 768px) {
+    nav { flex-direction: column; align-items: flex-start; } 
+    nav h3 { width: 100%; text-align: left; margin-bottom: 5px; } 
+    nav div { width: 100%; justify-content: flex-start; flex-direction: column; }
+    nav a { width: 100%; max-width: none; padding: 4px 15px; margin: 1px 0; font-size: 0.9em; }
+    .hero { height: 40vh; }
+    .hero h1 { font-size: 2.5em; line-height: 1.1; }
+    .hero p { font-size: 1em; }
+    .timer { font-size: 1.2em; }
+    .two-column-section { flex-direction: column; gap: 20px; }
+    .two-column-section > div .card { height: auto; }
+    .leaderboard th, .leaderboard td, #schedule th, #schedule td { font-size: 0.85em; padding: 8px 6px; }
+}
+@media (max-width: 480px) {
+    .container { width: 95%; }
+    .hero { height: 32vh; }
+    .hero h1 { font-size: 1.6em; letter-spacing: 1px; }
+    .hero p { font-size: 0.8em; margin-bottom: 5px; }
+    .cta-button { font-size: 0.9em; padding: 8px 15px; margin: 8px; }
+    h2 { font-size: 1.6em; }
+    .timer { font-size: 0.9em; padding: 6px 10px; }
+    nav h3 { font-size: 1.3em; }
+    nav a { font-size: 0.8em; padding: 4px 10px; }
+    .reg-step h3 { font-size: 1em; }
+    .reg-step p { font-size: 0.8em; }
+}
+</style>
+</head>
+<body>
+<div class="grid-overlay"></div>
+
+<header>
+<div class="container">
+<nav>
+<h3>F.F.R.I.P. E-Sports</h3>
+<div>
+<a href="#home"><i class="fas fa-home"></i> होम</a>
+<a href="#registration"><i class="fas fa-edit"></i> रजिस्ट्रेशन</a>
+<a href="#prizes"><i class="fas fa-trophy"></i> पुरस्कार</a>
+<a href="#combined-info"><i class="fas fa-dice"></i> मैच जानकारी</a>
+<a href="#rules"><i class="fas fa-gavel"></i> नियम</a>
+<a href="#stream"><i class="fas fa-video"></i> लाइव स्ट्रीम</a>
+</div>
+</nav>
+</div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+<div class="slider-container">
+<div class="slide active" style="background-image: url('https://placehold.co/1200x600/003366/00BFFF?text=F.F.R.I.P.%20Arena%20I');"></div>
+<div class="slide" style="background-image: url('https://placehold.co/1200x600/004080/00FFFF?text=Squad%20Up%20%26%20Dominate');"></div>
+<div class="slide" style="background-image: url('https://placehold.co/1200x600/0055AA/FFFFFF?text=50K%20Prize%20Pool');"></div>
+</div>
+
+<div class="hero-content">
+<h1>🔵 F.F.R.I.P. CHAMPIONSHIP 2025 🏆</h1>
+<p>कुल ₹50,000/- का प्राइज पूल। अपना स्क्वाड तैयार करें!</p>
+<a href="#registration" class="cta-button">🛡️ अभी रजिस्टर करें!</a>
+<div class="timer" id="countdown">रजिस्ट्रेशन बंद होने में: **05** दिन **12** घंटे **30** मिनट</div> 
+</div>
+</section>
+
+<!-- Registration, Prize, Leaderboard, Stream Sections -->
+<!-- ... यहाँ पर पहले वाला registration, leaderboard, live stream, schedule आदि sections paste कर सकते हैं जैसे पहले दिए थे ... -->
+<section id="registration" class="container">
+<h2>📝 टीम रजिस्ट्रेशन (₹50/- प्रति स्क्वाड)</h2>
+<div class="card" style="text-align:center; border-left:4px solid #FFD700;">
+<p style="font-size:1.2em; font-weight:700; color:var(--highlight-color); margin-bottom:20px;">रजिस्ट्रेशन के लिए इन 3 स्टेप्स को फॉलो करें:</p>
+<div class="reg-step">
+<i class="fas fa-money-check-alt"></i>
+<div>
+<h3>1. रजिस्ट्रेशन फीस का भुगतान करें (₹50/-)</h3>
+<p style="font-weight:bold; color:var(--accent-color);" id="upi-id-copy-container">UPI ID: <span id="upi-id-copy" style="cursor:pointer; text-decoration:underline;">yourupiid@bank</span> (कॉपी करने के लिए क्लिक करें)</p>
+<p>भुगतान के बाद Transaction ID संभाल कर रखें।</p>
+</div>
+</div>
+<div class="reg-step">
+<i class="fas fa-file-alt"></i>
+<div>
+<h3>2. Google फॉर्म भरें (Transaction ID ज़रूरी)</h3>
+<p>फॉर्म में सभी स्क्वाड डिटेल्स के साथ Transaction ID ज़रूर भरें।</p>
+<a href="https://forms.gle/b5cvZxQNaxaLQDbB6" target="_blank" class="cta-button" style="padding:8px 20px; font-size:1em; margin-top:10px;">🚀 गूगल फॉर्म भरें</a>
+</div>
+</div>
+<div class="reg-step" style="border-left:4px solid #25D366;">
+<i class="fab fa-whatsapp"></i>
+<div>
+<h3>3. WhatsApp ग्रुप जॉइन करें</h3>
+<a href="https://chat.whatsapp.com/YOURGROUPLINK" target="_blank" class="cta-button" style="background-color:#25D366; border-color:#25D366; color:#fff;">💬 WhatsApp जॉइन करें</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Prizes / Leaderboard / Stream -->
+<section id="combined-info" class="container two-column-section">
+<div>
+<h2>🏆 पुरस्कार</h2>
+<div class="card">
+<p>🥇 1st Place: ₹25,000/-<br>🥈 2nd Place: ₹15,000/-<br>🥉 3rd Place: ₹10,000/-</p>
+</div>
+</div>
+<div>
+<h2>📊 Leaderboard</h2>
+<div class="card leaderboard">
+<div class="leaderboard-controls">
+<label for="sortCriteria">Sort By:</label>
+<select id="sortCriteria" onchange="sortLeaderboard()">
+<option value="score">Score</option>
+<option value="kills">Kills</option>
+<option value="placement">Placement</option>
+</select>
+</div>
+<div class="responsive-table-wrapper">
+<table id="leaderboardTable">
+<thead><tr><th>Rank</th><th>Team</th><th>Score</th><th>Kills</th><th>Placement</th></tr></thead>
+<tbody>
+<tr data-score="150" data-kills="45" data-placement="3"><td>1</td><td>Squad Alpha</td><td>150</td><td>45</td><td>3</td></tr>
+<tr data-score="140" data-kills="42" data-placement="4"><td>2</td><td>Team Bravo</td><td>140</td><td>42</td><td>4</td></tr>
+<tr data-score="130" data-kills="38" data-placement="5"><td>3</td><td>Omega Force</td><td>130</td><td>38</td><td>5</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div>
+<h2>📺 लाइव स्ट्रीम</h2>
+<div class="card stream-card">
+<iframe src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Live Stream" allowfullscreen></iframe>
+</div>
+</div>
+</section>
+
+<!-- Schedule -->
+<section id="schedule-rules" class="container">
+<h2>🗓️ मैच शेड्यूल</h2>
+<div class="card">
+<table>
+<thead><tr><th>Date</th><th>Time</th><th>Match</th></tr></thead>
+<tbody>
+<tr><td>10-Nov-2025</td><td>12:00 PM</td><td>Qualifier Round 1</td></tr>
+<tr><td>11-Nov-2025</td><td>3:00 PM</td><td>Qualifier Round 2</td></tr>
+<tr><td>12-Nov-2025</td><td>6:00 PM</td><td>Semi-Finals</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>📜 नियम और संपर्क</h2>
+<div class="card">
+<h3 style="color: var(--accent-color); text-align:left; margin-top:0;">मुख्य नियम</h3>
+<ul style="list-style-type: disc; margin-left:20px; padding-left:0;">
+<li>सभी खिलाड़ियों को WhatsApp ग्रुप में होना ज़रूरी है।</li>
+<li>रूम ID और पासवर्ड मैच से 15 मिनट पहले शेयर किए जाएंगे।</li>
+<li>किसी भी प्रकार का हैकिंग या अनैतिक व्यवहार तुरंत अयोग्य घोषित कर दिया जाएगा।</li>
+<li>प्राइज पूल के भुगतान के लिए सही UPI ID देना अनिवार्य है।</li>
+</ul>
+<h3 style="color: var(--accent-color); text-align:left; margin-top:20px;">संपर्क करें</h3>
+<p>किसी भी प्रश्न या तकनीकी सहायता के लिए, कृपया हमारे <a href="[Discord Link]" style="color: var(--highlight-color); text-decoration:none; font-weight:bold;">डिस्कोर्ड सर्वर</a> से जुड़ें।</p>
+<p>ईमेल: example@esports.com</p>
+</div>
+</section>
+
+<footer>
+<p>© 2025 F.F.R.I.P. E-Sports. सभी अधिकार सुरक्षित।</p>
+</footer>
+
+<script>
+// Slider
+let slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+setInterval(() => {
+slides[currentSlide].classList.remove('active');
+currentSlide = (currentSlide+1) % slides.length;
+slides[currentSlide].classList.add('active');
+}, 5000);
+
+// Countdown
+const countdown = document.getElementById('countdown');
+function updateCountdown() {
+    const endDate = new Date('Nov 15, 2025 18:00:00').getTime();
+    const now = new Date().getTime();
+    const distance = endDate - now;
+    if(distance<0){ countdown.innerHTML="Registration Closed"; return; }
+    const days = Math.floor(distance/(1000*60*60*24));
+    const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+    countdown.innerHTML = `रजिस्ट्रेशन बंद होने में: <strong>${days}</strong> दिन <strong>${hours}</strong> घंटे <strong>${minutes}</strong> मिनट`;
+}
+setInterval(updateCountdown,1000);
+
+// Leaderboard sorting (Top 3)
+window.sortLeaderboard = function() {
+    const table = document.getElementById('leaderboardTable');
+    const tbody = table.querySelector('tbody');
+    let rows = Array.from(tbody.querySelectorAll('tr'));
+    const criteria = document.getElementById('sortCriteria').value;
+
+    rows.sort((a,b)=>{
+        const valA = parseInt(a.getAttribute(`data-${criteria}`),10);
+        const valB = parseInt(b.getAttribute(`data-${criteria}`),10);
+        return valB - valA;
+    });
+
+    rows = rows.slice(0,3); // Top 3 only
+    rows.forEach((row,i)=>{
+        row.querySelector('td').textContent = i+1;
+        tbody.appendChild(row);
+    });
+}
+
+// Match Section Heights
+function matchSectionHeights() {
+    const sections = document.querySelectorAll('.two-column-section');
+    sections.forEach(sec=>{
+        const divs = sec.querySelectorAll('> div');
+        let maxHeight=0;
+        divs.forEach(d=>maxHeight = Math.max(maxHeight, d.offsetHeight));
+        divs.forEach(d=>d.style.height = maxHeight+'px');
+    });
+}
+window.addEventListener('load', matchSectionHeights);
+window.addEventListener('resize', matchSectionHeights);
+
+// UPI copy
+const upiIdCopy = document.getElementById('upi-id-copy');
+upiIdCopy.addEventListener('click', ()=>{ navigator.clipboard.writeText(upiIdCopy.textContent).then(()=>{ alert('UPI ID copied!'); }); });
+
+// Mobile Navbar hide/show
+let prevScroll = window.scrollY;
+const navHeader = document.querySelector('header');
+window.addEventListener('scroll', () => {
+    let currentScroll = window.scrollY;
+    if (currentScroll > prevScroll && currentScroll > 50) {
+        navHeader.style.top = "-80px"; // hide on scroll down
+    } else {
+        navHeader.style.top = "0"; // show on scroll up
+    }
+    prevScroll = currentScroll;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Warriors Cup 2025</title>
+  <link rel="stylesheet" href="tounamentcss.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 🎧 Background Music -->
+<audio id="bgMusic" loop autoplay>
+  <source src="wrong-place-129242.mp3" type="audio/mpeg">
+</audio>
+
+    <button id="musicToggle" class="btn-glow" style="position:fixed;bottom:20px;right:20px;z-index:1000;">
+  🔊 Music
+</button>
+
+  <!-- Animated Background -->
+  <canvas id="fireBackground"></canvas>
+
+  <!-- Header -->
+  <header>
+    <h1 class="title-glow">🔥 FREE FIRE WARRIORS CUP 2025 🔥</h1>
+    <p class="subtitle">Join the Battle • Win Glory • Rule the Arena</p>
+    <a href="#register" class="btn-glow">Register Now</a>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="reveal">
+    <h2>🏆 Tournament Details 🏆</h2>
+    <div class="card">
+      <p><b>Date:</b> 20 November 2025</p>
+      <p><b>Prize Pool:</b> ₹10,000 + Exclusive Skins</p>
+      <p><b>Mode:</b> Squad • Custom Room</p>
+      <p><b>Teams:</b> Limited to 48 Only</p>
+    </div>
+  </section>
+
+  <!-- Register Section -->
+  <section id="register" class="reveal">
+    <h2>📝 Squad Registration</h2>
+    <form id="registerForm" class="card form-card">
+      <input type="text" placeholder="Team Name" required>
+      <input type="text" placeholder="Leader Name" required>
+      <input type="number" placeholder="Free Fire UID" required>
+      <input type="email" placeholder="Email Address" required>
+      <button type="submit" class="btn-glow">Submit</button>
+    </form>
+  </section>
+
+  <!-- Leaderboard -->
+  <section id="leaderboard" class="reveal">
+    <h2>🔥 Leaderboard 🔥</h2>
+    <div class="board">
+      <div class="entry"><span>1.</span> <b>Team Phoenix</b> - 102 pts</div>
+      <div class="entry"><span>2.</span> <b>FF Legends</b> - 89 pts</div>
+      <div class="entry"><span>3.</span> <b>Death Squad</b> - 78 pts</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Free Fire Warriors Cup | Designed by <span class="highlight">YourName</span></p>
+  </footer>
+<script>
+
+// 🎵 Background music control
+const bgMusic = document.getElementById("bgMusic");
+
+// Some browsers block autoplay until user interacts
+document.addEventListener("click", () => {
+  if (bgMusic.paused) {
+    bgMusic.play();
+  }
+});
+
+// Optional: start low volume for comfort
+bgMusic.volume = 0.4;
+
+const toggleBtn = document.getElementById("musicToggle");
+toggleBtn.addEventListener("click", () => {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    toggleBtn.textContent = "🔊 Music";
+  } else {
+    bgMusic.pause();
+    toggleBtn.textContent = "🔇 Muted";
+  }
+});
+
+
+    // 🔥 Fire particle background
+const canvas = document.getElementById("fireBackground");
+const ctx = canvas.getContext("2d");
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = canvas.height;
+    this.size = Math.random() * 3 + 2;
+    this.speedY = Math.random() * 2 + 1;
+    this.color = `rgba(255, ${Math.floor(Math.random()*100)}, 0, ${Math.random()})`;
+  }
+  update() {
+    this.y -= this.speedY;
+    if (this.y < 0) this.y = canvas.height;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+  }
+}
+
+function initParticles() {
+  for (let i = 0; i < 200; i++) {
+    particles.push(new Particle());
+  }
+}
+function animateFire() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animateFire);
+}
+initParticles();
+animateFire();
+
+// ⚡ Scroll reveal effect
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".reveal").forEach((el) => {
+    const windowHeight = window.innerHeight;
+    const revealTop = el.getBoundingClientRect().top;
+    if (revealTop < windowHeight - 100) el.classList.add("active");
+  });
+});
+
+// ✅ Registration form
+document.getElementById("registerForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  alert("✅ Registration Successful! Join our WhatsApp group for updates.");
+});
+
+</script>
+  
+</body>
+</html>

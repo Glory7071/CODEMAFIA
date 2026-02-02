@@ -1,0 +1,46 @@
+{
+  "winners": {
+    "first": {
+      "name": "TEAM ABC",
+      "prize": "₹25,000",
+      "img": "https://your-image-url.com/winner1.jpg"
+    },
+    "second": {
+      "name": "TEAM XYZ",
+      "prize": "₹15,000",
+      "img": "https://your-image-url.com/winner2.jpg"
+    },
+    "third": {
+      "name": "TEAM PQR",
+      "prize": "₹10,000",
+      "img": "https://your-image-url.com/winner3.jpg"
+    }
+  },
+
+  "leaderboard": {
+    "team1": {
+      "name": "TEAM A",
+      "score": 220,
+      "kills": 14,
+      "placement": 1
+    },
+    "team2": {
+      "name": "TEAM B",
+      "score": 185,
+      "kills": 9,
+      "placement": 2
+    },
+    "team3": {
+      "name": "TEAM C",
+      "score": 160,
+      "kills": 8,
+      "placement": 3
+    },
+    "team4": {
+      "name": "TEAM D",
+      "score": 130,
+      "kills": 5,
+      "placement": 4
+    }
+  }
+}
